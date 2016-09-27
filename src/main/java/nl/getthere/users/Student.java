@@ -1,12 +1,10 @@
-package nl.getthere.students;
+package nl.getthere.users;
 
 import java.util.Date;
 import javax.persistence.Entity;
 
 @Entity
-public class Student {
-	private Long id;
-	private String name;
+public class Student extends User{
 	private String phoneNumber;
 	private String emailAddress;
 	private Date readyDate; // Date at which student is ready to work
@@ -17,14 +15,6 @@ public class Student {
 	private Boolean wantsTechEvents;
 	private Boolean wantsGraduationProject;
 	
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public Boolean getWantsTraineeship() {
 		return wantsTraineeship;
 	}
@@ -64,22 +54,7 @@ public class Student {
 	public void setAgreedPrivacy(Boolean agreedPrivacy) {
 		this.agreedPrivacy = agreedPrivacy;
 	}
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
