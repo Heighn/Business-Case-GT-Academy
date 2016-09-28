@@ -28,7 +28,7 @@ public class UserRegistration {
 	}
 	@RequestMapping("/newStudent")
 	public String newStudent(){
-		Student newStudent = new Student();
-		newStudent.setName(name);
-		System.out.println("Hallo");
+		
+		return "gelukt";
+	}
 }
