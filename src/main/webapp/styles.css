@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 62.5%;
+  font-family: sans-serif;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border: 0;
+}
+
+p, li {
+  font-size: 1.6em;
+}
+
+#header {}
+#main {}
+#footer {}
+
+.content {
+  max-width: 1100px;
+  width: 96%;
+  margin: 0px auto;
+}
+
+input {
+  display: block;
+  padding: 7px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  min-width: 300px;
+  font-size: 1.6em;
+}
+
+input[type='submit'] {
+  min-width: auto;
+}
