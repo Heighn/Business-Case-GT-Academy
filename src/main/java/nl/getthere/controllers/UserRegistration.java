@@ -30,4 +30,5 @@ public class UserRegistration {
 	public String newStudent(){
 		Student newStudent = new Student();
 		newStudent.setName(name);
+		System.out.println("Hallo");
 }
