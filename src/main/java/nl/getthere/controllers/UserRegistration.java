@@ -31,6 +31,7 @@ public class UserRegistration {
 		Student newStudent = new Student();
 		String name = "Pieter";
 		newStudent.setName(name);
+
 		return "Return Pieter";
 	}
 }
