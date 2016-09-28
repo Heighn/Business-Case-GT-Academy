@@ -5,12 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 @Entity
 abstract public class User {
 	private Long id;
 	private String name;
 	private String password;
-	
+		
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
