@@ -26,6 +26,12 @@ public class UserRegistration {
 		return "recruitersList";
 	}
 	
+	@RequestMapping("/recruitersLogin")
+	public String recruitersLogin(Model model){	
+		model.addAttribute("recruiters", userRepo.findAll());
+		return "recruitersLogin";
+	}
+	
 	@RequestMapping("/newStudent")
 	public String newStudent(){
 		
