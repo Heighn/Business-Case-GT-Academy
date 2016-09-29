@@ -17,6 +17,17 @@ public class Recruiter extends User {
 	public Long getId() {
 	    return id;
 	}
+	
+	public void setId(Long id){
+	    this.id = id;
+	}
+	
+	public Recruiter() {}
+	
+	public Recruiter(String recruiterName, String recruiterPass){
+		this.recruiterName = recruiterName;
+		this.recruiterPass = recruiterPass;
+	}
 
 	public String getRecruiterName() {
 		return recruiterName;
