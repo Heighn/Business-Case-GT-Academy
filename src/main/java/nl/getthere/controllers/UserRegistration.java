@@ -26,10 +26,11 @@ public class UserRegistration {
 	}
 	
 	@RequestMapping(value="/recruitersReg", method=RequestMethod.POST)
-	public String nieuw(String recruiterName, String recruiterPass){
-		Recruiter recruiter = new Recruiter(recruiterName, recruiterPass);
-		userRepo.save(recruiter);
+	public String nieuw(String recruiterName, String recruiterPass, String confirm){
+		if ( (recruiterPass.equals(confirm) && !(recruiterPass.isEmpty())) && !(recruiterName.isEmpty()) ) {
+			Recruiter recruiter = new Recruiter(recruiterName, recruiterPass, confirm);
+			userRepo.save(recruiter);
+		}
 		return "/recruitersReg";
 	}
-	
 }

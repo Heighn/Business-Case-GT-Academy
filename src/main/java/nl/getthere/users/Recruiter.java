@@ -5,9 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Recruiter extends User {
 	
+	@NotEmpty(message="Geef een gebruikersnaam op voor de nieuwe recruiter.")
 	private String recruiterName;
 	private String recruiterPass;
 	private Long id;
@@ -24,7 +27,7 @@ public class Recruiter extends User {
 	
 	public Recruiter() {}
 	
-	public Recruiter(String recruiterName, String recruiterPass){
+	public Recruiter(String recruiterName, String recruiterPass, String confirm){
 		this.recruiterName = recruiterName;
 		this.recruiterPass = recruiterPass;
 	}

@@ -16,7 +16,7 @@
       <ul>
       	<c:forEach items="${recruiters}" var="recruiter">
       	<li>
-      		Recruiter ${recruiter.id}
+      		${recruiter.id} ${recruiter.recruiterName}
       	</li>
       	</c:forEach>
       </ul>
