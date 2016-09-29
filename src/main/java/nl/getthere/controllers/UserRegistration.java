@@ -15,10 +15,17 @@ public class UserRegistration {
 	private UserRepository userRepo;
 		
 	@RequestMapping("/recruitersReg")
-	public String recuiters(Model model){		
+	public String recruiters(Model model){		
 		model.addAttribute("recruiters", userRepo.findAll());
-		return "recruitersReg";
+		return "/recruitersReg";
 	}
+	
+	@RequestMapping("/recruitersList")
+	public String recruitersList(Model model){	
+		model.addAttribute("recruiters", userRepo.findAll());
+		return "recruitersList";
+	}
+	
 	@RequestMapping("/newStudent")
 	public String newStudent(){
 		
@@ -30,7 +37,8 @@ public class UserRegistration {
 		if ( (recruiterPass.equals(confirm) && !(recruiterPass.isEmpty())) && !(recruiterName.isEmpty()) ) {
 			Recruiter recruiter = new Recruiter(recruiterName, recruiterPass, confirm);
 			userRepo.save(recruiter);
+			return "redirect:/recruitersList";
 		}
-		return "/recruitersReg";
+		return "redirect:/recruitersReg";
 	}
 }
