@@ -1,21 +1,85 @@
 package nl.getthere.users;
 
-import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Student extends User{
+public class Student{
+	private boolean inActief = false;
+	private Long id;
+	private String firstName;
+	private String lastName;
 	private String phoneNumber;
 	private String emailAddress;
-	private Date readyDate; // Date at which student is ready to work
-	private Boolean agreedPrivacy; // Agreed privacy letter
+	private boolean agreedPrivacy; // Agreed privacy letter
 	private String password;
-	private Boolean wantsTraineeship;
-	private Boolean wantsInternship;
-	private Boolean wantsTechEvents;
-	private Boolean wantsGraduationProject;
+	private String passwordConfirmation;
+	private boolean wantsTraineeship;
+	private boolean wantsInternship;
+	private boolean wantsTechEvents;
+	private boolean wantsGraduationProject;
 	
-	public Boolean getWantsTraineeship() {
+	//private Date readyDate; // Date at which student is ready to work
+	
+	public boolean isInActief(){
+		return inActief;
+	}
+	
+	public void setInActief(boolean inActief){
+		this.inActief = inActief;
+	}
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	@NotEmpty(message="Voornaam is verplicht")
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	@NotEmpty(message="Achternaam is verplicht")
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	@NotEmpty(message="Wachtwoord is verplicht")
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	@NotEmpty(message="Bevestig je wachtwoord")
+	public String getPasswordConfirmation() {
+		return passwordConfirmation;
+	}
+
+	public void setPasswordConfirmation(String passwordConfirmation) {
+		this.passwordConfirmation = passwordConfirmation;
+	}
+	
+	public boolean getWantsTraineeship() {
 		return wantsTraineeship;
 	}
 
@@ -23,7 +87,7 @@ public class Student extends User{
 		this.wantsTraineeship = wantsTraineeship;
 	}
 
-	public Boolean getWantsInternship() {
+	public boolean getWantsInternship() {
 		return wantsInternship;
 	}
 
@@ -31,7 +95,7 @@ public class Student extends User{
 		this.wantsInternship = wantsInternship;
 	}
 
-	public Boolean getWantsTechEvents() {
+	public boolean getWantsTechEvents() {
 		return wantsTechEvents;
 	}
 
@@ -39,7 +103,7 @@ public class Student extends User{
 		this.wantsTechEvents = wantsTechEvents;
 	}
 
-	public Boolean getWantsGraduationProject() {
+	public boolean getWantsGraduationProject() {
 		return wantsGraduationProject;
 	}
 
@@ -47,11 +111,11 @@ public class Student extends User{
 		this.wantsGraduationProject = wantsGraduationProject;
 	}
 
-	public Boolean getAgreedPrivacy() {
+	public boolean getAgreedPrivacy() {
 		return agreedPrivacy;
 	}
 
-	public void setAgreedPrivacy(Boolean agreedPrivacy) {
+	public void setAgreedPrivacy(boolean agreedPrivacy) {
 		this.agreedPrivacy = agreedPrivacy;
 	}
 	
@@ -70,12 +134,15 @@ public class Student extends User{
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
-
-	public Date getReadyDate() {
-		return readyDate;
+	public String toString(){
+		return firstName + " " + lastName + " " + phoneNumber + " " + emailAddress;
 	}
 
-	public void setReadyDate(Date ready_date) {
-		this.readyDate = readyDate;
-	}
+//	public Date getReadyDate() {
+//		return readyDate;
+//	}
+//
+//	public void setReadyDate(Date ready_date) {
+//		this.readyDate = readyDate;
+//	}
 }

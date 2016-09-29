@@ -2,33 +2,110 @@ package nl.getthere.controllers;
 
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import nl.getthere.users.Recruiter;
 import nl.getthere.users.Student;
-import nl.getthere.users.UserRepository;
+import nl.getthere.users.StudentRepository;
 
 @Controller
 public class UserRegistration {
 	@Autowired
-	private UserRepository userRepo;
-		
-	@RequestMapping("/welkom")
-	public String newRecruiter(){		
-		System.out.println("Dit lukt nog net");
-		Recruiter recruiter = new Recruiter();
-		recruiter.setName("Marieke");
-		recruiter.setPassword("Lokhorst");
-//		recruiter.setId(new Long(1));
-		System.out.println(recruiter.getId());
-		userRepo.save(recruiter);	
-		return "welkom";
+	private StudentRepository studentRepo;
+	private Student currentStudent;
+	
+	private String findPassword(String email){
+		for(Student student : studentRepo.findAll()){
+			if(student.getEmailAddress().equals(email)){
+				return student.getPassword();
+			}
+		}
+		return "";
 	}
-	@RequestMapping("/newStudent")
-	public String newStudent(){
+	
+	private String findFirstName(String email){
+		for(Student student : studentRepo.findAll()){
+			if(student.getEmailAddress().equals(email)){
+				return student.getFirstName();
+			}
+		}
+		return "";
+	}
+	
+	private Student findStudent(String email){
+		for(Student student : studentRepo.findAll()){
+			if(student.getEmailAddress().equals(email)){
+				return student;
+			}
+		}
+		return null;
+	}
+	
+	@RequestMapping("/inactief")
+	public String deleteAccount(){
+		currentStudent.setInActief(true);
+		return "SignIn";
+	}
+	
+	@RequestMapping(value="/wijzig", method=RequestMethod.GET)
+	public String updateAccount(Model model){
+		model.addAttribute("firstName", currentStudent.getFirstName());
+		model.addAttribute("lastName", currentStudent.getLastName());
+		model.addAttribute("emailAddress", currentStudent.getEmailAddress());
+		model.addAttribute("phoneNumber", currentStudent.getPhoneNumber());
+		model.addAttribute("password", currentStudent.getPassword());
 		
-		return "gelukt";
+//		Student studentForm = currentStudent;
+		Student studentForm = new Student();
+		model.addAttribute("studentForm", studentForm);
+		
+		return "SignUp";
+	}
+	
+	@RequestMapping(value="/wijzig", method=RequestMethod.POST)
+	public String postUpdateAccount(@Valid @ModelAttribute("studentForm") Student studentForm, Model model){
+		currentStudent = studentForm;
+		model.addAttribute("firstName", currentStudent.getFirstName());
+		return "LoggedIn";
+	}
+	
+	@RequestMapping(value = "/welkom", method=RequestMethod.GET)
+	public String welkom(){
+//		studentRepo.deleteAll();
+		return "SignIn";
+	}
+	
+	@RequestMapping(value = "/welkom", method=RequestMethod.POST)
+	public String checkLogin(String email, String password, Model model){
+		if(findPassword(email).equals(password) && !findStudent(email).isInActief()){
+			model.addAttribute("firstName", findFirstName(email));
+			model.addAttribute("message", "Welkom terug!");
+			currentStudent = findStudent(email);
+			return "LoggedIn";
+		}
+		return "SignIn";
+	}
+	
+	@RequestMapping(value = "/signUp", method=RequestMethod.GET)
+	public String signUp(Model model){
+		Student studentForm = new Student();
+		model.addAttribute("studentForm", studentForm);
+		return "SignUp";
+	}
+	
+	@RequestMapping(value="/signUp", method=RequestMethod.POST)
+	public String postSignUp(@Valid @ModelAttribute("studentForm") Student studentForm, Model model){
+		System.out.println(studentForm.toString());
+		studentRepo.save(studentForm);
+		currentStudent = studentForm;
+		model.addAttribute("message", "Fijn dat je je hebt ingeschreven!");
+		model.addAttribute("firstName", currentStudent.getFirstName());
+		return "LoggedIn";
 	}
 }
