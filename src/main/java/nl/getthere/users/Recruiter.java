@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Recruiter extends User {
+public class Recruiter{
 	
 	@NotEmpty(message="Vul uw gebruikersnaam in.")
 	private String recruiterName;

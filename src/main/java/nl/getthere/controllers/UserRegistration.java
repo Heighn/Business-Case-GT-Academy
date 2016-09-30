@@ -5,28 +5,23 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-<<<<<<< .merge_file_a01540
-=======
 import org.springframework.validation.BindingResult;
->>>>>>> .merge_file_a05172
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-<<<<<<< .merge_file_a01540
 import nl.getthere.contact.StudentMailSender;
 import nl.getthere.users.Student;
 import nl.getthere.users.StudentRepository;
-=======
 import nl.getthere.users.Recruiter;
 import nl.getthere.users.UserRepository;
->>>>>>> .merge_file_a05172
 
 @Controller
 public class UserRegistration {
 	@Autowired
-<<<<<<< .merge_file_a01540
 	private StudentRepository studentRepo;
+	@Autowired
+	private UserRepository userRepo;
+	
 	private Student currentStudent;
 	
 	private StudentMailSender studentMailSender;
@@ -123,8 +118,6 @@ public class UserRegistration {
 		model.addAttribute("firstName", currentStudent.getFirstName());
 		return "LoggedIn";
 	}
-=======
-	private UserRepository userRepo;
 		
 	@RequestMapping("/recruitersReg")
 	public String recruiters(Model model){		
@@ -150,11 +143,6 @@ public class UserRegistration {
 		return "recruitersIngelogd";
 	}
 	
-	@RequestMapping("/newStudent")
-	public String newStudent(){
-		return "gelukt";
-	}
-	
 	@ModelAttribute("recruiter")
 	public Recruiter newRecruiter() {
 	        return new Recruiter();
@@ -172,5 +160,4 @@ public class UserRegistration {
 	public String login(String recruiterName, String recruiterPass){
 		return "redirect:/ingelogd";
 	}
->>>>>>> .merge_file_a05172
 }
