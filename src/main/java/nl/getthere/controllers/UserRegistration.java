@@ -99,11 +99,6 @@ public class UserRegistration {
 		model.addAttribute("studentForm", studentForm);
 		return "SignUp";
 	}
-
-	@RequestMapping("/error")
-	public String error(){
-		return "SignUp";
-	}
 	
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	public String postSignUp(@Valid @ModelAttribute("studentForm") Student studentForm, Model model) {
