@@ -1,16 +1,18 @@
 <%@ include file="header.jsp" %> 
   <div id="main">
     <div class="content">
-      <form:form method ="post">
+      <form:form method ="post" modelAttribute="recruiter">
         <h3>Recruiter registreren</h3>
-        <p>Gebruikersnaam</p>
-        <input type="text" name="recruiterName">
+        <p>Gebruikersnaam<form:label path="recruiterName">
+        	<form:errors path="recruiterName" cssClass="error"></form:errors>
+        </form:label></p>
+        <form:input path="recruiterName"/>
         <p>Wachtwoord</p>
-        <input type="password" name="recruiterPass">
+        <form:password path="recruiterPass"/>
         <p>Bevestig wachtwoord</p>
-        <input type="password" name="confirm">
+        <form:password path="confirm"/>
         <input type="submit" value="Verzenden">
       </form:form>
     </div>
   </div>
-  <%@ include file="header.jsp" %>
+  <%@ include file="footer.jsp" %>

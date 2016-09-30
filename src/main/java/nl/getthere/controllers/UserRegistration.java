@@ -1,8 +1,12 @@
 package nl.getthere.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -32,19 +36,32 @@ public class UserRegistration {
 		return "recruitersLogin";
 	}
 	
+	@RequestMapping("/ingelogd")
+	public String recruitersIngelogd(Model model){	
+		model.addAttribute("recruiters", userRepo.findAll());
+		return "recruitersIngelogd";
+	}
+	
 	@RequestMapping("/newStudent")
 	public String newStudent(){
-		
 		return "gelukt";
 	}
 	
+	@ModelAttribute("recruiter")
+	public Recruiter newRecruiter() {
+	        return new Recruiter();
+	}
+	
 	@RequestMapping(value="/recruitersReg", method=RequestMethod.POST)
-	public String nieuw(String recruiterName, String recruiterPass, String confirm){
-		if ( (recruiterPass.equals(confirm) && !(recruiterPass.isEmpty())) && !(recruiterName.isEmpty()) ) {
-			Recruiter recruiter = new Recruiter(recruiterName, recruiterPass, confirm);
-			userRepo.save(recruiter);
-			return "redirect:/recruitersList";
+	public String nieuw(@Valid Recruiter recruiter, BindingResult result){
+		if(result.hasErrors()) {
+			return "recruitersReg";
 		}
-		return "redirect:/recruitersReg";
+		return "recruitersReg";
+	}
+	
+	@RequestMapping(value="/recruitersLogin", method=RequestMethod.POST)
+	public String login(String recruiterName, String recruiterPass){
+		return "redirect:/ingelogd";
 	}
 }

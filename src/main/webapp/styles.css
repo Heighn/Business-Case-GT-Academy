@@ -24,7 +24,16 @@ h3 {
   font-size: 2.4em;
 }
 
-#header {}
+#header {
+  margin: 10px 0 50px 0;
+}
+
+#menu {}
+
+#menu li {
+  list-style-type: none;
+}
+
 #main {}
 #footer {}
 
@@ -45,4 +54,13 @@ input {
 
 input[type='submit'] {
   min-width: auto;
+}
+
+.error {
+  color: #e64812;
+}
+
+.error::before {
+  content: " - ";
+  color: #000;
 }

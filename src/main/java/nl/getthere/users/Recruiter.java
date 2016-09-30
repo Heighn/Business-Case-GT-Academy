@@ -10,9 +10,20 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Recruiter extends User {
 	
-	@NotEmpty(message="Geef een gebruikersnaam op voor de nieuwe recruiter.")
+	@NotEmpty(message="Vul uw gebruikersnaam in.")
 	private String recruiterName;
+	@NotEmpty(message="Mag niet leeg zijn")
 	private String recruiterPass;
+	private String confirm;
+
+	public String getConfirm() {
+		return confirm;
+	}
+
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
+	}
+
 	private Long id;
 	
 	@Id
