@@ -7,7 +7,9 @@
         	<form:errors path="recruiterName" cssClass="error"></form:errors>
         </form:label></p>
         <form:input path="recruiterName"/>
-        <p>Wachtwoord</p>
+        <p>Wachtwoord<form:label path="recruiterName">
+        	<form:errors path="recruiterPass" cssClass="error"></form:errors>
+        </form:label></p>
         <form:password path="recruiterPass"/>
         <p>Bevestig wachtwoord</p>
         <form:password path="confirm"/>

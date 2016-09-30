@@ -12,7 +12,7 @@ public class Recruiter extends User {
 	
 	@NotEmpty(message="Vul uw gebruikersnaam in.")
 	private String recruiterName;
-	@NotEmpty(message="Mag niet leeg zijn")
+	@NotEmpty(message="Geef een nieuw wachtwoord op.")
 	private String recruiterPass;
 	private String confirm;
 
