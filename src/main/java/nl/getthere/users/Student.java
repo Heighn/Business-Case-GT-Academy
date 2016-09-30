@@ -9,27 +9,27 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Student{
-	private boolean inActief = false;
+	private Boolean inActief = false;
 	private Long id;
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
 	private String emailAddress;
-	private boolean agreedPrivacy; // Agreed privacy letter
+	private Boolean agreedPrivacy; // Agreed privacy letter
 	private String password;
 	private String passwordConfirmation;
-	private boolean wantsTraineeship;
-	private boolean wantsInternship;
-	private boolean wantsTechEvents;
-	private boolean wantsGraduationProject;
+	private Boolean wantsTraineeship;
+	private Boolean wantsInternship;
+	private Boolean wantsTechEvents;
+	private Boolean wantsGraduationProject;
 	
 	//private Date readyDate; // Date at which student is ready to work
 	
-	public boolean isInActief(){
+	public Boolean isInActief(){
 		return inActief;
 	}
 	
-	public void setInActief(boolean inActief){
+	public void setInActief(Boolean inActief){
 		this.inActief = inActief;
 	}
 	
@@ -79,7 +79,7 @@ public class Student{
 		this.passwordConfirmation = passwordConfirmation;
 	}
 	
-	public boolean getWantsTraineeship() {
+	public Boolean getWantsTraineeship() {
 		return wantsTraineeship;
 	}
 
@@ -87,7 +87,7 @@ public class Student{
 		this.wantsTraineeship = wantsTraineeship;
 	}
 
-	public boolean getWantsInternship() {
+	public Boolean getWantsInternship() {
 		return wantsInternship;
 	}
 
@@ -95,7 +95,7 @@ public class Student{
 		this.wantsInternship = wantsInternship;
 	}
 
-	public boolean getWantsTechEvents() {
+	public Boolean getWantsTechEvents() {
 		return wantsTechEvents;
 	}
 
@@ -103,7 +103,7 @@ public class Student{
 		this.wantsTechEvents = wantsTechEvents;
 	}
 
-	public boolean getWantsGraduationProject() {
+	public Boolean getWantsGraduationProject() {
 		return wantsGraduationProject;
 	}
 
@@ -111,11 +111,11 @@ public class Student{
 		this.wantsGraduationProject = wantsGraduationProject;
 	}
 
-	public boolean getAgreedPrivacy() {
+	public Boolean getAgreedPrivacy() {
 		return agreedPrivacy;
 	}
 
-	public void setAgreedPrivacy(boolean agreedPrivacy) {
+	public void setAgreedPrivacy(Boolean agreedPrivacy) {
 		this.agreedPrivacy = agreedPrivacy;
 	}
 	
