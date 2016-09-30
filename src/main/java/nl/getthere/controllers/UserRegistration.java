@@ -5,17 +5,27 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< .merge_file_a01540
+=======
+import org.springframework.validation.BindingResult;
+>>>>>>> .merge_file_a05172
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+<<<<<<< .merge_file_a01540
 import nl.getthere.contact.StudentMailSender;
 import nl.getthere.users.Student;
 import nl.getthere.users.StudentRepository;
+=======
+import nl.getthere.users.Recruiter;
+import nl.getthere.users.UserRepository;
+>>>>>>> .merge_file_a05172
 
 @Controller
 public class UserRegistration {
 	@Autowired
+<<<<<<< .merge_file_a01540
 	private StudentRepository studentRepo;
 	private Student currentStudent;
 	
@@ -113,4 +123,54 @@ public class UserRegistration {
 		model.addAttribute("firstName", currentStudent.getFirstName());
 		return "LoggedIn";
 	}
+=======
+	private UserRepository userRepo;
+		
+	@RequestMapping("/recruitersReg")
+	public String recruiters(Model model){		
+		model.addAttribute("recruiters", userRepo.findAll());
+		return "/recruitersReg";
+	}
+	
+	@RequestMapping("/recruitersList")
+	public String recruitersList(Model model){	
+		model.addAttribute("recruiters", userRepo.findAll());
+		return "recruitersList";
+	}
+	
+	@RequestMapping("/recruitersLogin")
+	public String recruitersLogin(Model model){	
+		model.addAttribute("recruiters", userRepo.findAll());
+		return "recruitersLogin";
+	}
+	
+	@RequestMapping("/ingelogd")
+	public String recruitersIngelogd(Model model){	
+		model.addAttribute("recruiters", userRepo.findAll());
+		return "recruitersIngelogd";
+	}
+	
+	@RequestMapping("/newStudent")
+	public String newStudent(){
+		return "gelukt";
+	}
+	
+	@ModelAttribute("recruiter")
+	public Recruiter newRecruiter() {
+	        return new Recruiter();
+	}
+	
+	@RequestMapping(value="/recruitersReg", method=RequestMethod.POST)
+	public String nieuw(@Valid Recruiter recruiter, BindingResult result){
+		if(result.hasErrors()) {
+			return "recruitersReg";
+		}
+		return "recruitersReg";
+	}
+	
+	@RequestMapping(value="/recruitersLogin", method=RequestMethod.POST)
+	public String login(String recruiterName, String recruiterPass){
+		return "redirect:/ingelogd";
+	}
+>>>>>>> .merge_file_a05172
 }
