@@ -28,9 +28,16 @@ sidenav, a {
 }
 
 h1{
-	position: relative;
+	position: fixed;
 	top: 0;
 	left: 400px;
+	font-size: 25px;
+	background: #edf0f2;
+    color: #404040;
+	display: block;
+}
+body{
+	background: #edf0f2;
 }
 </style>
 
@@ -38,24 +45,11 @@ h1{
 </head>
 
 <div id="mySidenav" class="sidenav">
-  <a href="#">Accountgegevens Wijzigen</a>
-  <a href="#">Account Verwijderen</a>
+  <a href="/wijzig">Accountgegevens Wijzigen</a> <a href="/inactief">Account Verwijderen</a>
 </div>
 
 
 <body>
 	<h1>Welkom, ${firstName}!</h1>
-
-	<h2>Accountgegevens Wijzigen</h2>
-	<form action="/wijzig" method="get">
-		<input type="submit" />
-	</form>
-	
-	<h2>Account Verwijderen</h2>
-	<form action="/inactief" method="get">
-		<input type="submit" />
-	</form>
-	
-	
 </body>
 </html>

@@ -16,6 +16,9 @@ public class Recruiter{
 	private String recruiterPass;
 	private String confirm;
 
+	
+	public Recruiter() {}
+	
 	public String getConfirm() {
 		return confirm;
 	}
@@ -35,8 +38,6 @@ public class Recruiter{
 	public void setId(Long id){
 	    this.id = id;
 	}
-	
-	public Recruiter() {}
 	
 	public Recruiter(String recruiterName, String recruiterPass, String confirm){
 		this.recruiterName = recruiterName;

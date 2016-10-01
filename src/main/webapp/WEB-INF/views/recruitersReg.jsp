@@ -1,20 +1,36 @@
-<%@ include file="header.jsp" %> 
+<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="charset" content="utf-8">
+  <title>Get There Studentenportaal</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header id="header">
+  </header>
   <div id="main">
     <div class="content">
-      <form:form method ="post" modelAttribute="recruiter">
-        <h3>Recruiter registreren</h3>
-        <p>Gebruikersnaam<form:label path="recruiterName">
-        	<form:errors path="recruiterName" cssClass="error"></form:errors>
-        </form:label></p>
+      <form:form action="recruitersReg" method="post" commandName="recruiterForm">
+        <p>Gebruikersnaam</p>
         <form:input path="recruiterName"/>
-        <p>Wachtwoord<form:label path="recruiterName">
-        	<form:errors path="recruiterPass" cssClass="error"></form:errors>
-        </form:label></p>
-        <form:password path="recruiterPass"/>
-        <p>Bevestig wachtwoord</p>
-        <form:password path="confirm"/>
-        <input type="submit" value="Verzenden">
+        <p>Wachtwoord</p>
+        <form:input type="password" path="recruiterPass"/>
+        <p>Bevestig Wachtwoord</p>
+        <form:input type="password" path="confirm"/>
+        <input type="submit">
       </form:form>
     </div>
   </div>
-  <%@ include file="footer.jsp" %>
+  <footer id="footer">
+  </footer>
+</body>
+</html>

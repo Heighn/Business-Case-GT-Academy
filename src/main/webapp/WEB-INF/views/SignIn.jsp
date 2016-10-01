@@ -9,15 +9,16 @@
 <body>
 	<form method="post" name="signInSheet">
 		<p>Emailadres</p>
-		<input type="email" name="email" />
+		<input type="text" name="email" />
 		<p>Wachtwoord</p>
 		<input type="password" name="password" /><br> <input
 			type="submit" />
 	</form>
 	<p>Heb je nog geen account?
-	<p>
+	</p>
 	<form action="signUp">
-		<input type="submit" name="newAccount" value="Account aanmaken" />
+		<input type="submit" name="newAccount" value="Studentaccount aanmaken" />
+		<input type="submit" name="newAccount" value="Recruiteraccount aanmaken" />
 	</form>
 </body>
 </html>

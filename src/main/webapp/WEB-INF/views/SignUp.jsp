@@ -20,17 +20,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div id="main">
     <div class="content">
       <form:form method="post" commandName="studentForm">
-        <h3>Persoonsgegevens</h3>
+        <h2>Persoonsgegevens</h2>
         <p>Voornaam</p>
         <form:input path="firstName" value="${firstName}"/>
         <p>Achternaam</p>
         <form:input path="lastName" value="${lastName}"/>
-        <h3>Accountgegevens</h3>
+        <h2>Accountgegevens</h2>
         <p>Wachtwoord</p>
         <form:input type="password" path="password" value="${password}"/>
         <p>Bevestig wachtwoord</p>
         <form:input type="password" path="passwordConfirmation" value="${password}"/>
-        <h3>Contactgegevens</h3>
+        <h2>Contactgegevens</h2>
         <p>Emailadres</p>
         <form:input type="email" path="emailAddress" value="${emailAddress}"/>
         <p>Telefoonnummer</p>

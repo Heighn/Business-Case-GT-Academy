@@ -4,17 +4,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Get There studentenportaal</title>
-  <link rel="stylesheet" href="../styles.css">
+  <title>Get There Studentenportaal</title>
+  <link rel="stylesheet" href="../styles2.css">
 </head>
+
+<div id="mySidenav" class="sidenav">
+  <a href="/sendEmail">Email Verzenden</a>
+  <a href="/recruitersList">Recruiters overzicht</a>
+  <a href="/recruitersLogin">Inloggen voor recruiters</a>
+</div>
+
 <body>
   <header id="header">
   <div class="content">
-  	<nav id="menu">
-  		<ul>
-  			<li><a href="recruitersList">Recruiters overzicht</a></li>
-  			<li><a href="recruitersLogin">Inloggen voor recruiters</a></li>
-  		</ul>
-  	</nav>
-  	</div>
-  </header>
+  </div>
+</header>
