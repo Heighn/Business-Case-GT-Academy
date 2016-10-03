@@ -7,11 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class StudentMailSender {
 	
-	@Autowired
-	static private JavaMailSender mailSender;
-	
-	
-	public void sendEmail(String messageText, String emailAddress) {
+	public void sendEmail(JavaMailSender mailSender, String messageText, String emailAddress) {
 		try {
 			SimpleMailMessage msg = new SimpleMailMessage();
 			msg.setFrom("studentportalph@gmail.com");

@@ -29,6 +29,9 @@ public class UserRegistration {
 	private Student currentStudent;
 	private Recruiter currentRecruiter;
 	
+	@Autowired
+	private JavaMailSender javaMailSender;
+	
 	@Autowired(required=true)
 	private StudentMailSender studentMailSender;
 
@@ -172,7 +175,7 @@ public class UserRegistration {
 	@RequestMapping(value="/sendEmail", method=RequestMethod.POST)
 	public String sendEmailByRecruiterPost(String messageText, String emailAddress){
 		System.out.println("EMAIL: " + emailAddress);
-		studentMailSender.sendEmail(messageText, emailAddress);
+		studentMailSender.sendEmail(javaMailSender, messageText, emailAddress);
 		return "recruitersIngelogd";
 	}
 	
