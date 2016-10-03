@@ -19,7 +19,8 @@ public class UserRegistration {
 	private StudentRepository studentRepo;
 	private Student currentStudent;
 	
-	private StudentMailSender studentMailSender;
+	@Autowired
+	private StudentMailSender mailSender;
 
 	private String findPassword(String email) {
 		for (Student student : studentRepo.findAll()) {
@@ -78,6 +79,7 @@ public class UserRegistration {
 
 	@RequestMapping(value = "/welkom", method = RequestMethod.GET)
 	public String welkom() {
+		mailSender.sendEmail("Hoi", "heindehaan@gmail.com");
 		// studentRepo.deleteAll();
 		return "SignIn";
 	}
@@ -99,18 +101,13 @@ public class UserRegistration {
 		model.addAttribute("studentForm", studentForm);
 		return "SignUp";
 	}
-
-	@RequestMapping("/error")
-	public String error(){
-		return "SignUp";
-	}
 	
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	public String postSignUp(@Valid @ModelAttribute("studentForm") Student studentForm, Model model) {
 		if(!studentForm.getPassword().equals(studentForm.getPasswordConfirmation())){
 			return "signUp";
 		}
-		studentMailSender.sendWelcomeEmail(studentForm.getFirstName(), studentForm.getEmailAddress());
+//		studentMailSender.sendWelcomeEmail(studentForm.getFirstName(), studentForm.getEmailAddress());
 		
 		studentRepo.save(studentForm);
 		currentStudent = studentForm;
