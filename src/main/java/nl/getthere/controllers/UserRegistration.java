@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 
-import nl.getthere.model.StudentMailSender;
+import nl.getthere.services.StudentMailSender;
 import nl.getthere.users.Recruiter;
 import nl.getthere.users.RecruiterRepository;
 import nl.getthere.users.Student;
@@ -29,7 +29,7 @@ public class UserRegistration {
 	private Student currentStudent;
 	private Recruiter currentRecruiter;
 	
-	@Autowired
+	@Autowired(required=true)
 	private StudentMailSender studentMailSender;
 
 	private String findStudentPassword(String email) {
@@ -110,7 +110,7 @@ public class UserRegistration {
 	}
 
 	@RequestMapping(value = "/welkom", method = RequestMethod.GET)
-	public String login() {	
+	public String welkom() {
 		// studentRepo.deleteAll();
 		return "SignIn";
 	}

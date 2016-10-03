@@ -1,4 +1,4 @@
-package nl.getthere.model;
+package nl.getthere.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
