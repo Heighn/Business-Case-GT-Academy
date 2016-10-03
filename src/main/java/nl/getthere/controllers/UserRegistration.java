@@ -3,8 +3,6 @@ package nl.getthere.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,8 +27,8 @@ public class UserRegistration {
 	private Student currentStudent;
 	private Recruiter currentRecruiter;
 	
-	@Autowired
-	private JavaMailSender javaMailSender;
+//	@Autowired
+//	private JavaMailSender javaMailSender;
 	
 	@Autowired(required=true)
 	private StudentMailSender studentMailSender;
