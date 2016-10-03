@@ -3,13 +3,19 @@ package nl.getthere.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.WebRequest;
 
-import nl.getthere.contact.StudentMailSender;
+import nl.getthere.services.StudentMailSender;
+import nl.getthere.users.Recruiter;
+import nl.getthere.users.RecruiterRepository;
 import nl.getthere.users.Student;
 import nl.getthere.users.StudentRepository;
 
@@ -17,10 +23,14 @@ import nl.getthere.users.StudentRepository;
 public class UserRegistration {
 	@Autowired
 	private StudentRepository studentRepo;
-	private Student currentStudent;
-	
 	@Autowired
-	private StudentMailSender mailSender;
+	private RecruiterRepository recruiterRepo;
+	
+	private Student currentStudent;
+	private Recruiter currentRecruiter;
+	
+	@Autowired(required=true)
+	private StudentMailSender studentMailSender;
 
 	private String findStudentPassword(String email) {
 		for (Student student : studentRepo.findAll()) {

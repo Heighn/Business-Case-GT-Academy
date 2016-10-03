@@ -1,5 +1,4 @@
-package nl.getthere.contact;
-
+package nl.getthere.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -8,20 +7,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class StudentMailSender {
 	
-	@Autowired 
-	private JavaMailSender mailSender;
+	@Autowired
+	static private JavaMailSender mailSender;
 	
-	public void sendEmail(String messageText, String... emailAddressList) {
+	
+	public void sendEmail(String messageText, String emailAddress) {
 		try {
 			SimpleMailMessage msg = new SimpleMailMessage();
+			msg.setFrom("studentportalph@gmail.com");
 			msg.setText(messageText);
+			msg.setTo(emailAddress);
+			System.out.println("Text: " + msg);
+			mailSender.send(msg);
 			
-			for(String emailAddress : emailAddressList){
-				msg.setTo(emailAddress);
-				mailSender.send(msg);
-			}
 		} catch (Exception me) {
-			System.out.println("Mail kan niet worden verzonden." + me);
+			System.out.println("Mail kan niet worden verzonden: " + me);
+			me.printStackTrace();
+
 		}
 	}
 	
