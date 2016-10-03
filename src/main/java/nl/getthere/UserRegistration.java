@@ -1,8 +1,10 @@
-package nl.getthere.controllers;
+package nl.getthere;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 
-import nl.getthere.contact.StudentMailSender;
+import nl.getthere.model.StudentMailSender;
 import nl.getthere.users.Recruiter;
 import nl.getthere.users.RecruiterRepository;
 import nl.getthere.users.Student;
@@ -28,6 +30,24 @@ public class UserRegistration {
 	private Recruiter currentRecruiter;
 	
 	private StudentMailSender studentMailSender;
+	
+	@Autowired
+	static private JavaMailSender mailSender;
+	
+	
+	static public void sendEmail(String messageText, String emailAddress) {
+//		try {
+			SimpleMailMessage msg = new SimpleMailMessage();
+			msg.setFrom("studentportalph@gmail.com");
+			msg.setText(messageText);
+			msg.setTo(emailAddress);
+			System.out.println("Text: " + msg);
+			mailSender.send(msg);
+			
+//		} catch (Exception me) {
+//			System.out.println("Mail kan niet worden verzonden." + me);
+//		}
+	}
 
 	private String findStudentPassword(String email) {
 		for (Student student : studentRepo.findAll()) {
@@ -107,7 +127,7 @@ public class UserRegistration {
 	}
 
 	@RequestMapping(value = "/welkom", method = RequestMethod.GET)
-	public String login() {
+	public String login() {	
 		// studentRepo.deleteAll();
 		return "SignIn";
 	}
@@ -124,7 +144,6 @@ public class UserRegistration {
 		//Recruiter Login
 		if(findRecruiterPassword(email).equals(password)){
 			model.addAttribute("firstName", email);
-			System.out.println("Het lukt bijna");
 			currentRecruiter = findRecruiter(email);
 			return "recruitersIngelogd";
 		}
@@ -170,7 +189,7 @@ public class UserRegistration {
 	@RequestMapping(value="/sendEmail", method=RequestMethod.POST)
 	public String sendEmailByRecruiterPost(String messageText, String emailAddress){
 		System.out.println("EMAIL: " + emailAddress);
-		studentMailSender.sendEmail(messageText, emailAddress);
+		sendEmail(messageText, emailAddress);
 		return "recruitersIngelogd";
 	}
 	
@@ -185,6 +204,23 @@ public class UserRegistration {
 		model.addAttribute("recruiters", recruiterRepo.findAll());
 		return "recruitersList";
 	}
+	
+	@RequestMapping("/StudentList")
+	public String studentList(Model model){
+		model.addAttribute("students", studentRepo.findAll());
+		return "StudentList";
+	}
+	@RequestMapping("/DeleteStudent")
+	public String deleteStudent(Model model){
+		model.addAttribute("students", studentRepo.findAll());
+		return "DeleteStudent";
+	}
+	@RequestMapping(value="/DeleteStudent",method=RequestMethod.POST)
+	public String deleteStudentPost(Model model, String emai){
+		
+		return "DeleteStudent";
+	}
+	
 	
 //	@RequestMapping("/recruitersLogin")
 //	public String recruitersLogin(Model model){	

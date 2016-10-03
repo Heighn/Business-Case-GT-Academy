@@ -10,7 +10,9 @@
 
 <div id="mySidenav" class="sidenav">
   <a href="/sendEmail">Email Verzenden</a>
-  <a href="/recruitersList">Recruiters overzicht</a>
+  <a href="/recruitersList">Recruitersoverzicht</a>
+  <a href="/StudentList">Studentenoverzicht</a>
+  <a href="/DeleteStudent">Verwijder een Student</a>
   <a href="/recruitersLogin">Inloggen voor recruiters</a>
 </div>
 
