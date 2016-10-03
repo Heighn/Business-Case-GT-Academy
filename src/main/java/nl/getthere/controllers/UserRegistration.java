@@ -175,7 +175,7 @@ public class UserRegistration {
 	@RequestMapping(value="/sendEmail", method=RequestMethod.POST)
 	public String sendEmailByRecruiterPost(String messageText, String emailAddress){
 		System.out.println("EMAIL: " + emailAddress);
-		studentMailSender.sendEmail(javaMailSender, messageText, emailAddress);
+		studentMailSender.sendEmail(messageText, emailAddress);
 		return "recruitersIngelogd";
 	}
 	

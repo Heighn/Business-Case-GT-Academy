@@ -1,13 +1,16 @@
 package nl.getthere.services;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
 public class StudentMailSender {
 	
-	public void sendEmail(JavaMailSender mailSender, String messageText, String emailAddress) {
+	@Autowired
+    private MailSender mailSender;
+	
+	public void sendEmail(String messageText, String emailAddress) {
 		try {
 			SimpleMailMessage msg = new SimpleMailMessage();
 			msg.setFrom("studentportalph@gmail.com");
@@ -23,18 +26,18 @@ public class StudentMailSender {
 		}
 	}
 	
-	public void sendWelcomeEmail(String firstName, String... emailAddressList) {
-		try {
-			SimpleMailMessage msg = new SimpleMailMessage();
-			msg.setText("Hoi " + firstName + "! Welkom bij het Get There Student Portal. Leuk dat je je hebt ingeschreven!");
-			
-			for(String emailAddress : emailAddressList){
-				msg.setTo(emailAddress);
-				mailSender.send(msg);
-			}
-		} catch (Exception me) {
-			System.out.println("Mail kan niet worden verzonden." + me);
-		}
-	}
+//	public void sendWelcomeEmail(String firstName, String... emailAddressList) {
+//		try {
+//			SimpleMailMessage msg = new SimpleMailMessage();
+//			msg.setText("Hoi " + firstName + "! Welkom bij het Get There Student Portal. Leuk dat je je hebt ingeschreven!");
+//			
+//			for(String emailAddress : emailAddressList){
+//				msg.setTo(emailAddress);
+//				mailSender.send(msg);
+//			}
+//		} catch (Exception me) {
+//			System.out.println("Mail kan niet worden verzonden." + me);
+//		}
+//	}
 
 }
