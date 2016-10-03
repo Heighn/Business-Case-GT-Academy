@@ -65,13 +65,15 @@ h3 {
   margin: 0px auto;
 }
 
-input {
+input, textarea {
   display: block;
   padding: 7px;
   margin-top: 5px;
   margin-bottom: 20px;
   min-width: 300px;
-  font-size: 1.6em;
+  max-width: 800px;
+  font-size: 14pt;
+  font-family: sans-serif;
 }
 
 input[type='submit'] {
