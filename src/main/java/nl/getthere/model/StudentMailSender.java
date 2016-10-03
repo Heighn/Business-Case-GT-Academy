@@ -22,6 +22,8 @@ public class StudentMailSender {
 			
 		} catch (Exception me) {
 			System.out.println("Mail kan niet worden verzonden: " + me);
+			me.printStackTrace();
+
 		}
 	}
 	

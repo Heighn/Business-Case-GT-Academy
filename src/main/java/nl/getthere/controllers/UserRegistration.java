@@ -1,4 +1,4 @@
-package nl.getthere;
+package nl.getthere.controllers;
 
 import javax.validation.Valid;
 
@@ -29,25 +29,8 @@ public class UserRegistration {
 	private Student currentStudent;
 	private Recruiter currentRecruiter;
 	
-	private StudentMailSender studentMailSender;
-	
 	@Autowired
-	static private JavaMailSender mailSender;
-	
-	
-	static public void sendEmail(String messageText, String emailAddress) {
-//		try {
-			SimpleMailMessage msg = new SimpleMailMessage();
-			msg.setFrom("studentportalph@gmail.com");
-			msg.setText(messageText);
-			msg.setTo(emailAddress);
-			System.out.println("Text: " + msg);
-			mailSender.send(msg);
-			
-//		} catch (Exception me) {
-//			System.out.println("Mail kan niet worden verzonden." + me);
-//		}
-	}
+	private StudentMailSender studentMailSender;
 
 	private String findStudentPassword(String email) {
 		for (Student student : studentRepo.findAll()) {
@@ -189,7 +172,7 @@ public class UserRegistration {
 	@RequestMapping(value="/sendEmail", method=RequestMethod.POST)
 	public String sendEmailByRecruiterPost(String messageText, String emailAddress){
 		System.out.println("EMAIL: " + emailAddress);
-		sendEmail(messageText, emailAddress);
+		studentMailSender.sendEmail(messageText, emailAddress);
 		return "recruitersIngelogd";
 	}
 	
