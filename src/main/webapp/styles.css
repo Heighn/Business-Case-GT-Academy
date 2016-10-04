@@ -57,6 +57,10 @@ h3 {
 }
 
 #main {}
+
+#index {
+  background-image: url('images/bg.PNG');
+}
 #footer {}
 
 .content {

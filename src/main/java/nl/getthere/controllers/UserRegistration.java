@@ -209,6 +209,11 @@ public class UserRegistration {
 //		return "recruitersLogin";
 //	}
 	
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String index() {
+		return "index";
+	}
+	
 	@RequestMapping("/ingelogd")
 	public String recruitersIngelogd(Model model){	
 		model.addAttribute("recruiters", recruiterRepo.findAll());
