@@ -78,9 +78,6 @@ public class UserRegistration {
 		}
 		return null;
 	}
-	
-	
-	
 
 	@RequestMapping("/inactief")
 	public String deleteAccount() {
@@ -110,29 +107,29 @@ public class UserRegistration {
 		return "LoggedIn";
 	}
 
-	@RequestMapping(value = "/welkom", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String welkom() {
 		// studentRepo.deleteAll();
-		return "SignIn";
+		return "login";
 	}
 
-	@RequestMapping(value = "/welkom", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String checkLogin(String email, String password, Model model) {
 		//Student Login
 		if (findStudentPassword(email).equals(password) && !findStudent(email).isInActief()) {
 			model.addAttribute("firstName", findFirstName(email));
 			model.addAttribute("message", "Welkom terug!");
 			currentStudent = findStudent(email);
-			return "LoggedIn";
+			return "welkom";
 		}
 		//Recruiter Login
 		if(findRecruiterPassword(email).equals(password)){
 			model.addAttribute("firstName", email);
 			currentRecruiter = findRecruiter(email);
-			return "recruitersIngelogd";
+			return "admin";
 		}
 		
-		return "SignIn";
+		return "login";
 	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
@@ -215,7 +212,7 @@ public class UserRegistration {
 	@RequestMapping("/ingelogd")
 	public String recruitersIngelogd(Model model){	
 		model.addAttribute("recruiters", recruiterRepo.findAll());
-		return "recruitersIngelogd";
+		return "admin";
 	}
 	
 	@ModelAttribute("recruiter")
@@ -230,7 +227,7 @@ public class UserRegistration {
 		}
 		recruiterRepo.save(recruiter);
 		model.addAttribute("recruiterName", recruiter.getRecruiterName());
-		return "recruitersIngelogd";
+		return "admin";
 //		return "recruitersReg";
 	}
 	
@@ -238,6 +235,6 @@ public class UserRegistration {
 	
 	@RequestMapping(value="/recruitersLogin", method=RequestMethod.POST)
 	public String login(String recruiterName, String recruiterPass){
-		return "redirect:/ingelogd";
+		return "redirect:/admin";
 	}
 }

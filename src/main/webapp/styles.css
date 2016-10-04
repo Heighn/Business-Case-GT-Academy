@@ -78,6 +78,7 @@ input, textarea {
 
 input[type='submit'] {
   min-width: auto;
+  font-size: 12pt;
 }
 
 .error {
