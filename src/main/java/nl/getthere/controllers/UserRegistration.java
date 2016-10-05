@@ -22,20 +22,26 @@ import nl.getthere.users.StudentRepository;
 @Controller
 public class UserRegistration {
 	@Autowired
-	private StudentRepository studentRepo;
+	static private StudentRepository studentRepo;
 	@Autowired
-	private RecruiterRepository recruiterRepo;
+	static private RecruiterRepository recruiterRepo;
 	
 	private Student currentStudent;
 	private Recruiter currentRecruiter;
 	
-	@Autowired
-	private JavaMailSender javaMailSender;
 	
 	@Autowired(required=true)
 	private StudentMailSender studentMailSender;
-
-	private String findStudentPassword(String email) {
+	
+	static public StudentRepository getStudentRepo(){
+		return studentRepo;
+	}
+	
+	static public RecruiterRepository getRecruiterRepo(){
+		return recruiterRepo;
+	}
+	
+	static public String findStudentPassword(String email) {
 		for (Student student : studentRepo.findAll()) {
 			if (student.getEmailAddress().equals(email)) {
 				return student.getPassword();
@@ -43,7 +49,7 @@ public class UserRegistration {
 		}
 		return "";
 	}
-	private String findRecruiterPassword(String name) {
+	static public String findRecruiterPassword(String name) {
 		for (Recruiter recruiter : recruiterRepo.findAll()) {
 			System.out.println(recruiter.getRecruiterName());
 			System.out.println(name);
@@ -55,7 +61,7 @@ public class UserRegistration {
 	}
 	
 
-	private String findFirstName(String email) {
+	static public String findFirstName(String email) {
 		for (Student student : studentRepo.findAll()) {
 			if (student.getEmailAddress().equals(email)) {
 				return student.getFirstName();
@@ -64,7 +70,7 @@ public class UserRegistration {
 		return "";
 	}
 
-	private Student findStudent(String email) {
+	static public Student findStudent(String email) {
 		for (Student student : studentRepo.findAll()) {
 			if (student.getEmailAddress().equals(email)) {
 				return student;
@@ -72,7 +78,7 @@ public class UserRegistration {
 		}
 		return null;
 	}
-	private Recruiter findRecruiter(String name) {
+	static public Recruiter findRecruiter(String name) {
 		for (Recruiter recruiter : recruiterRepo.findAll()) {
 			if (recruiter.getRecruiterName().equals(name)) {
 				return recruiter;
@@ -112,30 +118,31 @@ public class UserRegistration {
 		return "LoggedIn";
 	}
 
-	@RequestMapping(value = "/welkom", method = RequestMethod.GET)
-	public String welkom() {
-		// studentRepo.deleteAll();
-		return "SignIn";
-	}
+//	@RequestMapping(value = "/SignIn", method = RequestMethod.GET)
+//	public String signIn() {
+//		// studentRepo.deleteAll();
+//		System.out.println("DEze methode gebruikt ie");
+//		return "SignIn";
+//	}
 
-	@RequestMapping(value = "/welkom", method = RequestMethod.POST)
-	public String checkLogin(String email, String password, Model model) {
-		//Student Login
-		if (findStudentPassword(email).equals(password) && !findStudent(email).isInActief()) {
-			model.addAttribute("firstName", findFirstName(email));
-			model.addAttribute("message", "Welkom terug!");
-			currentStudent = findStudent(email);
-			return "LoggedIn";
-		}
-		//Recruiter Login
-		if(findRecruiterPassword(email).equals(password)){
-			model.addAttribute("firstName", email);
-			currentRecruiter = findRecruiter(email);
-			return "recruitersIngelogd";
-		}
-		
-		return "SignIn";
-	}
+//	@RequestMapping(value = "/SignIn", method = RequestMethod.POST)
+//	public String checkLogin(String email, String password, Model model) {
+//		//Student Login
+//		if (findStudentPassword(email).equals(password) && !findStudent(email).isInActief()) {
+//			model.addAttribute("firstName", findFirstName(email));
+//			model.addAttribute("message", "Welkom terug!");
+//			currentStudent = findStudent(email);
+//			return "LoggedIn";
+//		}
+//		//Recruiter Login
+//		if(findRecruiterPassword(email).equals(password)){
+//			model.addAttribute("firstName", email);
+//			currentRecruiter = findRecruiter(email);
+//			return "recruitersIngelogd";
+//		}
+//		
+//		return "SignIn";
+////	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
 	public String signUp(Model model, WebRequest webReq) {
@@ -167,15 +174,14 @@ public class UserRegistration {
 		
 //*****************RECRUITERS****************
 	
-	@RequestMapping("/sendEmail")
+	@RequestMapping("/SendEmail")
 	public String sendEmailByRecruiter(){
-		return "sendEmail";
+		return "SendEmail";
 	}
 	
-	@RequestMapping(value="/sendEmail", method=RequestMethod.POST)
-	public String sendEmailByRecruiterPost(String messageText, String emailAddress){
-		System.out.println("EMAIL: " + emailAddress);
-		studentMailSender.sendEmail(javaMailSender, messageText, emailAddress);
+	@RequestMapping(value="/SendEmail", method=RequestMethod.POST)
+	public String sendEmailByRecruiterPost(String messageText, String subject, String emailAddresses){	
+		studentMailSender.sendEmail(messageText, subject, emailAddresses.split(", "));
 		return "recruitersIngelogd";
 	}
 	

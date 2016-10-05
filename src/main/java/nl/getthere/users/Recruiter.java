@@ -59,4 +59,48 @@ public class Recruiter{
 	public void setRecruiterPass(String recruiterPass) {
 		this.recruiterPass = recruiterPass;
 	}
+	
+//	IMPLEMENTED METHODS
+
+//	@Override
+//	public Collection<? extends GrantedAuthority> getAuthorities() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public String getPassword() {
+//		// TODO Auto-generated method stub
+//		return recruiterPass;
+//	}
+//
+//	@Override
+//	public String getUsername() {
+//		// TODO Auto-generated method stub
+//		return recruiterName;
+//	}
+//
+//	@Override
+//	public boolean isAccountNonExpired() {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+//
+//	@Override
+//	public boolean isAccountNonLocked() {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+//
+//	@Override
+//	public boolean isCredentialsNonExpired() {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+//
+//	@Override
+//	public boolean isEnabled() {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 }

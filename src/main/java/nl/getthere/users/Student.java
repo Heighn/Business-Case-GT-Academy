@@ -1,14 +1,20 @@
 package nl.getthere.users;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
-public class Student{
+public class Student implements UserDetails{
 	private Boolean inActief = false;
 	private Long id;
 	private String firstName;
@@ -22,6 +28,8 @@ public class Student{
 	private Boolean wantsInternship;
 	private Boolean wantsTechEvents;
 	private Boolean wantsGraduationProject;
+	
+	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	//private Date readyDate; // Date at which student is ready to work
 	
@@ -67,7 +75,8 @@ public class Student{
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		
+		this.password = passwordEncoder.encode(password);
 	}
 	
 	@NotEmpty(message="Bevestig je wachtwoord")
@@ -137,7 +146,50 @@ public class Student{
 	public String toString(){
 		return firstName + " " + lastName + " " + phoneNumber + " " + emailAddress;
 	}
+	
+//	IMPLEMENTED METHODS
 
+	@Transient
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Transient
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return emailAddress;
+	}
+
+	@Transient
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Transient
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Transient
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Transient
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 //	public Date getReadyDate() {
 //		return readyDate;
 //	}
