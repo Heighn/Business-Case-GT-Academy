@@ -51,7 +51,6 @@ public class UserRegistration {
 		}
 		return "";
 	}
-	
 
 	private String findFirstName(String email) {
 		for (Student student : studentRepo.findAll()) {
