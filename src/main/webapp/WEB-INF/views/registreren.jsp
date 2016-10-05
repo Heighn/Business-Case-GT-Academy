@@ -1,4 +1,3 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -7,30 +6,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta name="charset" content="utf-8">
-  <title>Get There Studentenportaal</title>
-  <link rel="stylesheet" href="../styles.css">
-</head>
-<body>
-  <header id="header">
-  </header>
+<%@ include file="header.jsp" %>
+
   <div id="main">
     <div class="content">
       <form:form method="post" commandName="studentForm">
-        <h2>Persoonsgegevens</h2>
+        <h3>Persoonsgegevens</h3>
         <p>Voornaam</p>
         <form:input path="firstName" value="${firstName}"/>
         <p>Achternaam</p>
         <form:input path="lastName" value="${lastName}"/>
-        <h2>Accountgegevens</h2>
+        <h3>Accountgegevens</h3>
         <p>Wachtwoord</p>
         <form:input type="password" path="password" value="${password}"/>
         <p>Bevestig wachtwoord</p>
         <form:input type="password" path="passwordConfirmation" value="${password}"/>
-        <h2>Contactgegevens</h2>
+        <h3>Contactgegevens</h3>
         <p>Emailadres</p>
         <form:input type="email" path="emailAddress" value="${emailAddress}"/>
         <p>Telefoonnummer</p>

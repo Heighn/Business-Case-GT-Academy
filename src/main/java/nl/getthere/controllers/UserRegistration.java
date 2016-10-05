@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.request.WebRequest;
 
 import nl.getthere.services.StudentMailSender;
 import nl.getthere.users.Recruiter;
@@ -41,6 +40,7 @@ public class UserRegistration {
 		}
 		return "";
 	}
+	
 	private String findRecruiterPassword(String name) {
 		for (Recruiter recruiter : recruiterRepo.findAll()) {
 			System.out.println(recruiter.getRecruiterName());
@@ -69,6 +69,7 @@ public class UserRegistration {
 		}
 		return null;
 	}
+
 	private Recruiter findRecruiter(String name) {
 		for (Recruiter recruiter : recruiterRepo.findAll()) {
 			if (recruiter.getRecruiterName().equals(name)) {
@@ -96,7 +97,7 @@ public class UserRegistration {
 		Student studentForm = new Student();
 		model.addAttribute("studentForm", studentForm);
 
-		return "SignUp";
+		return "registreren";
 	}
 
 	@RequestMapping(value = "/wijzig", method = RequestMethod.POST)
@@ -106,57 +107,49 @@ public class UserRegistration {
 		return "LoggedIn";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String welkom() {
+	@RequestMapping(value = "/inloggen", method = RequestMethod.GET)
+	public String profiel() {
 		// studentRepo.deleteAll();
-		return "login";
+		return "inloggen";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String checkLogin(String email, String password, Model model) {
-		//Student Login
+	@RequestMapping(value = "/inloggen", method = RequestMethod.POST)
+	public String checkinloggen(String email, String password, Model model) {
+		//Student inloggen
 		if (findStudentPassword(email).equals(password) && !findStudent(email).isInActief()) {
 			model.addAttribute("firstName", findFirstName(email));
-			model.addAttribute("message", "Welkom terug!");
+			model.addAttribute("message", "profiel terug!");
 			currentStudent = findStudent(email);
-			return "welkom";
+			return "profiel";
 		}
-		//Recruiter Login
+		//Recruiter inloggen
 		if(findRecruiterPassword(email).equals(password)){
 			model.addAttribute("firstName", email);
 			currentRecruiter = findRecruiter(email);
 			return "admin";
 		}
 		
-		return "login";
+		return "inloggen";
 	}
 
-	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
-	public String signUp(Model model, WebRequest webReq) {
-		if(webReq.getParameter("newAccount").toString().equals("Studentaccount aanmaken")){
-			Student studentForm = new Student();
-			model.addAttribute("studentForm", studentForm);
-			return "SignUp";
-		}
-		else{
-			Recruiter recruiterForm = new Recruiter();
-			model.addAttribute("recruiterForm", recruiterForm);
-			return "recruitersReg";
-		}
+	@RequestMapping(value = "/registreren", method = RequestMethod.GET)
+	public String registreren(Model model) {
+		Student studentForm = new Student();
+		model.addAttribute("studentForm", studentForm);
+		return "registreren";
 	}
 	
-	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public String postSignUp(@Valid @ModelAttribute("studentForm") Student studentForm, Model model) {
+	@RequestMapping(value = "/registreren", method = RequestMethod.POST)
+	public String postregistreren(@Valid @ModelAttribute("studentForm") Student studentForm, Model model) {
 		if(!studentForm.getPassword().equals(studentForm.getPasswordConfirmation())){
-			return "SignUp";
+			return "registreren";
 		}
 //		studentMailSender.sendWelcomeEmail(studentForm.getFirstName(), studentForm.getEmailAddress());
-		
 		studentRepo.save(studentForm);
 		currentStudent = studentForm;
-		model.addAttribute("message", "Fijn dat je je hebt ingeschreven!");
 		model.addAttribute("firstName", currentStudent.getFirstName());
-		return "LoggedIn";
+		model.addAttribute("message", "Gefeliciteerd, je hebt nu een profiel bij Get There! Je bent automatisch ingelogd op je persoonlijke account. Wij verzoeken je vriendelijk je gegevens over je opleiding in te vullen en aan te geven waar je interesses liggen. Daarnaast kun je ook je CV uploaden, maar voel je niet verplicht!");
+		return "profiel";
 	}
 		
 //*****************RECRUITERS****************
@@ -202,10 +195,10 @@ public class UserRegistration {
 	}
 	
 	
-//	@RequestMapping("/recruitersLogin")
-//	public String recruitersLogin(Model model){	
+//	@RequestMapping("/recruitersinloggen")
+//	public String recruitersinloggen(Model model){	
 //		model.addAttribute("recruiters", recruiterRepo.findAll());
-//		return "recruitersLogin";
+//		return "recruitersinloggen";
 //	}
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -235,8 +228,8 @@ public class UserRegistration {
 //		return "recruitersReg";
 	}
 
-	@RequestMapping(value="/recruitersLogin", method=RequestMethod.POST)
-	public String login(String recruiterName, String recruiterPass){
+	@RequestMapping(value="/recruitersinloggen", method=RequestMethod.POST)
+	public String inloggen(String recruiterName, String recruiterPass){
 		return "redirect:/admin";
 	}
 }
