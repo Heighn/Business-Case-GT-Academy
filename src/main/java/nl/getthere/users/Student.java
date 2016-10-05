@@ -15,6 +15,9 @@ public class Student{
 	private String lastName;
 	private String phoneNumber;
 	private String emailAddress;
+	private String linkedIn;
+	private String woonplaats;
+	private String gebDatum;
 	private Boolean agreedPrivacy; // Agreed privacy letter
 	private String password;
 	private String passwordConfirmation;
@@ -134,6 +137,31 @@ public class Student{
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
+	
+	public String getLinkedIn() {
+		return linkedIn;
+	}
+	
+	public void setLinkedIn(String linkedIn) {
+		this.linkedIn = linkedIn;
+	}
+	
+	public String getWoonplaats() {
+		return woonplaats;
+	}
+	
+	public void setWoonplaats(String woonplaats) {
+		this.woonplaats = woonplaats;
+	}
+	
+	public String getGebDatum() {
+		return gebDatum;
+	}
+	
+	public void setGebDatum (String gebDatum) {
+		this.gebDatum = gebDatum;
+	}
+	
 	public String toString(){
 		return firstName + " " + lastName + " " + phoneNumber + " " + emailAddress;
 	}

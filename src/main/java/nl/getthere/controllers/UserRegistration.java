@@ -235,9 +235,7 @@ public class UserRegistration {
 		return "admin";
 //		return "recruitersReg";
 	}
-	
 
-	
 	@RequestMapping(value="/recruitersLogin", method=RequestMethod.POST)
 	public String login(String recruiterName, String recruiterPass){
 		return "redirect:/admin";
