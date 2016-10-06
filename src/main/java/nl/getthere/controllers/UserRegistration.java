@@ -93,16 +93,16 @@ public class UserRegistration {
 		model.addAttribute("phoneNumber", currentStudent.getPhoneNumber());
 		model.addAttribute("password", currentStudent.getPassword());
 
-		// Student studentForm = currentStudent;
-		Student studentForm = new Student();
-		model.addAttribute("studentForm", studentForm);
+		// Student currentStudent = currentStudent;
+		Student currentStudent = new Student();
+		model.addAttribute("currentStudent", currentStudent);
 
 		return "profiel";
 	}
 
 	@RequestMapping(value = "/profiel", method = RequestMethod.POST)
-	public String postUpdateAccount(@Valid @ModelAttribute("studentForm") Student studentForm, Model model) {
-		currentStudent = studentForm;
+	public String postUpdateAccount(@Valid @ModelAttribute("currentStudent") Student currentStudent, Model model) {
+		currentStudent = currentStudent;
 		model.addAttribute("firstName", currentStudent.getFirstName());
 		return "LoggedIn";
 	}
@@ -122,9 +122,10 @@ public class UserRegistration {
 	public String checkinloggen(String email, String password, Model model) {
 		//Student inloggen
 		if (findStudentPassword(email).equals(password) && !findStudent(email).isInActief()) {
-//			model.addAttribute("firstName", findFirstName(email));
-//			model.addAttribute("message", "profiel terug!");
-//			currentStudent = findStudent(email);
+			model.addAttribute("firstName", findFirstName(email));
+			model.addAttribute("message", "profiel terug!");
+			currentStudent = findStudent(email);
+			model.addAttribute("currentStudent", currentStudent);
 			return "profiel";
 		}
 		//Recruiter inloggen
@@ -139,19 +140,19 @@ public class UserRegistration {
 
 	@RequestMapping(value = "/registreren", method = RequestMethod.GET)
 	public String registreren(Model model) {
-		Student studentForm = new Student();
-		model.addAttribute("studentForm", studentForm);
+		Student currentStudent = new Student();
+		model.addAttribute("currentStudent", currentStudent);
 		return "registreren";
 	}
 	
 	@RequestMapping(value = "/registreren", method = RequestMethod.POST)
-	public String postregistreren(@Valid @ModelAttribute("studentForm") Student studentForm, Model model) {
-		if(!studentForm.getPassword().equals(studentForm.getPasswordConfirmation())){
+	public String postregistreren(@Valid @ModelAttribute("currentStudent") Student currentStudent, Model model) {
+		if(!currentStudent.getPassword().equals(currentStudent.getPasswordConfirmation())){
 			return "registreren";
 		}
-//		studentMailSender.sendWelcomeEmail(studentForm.getFirstName(), studentForm.getEmailAddress());
-		studentRepo.save(studentForm);
-		currentStudent = studentForm;
+//		studentMailSender.sendWelcomeEmail(currentStudent.getFirstName(), currentStudent.getEmailAddress());
+		studentRepo.save(currentStudent);
+		currentStudent = currentStudent;
 		model.addAttribute("firstName", currentStudent.getFirstName());
 		model.addAttribute("message", "Gefeliciteerd, je hebt nu een profiel bij Get There! Je bent automatisch ingelogd op je persoonlijke account. Wij verzoeken je vriendelijk de gegevens over je opleiding in te vullen en aan te geven waar je interesses liggen. Daarnaast kun je ook je CV uploaden, maar voel je niet verplicht!");
 		return "profiel";

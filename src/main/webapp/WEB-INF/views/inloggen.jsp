@@ -2,7 +2,7 @@
 	<div id="main">
 		<div class="content">
 		<h3>Inloggen</h3>
-		<form method="post" name="signInSheet">
+	<form method="post" name="signInSheet" commandName="currentStudent">
 		<p>Emailadres</p>
 		<input type="text" name="email" />
 		<p>Wachtwoord</p>

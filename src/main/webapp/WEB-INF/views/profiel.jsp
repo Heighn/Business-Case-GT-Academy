@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="content">
 		<h1>Profiel</h1>
 		<p>${message}</p>
-		<form:form method="post" commandName="studentForm">
+		<form:form method="post" commandName="currentStudent">
  		<h3>Persoonsgegevens</h3>
  		<p>Voornaam</p>
 		<form:input path="firstName" value="${firstName}"/>
