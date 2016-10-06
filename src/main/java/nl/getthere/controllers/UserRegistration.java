@@ -85,7 +85,7 @@ public class UserRegistration {
 		return "SignIn";
 	}
 
-	@RequestMapping(value = "/wijzig", method = RequestMethod.GET)
+	@RequestMapping(value = "/profiel", method = RequestMethod.GET)
 	public String updateAccount(Model model) {
 		model.addAttribute("firstName", currentStudent.getFirstName());
 		model.addAttribute("lastName", currentStudent.getLastName());
@@ -97,10 +97,10 @@ public class UserRegistration {
 		Student studentForm = new Student();
 		model.addAttribute("studentForm", studentForm);
 
-		return "registreren";
+		return "profiel";
 	}
 
-	@RequestMapping(value = "/wijzig", method = RequestMethod.POST)
+	@RequestMapping(value = "/profiel", method = RequestMethod.POST)
 	public String postUpdateAccount(@Valid @ModelAttribute("studentForm") Student studentForm, Model model) {
 		currentStudent = studentForm;
 		model.addAttribute("firstName", currentStudent.getFirstName());
@@ -112,14 +112,19 @@ public class UserRegistration {
 		// studentRepo.deleteAll();
 		return "inloggen";
 	}
+	
+	@RequestMapping(value = "/error", method = RequestMethod.GET)
+	public String error() {
+		return "error";
+	}
 
 	@RequestMapping(value = "/inloggen", method = RequestMethod.POST)
 	public String checkinloggen(String email, String password, Model model) {
 		//Student inloggen
 		if (findStudentPassword(email).equals(password) && !findStudent(email).isInActief()) {
-			model.addAttribute("firstName", findFirstName(email));
-			model.addAttribute("message", "profiel terug!");
-			currentStudent = findStudent(email);
+//			model.addAttribute("firstName", findFirstName(email));
+//			model.addAttribute("message", "profiel terug!");
+//			currentStudent = findStudent(email);
 			return "profiel";
 		}
 		//Recruiter inloggen
@@ -148,7 +153,7 @@ public class UserRegistration {
 		studentRepo.save(studentForm);
 		currentStudent = studentForm;
 		model.addAttribute("firstName", currentStudent.getFirstName());
-		model.addAttribute("message", "Gefeliciteerd, je hebt nu een profiel bij Get There! Je bent automatisch ingelogd op je persoonlijke account. Wij verzoeken je vriendelijk je gegevens over je opleiding in te vullen en aan te geven waar je interesses liggen. Daarnaast kun je ook je CV uploaden, maar voel je niet verplicht!");
+		model.addAttribute("message", "Gefeliciteerd, je hebt nu een profiel bij Get There! Je bent automatisch ingelogd op je persoonlijke account. Wij verzoeken je vriendelijk de gegevens over je opleiding in te vullen en aan te geven waar je interesses liggen. Daarnaast kun je ook je CV uploaden, maar voel je niet verplicht!");
 		return "profiel";
 	}
 		
