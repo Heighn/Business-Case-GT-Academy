@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
-
 import nl.getthere.services.StudentMailSender;
 import nl.getthere.users.Recruiter;
 import nl.getthere.users.RecruiterRepository;
@@ -25,22 +24,22 @@ public class UserRegistration {
 	static private StudentRepository studentRepo;
 	@Autowired
 	static private RecruiterRepository recruiterRepo;
-	
+
 	private Student currentStudent;
 	private Recruiter currentRecruiter;
-	
-	
+
+
 	@Autowired(required=true)
 	private StudentMailSender studentMailSender;
-	
+
 	static public StudentRepository getStudentRepo(){
 		return studentRepo;
 	}
-	
+
 	static public RecruiterRepository getRecruiterRepo(){
 		return recruiterRepo;
 	}
-	
+
 	static public String findStudentPassword(String email) {
 		for (Student student : studentRepo.findAll()) {
 			if (student.getEmailAddress().equals(email)) {
@@ -59,7 +58,7 @@ public class UserRegistration {
 		}
 		return "";
 	}
-	
+
 
 	static public String findFirstName(String email) {
 		for (Student student : studentRepo.findAll()) {
@@ -86,9 +85,9 @@ public class UserRegistration {
 		}
 		return null;
 	}
-	
-	
-	
+
+
+
 
 	@RequestMapping("/inactief")
 	public String deleteAccount() {
@@ -140,13 +139,14 @@ public class UserRegistration {
 //			currentRecruiter = findRecruiter(email);
 //			return "recruitersIngelogd";
 //		}
-//		
+//
 //		return "SignIn";
 ////	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
 	public String signUp(Model model, WebRequest webReq) {
 		if(webReq.getParameter("newAccount").toString().equals("Studentaccount aanmaken")){
+			System.out.println("Ik ga een nieuwe student aanmaken!");
 			Student studentForm = new Student();
 			model.addAttribute("studentForm", studentForm);
 			return "SignUp";
@@ -157,46 +157,46 @@ public class UserRegistration {
 			return "recruitersReg";
 		}
 	}
-	
+
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	public String postSignUp(@Valid @ModelAttribute("studentForm") Student studentForm, Model model) {
 		if(!studentForm.getPassword().equals(studentForm.getPasswordConfirmation())){
 			return "SignUp";
 		}
 //		studentMailSender.sendWelcomeEmail(studentForm.getFirstName(), studentForm.getEmailAddress());
-		
+		System.out.println("Ik kom in de signUpPost");
 		studentRepo.save(studentForm);
 		currentStudent = studentForm;
 		model.addAttribute("message", "Fijn dat je je hebt ingeschreven!");
 		model.addAttribute("firstName", currentStudent.getFirstName());
-		return "LoggedIn";
+		return "SignIn";
 	}
-		
+
 //*****************RECRUITERS****************
-	
+
 	@RequestMapping("/SendEmail")
 	public String sendEmailByRecruiter(){
 		return "SendEmail";
 	}
-	
+
 	@RequestMapping(value="/SendEmail", method=RequestMethod.POST)
-	public String sendEmailByRecruiterPost(String messageText, String subject, String emailAddresses){	
+	public String sendEmailByRecruiterPost(String messageText, String subject, String emailAddresses){
 		studentMailSender.sendEmail(messageText, subject, emailAddresses.split(", "));
 		return "recruitersIngelogd";
 	}
-	
+
 	@RequestMapping("/recruitersReg")
-	public String recruiters(Model model){		
+	public String recruiters(Model model){
 		model.addAttribute("recruiters", recruiterRepo.findAll());
 		return "/recruitersReg";
 	}
-	
+
 	@RequestMapping("/recruitersList")
-	public String recruitersList(Model model){	
+	public String recruitersList(Model model){
 		model.addAttribute("recruiters", recruiterRepo.findAll());
 		return "recruitersList";
 	}
-	
+
 	@RequestMapping("/StudentList")
 	public String studentList(Model model){
 		model.addAttribute("students", studentRepo.findAll());
@@ -209,28 +209,28 @@ public class UserRegistration {
 	}
 	@RequestMapping(value="/DeleteStudent",method=RequestMethod.POST)
 	public String deleteStudentPost(Model model, String emai){
-		
+
 		return "DeleteStudent";
 	}
-	
-	
+
+
 //	@RequestMapping("/recruitersLogin")
-//	public String recruitersLogin(Model model){	
+//	public String recruitersLogin(Model model){
 //		model.addAttribute("recruiters", recruiterRepo.findAll());
 //		return "recruitersLogin";
 //	}
-	
+
 	@RequestMapping("/ingelogd")
-	public String recruitersIngelogd(Model model){	
+	public String recruitersIngelogd(Model model){
 		model.addAttribute("recruiters", recruiterRepo.findAll());
 		return "recruitersIngelogd";
 	}
-	
+
 	@ModelAttribute("recruiter")
 	public Recruiter newRecruiter() {
 	        return new Recruiter();
 	}
-	
+
 	@RequestMapping(value="/recruitersReg", method=RequestMethod.POST)
 	public String nieuw(@Valid Recruiter recruiter, BindingResult result, Model model){
 		if(result.hasErrors()) {
@@ -241,9 +241,9 @@ public class UserRegistration {
 		return "recruitersIngelogd";
 //		return "recruitersReg";
 	}
-	
 
-	
+
+
 	@RequestMapping(value="/recruitersLogin", method=RequestMethod.POST)
 	public String login(String recruiterName, String recruiterPass){
 		return "redirect:/ingelogd";

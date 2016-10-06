@@ -1,0 +1,12 @@
+nl\getthere\users\StudentRepository.class
+nl\getthere\services\StudentMailSender.class
+nl\getthere\controllers\UserRegistration.class
+nl\getthere\controllers\MvcConfig.class
+nl\getthere\model\Averager.class
+nl\getthere\users\RecruiterRepository.class
+nl\getthere\model\Event.class
+nl\getthere\model\WebSecurityConfig.class
+nl\getthere\users\Student.class
+nl\getthere\controllers\MyUserDetailsService.class
+nl\getthere\users\Recruiter.class
+nl\getthere\BusinessCaseApplication.class
