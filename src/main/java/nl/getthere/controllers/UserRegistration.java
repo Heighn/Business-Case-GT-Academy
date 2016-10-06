@@ -93,18 +93,15 @@ public class UserRegistration {
 		model.addAttribute("emailAddress", currentStudent.getEmailAddress());
 		model.addAttribute("phoneNumber", currentStudent.getPhoneNumber());
 		model.addAttribute("password", currentStudent.getPassword());
-
-		// Student currentStudent = currentStudent;
 		Student currentStudent = new Student();
 		model.addAttribute("currentStudent", currentStudent);
-
 		return "profiel";
 	}
 
 	@RequestMapping(value = "/profiel", method = RequestMethod.POST)
 	public String postUpdateAccount(@Valid @ModelAttribute("currentStudent") Student currentStudent, Model model) {
 		model.addAttribute("firstName", currentStudent.getFirstName());
-		return "LoggedIn";
+		return "profiel";
 	}
 
 	@RequestMapping(value = "/inloggen", method = RequestMethod.GET)
@@ -113,10 +110,10 @@ public class UserRegistration {
 		return "inloggen";
 	}
 	
-	@RequestMapping(value = "/error", method = RequestMethod.GET)
-	public String error() {
-		return "error";
-	}
+//	@RequestMapping(value = "/error", method = RequestMethod.GET)
+//	public String error() {
+//		return "error";
+//	}
 
 	@RequestMapping(value = "/inloggen", method = RequestMethod.POST)
 	public String checkinloggen(String email, String password, Model model) {
@@ -126,7 +123,7 @@ public class UserRegistration {
 			model.addAttribute("message", "profiel terug!");
 			currentStudent = findStudent(email);
 			model.addAttribute("currentStudent", currentStudent);
-			return "profiel";
+			return "redirect:/profiel";
 		}
 		//Recruiter inloggen
 		if(findRecruiterPassword(email).equals(password)){
