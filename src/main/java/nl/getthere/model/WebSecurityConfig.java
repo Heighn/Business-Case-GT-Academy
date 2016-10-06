@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import nl.getthere.controllers.MyUserDetailsService;
 
 
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -20,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
+                .antMatchers("/", "/signUp").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -29,7 +30,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .logout()
                 .permitAll();
-        http.authorizeRequests().antMatchers("/signUp").permitAll();
     }
     
     @Autowired

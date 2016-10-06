@@ -17,9 +17,9 @@
 	</form:form>
 	<p>Heb je nog geen account?
 	</p>
-	<form action="signUp">
+	<form:form action="/signUp">
 		<input type="submit" name="newAccount" value="Studentaccount aanmaken" />
 		<input type="submit" name="newAccount" value="Recruiteraccount aanmaken" />
-	</form>
+	</form:form>
 </body>
 </html>
