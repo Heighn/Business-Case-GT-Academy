@@ -13,18 +13,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <form:input path="firstName" value="${firstName}"/>
         <p>Achternaam</p>
         <form:input path="lastName" value="${lastName}"/>
+        <h3>Contactgegevens</h3>
+        <p>Emailadres (dit is ook je gebruikersnaam)</p>
+        <form:input type="email" path="emailAddress" value="${emailAddress}"/>
+        <p>Telefoonnummer</p>
+        <form:input type="tel" path="phoneNumber" value="${phoneNumber}"/>
         <h3>Accountgegevens</h3>
         <p>Wachtwoord</p>
         <form:input type="password" path="password" value="${password}"/>
         <p>Bevestig wachtwoord</p>
         <form:input type="password" path="passwordConfirmation" value="${password}"/>
-        <h3>Contactgegevens</h3>
-        <p>Emailadres</p>
-        <form:input type="email" path="emailAddress" value="${emailAddress}"/>
-        <p>Telefoonnummer</p>
-        <form:input type="tel" path="phoneNumber" value="${phoneNumber}"/>
-        <p>Get There doet niks vervelends met je gegevens</p>
-        <form:checkbox path="agreedPrivacy"/>
+        <form:checkbox path="agreedPrivacy" id="priv" />
+        <label for="priv">Ik ga akkoord met de algemene voorwaarden.</label>
         <input type="submit">
         
       </form:form>
