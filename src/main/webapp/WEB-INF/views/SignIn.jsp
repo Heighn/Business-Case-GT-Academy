@@ -15,7 +15,7 @@
 		<input type="password" name="password"/><br><input
 			type="submit" value="SignIn"/>
 	</form:form>
-	<p>Heb je nog geen account?
+	<p>Heb je nog geen account? Even wat veranderen!
 	</p>
 	<form:form action="/signUp">
 		<input type="submit" name="newAccount" value="Studentaccount aanmaken" />
