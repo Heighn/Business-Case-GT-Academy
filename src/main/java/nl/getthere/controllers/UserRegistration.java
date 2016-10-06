@@ -24,6 +24,7 @@ public class UserRegistration {
 	private RecruiterRepository recruiterRepo;
 	
 	private Student currentStudent;
+	@SuppressWarnings("unused")
 	private Recruiter currentRecruiter;
 	
 //	@Autowired
@@ -102,7 +103,6 @@ public class UserRegistration {
 
 	@RequestMapping(value = "/profiel", method = RequestMethod.POST)
 	public String postUpdateAccount(@Valid @ModelAttribute("currentStudent") Student currentStudent, Model model) {
-		currentStudent = currentStudent;
 		model.addAttribute("firstName", currentStudent.getFirstName());
 		return "LoggedIn";
 	}
@@ -152,7 +152,6 @@ public class UserRegistration {
 		}
 //		studentMailSender.sendWelcomeEmail(currentStudent.getFirstName(), currentStudent.getEmailAddress());
 		studentRepo.save(currentStudent);
-		currentStudent = currentStudent;
 		model.addAttribute("firstName", currentStudent.getFirstName());
 		model.addAttribute("message", "Gefeliciteerd, je hebt nu een profiel bij Get There! Je bent automatisch ingelogd op je persoonlijke account. Wij verzoeken je vriendelijk de gegevens over je opleiding in te vullen en aan te geven waar je interesses liggen. Daarnaast kun je ook je CV uploaden, maar voel je niet verplicht!");
 		return "profiel";
