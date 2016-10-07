@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </header>
   <div id="main">
     <div class="content">
-      <form:form method="post" commandName="studentForm">
+      <form:form action="/signUp" method="post" commandName="studentForm">
         <h2>Persoonsgegevens</h2>
         <p>Voornaam</p>
         <form:input path="firstName" value="${firstName}"/>

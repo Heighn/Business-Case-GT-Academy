@@ -1,14 +1,11 @@
 package nl.getthere.controllers;
 
+import nl.getthere.users.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import nl.getthere.users.StudentRepository;
-
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
@@ -24,5 +21,4 @@ public class MyUserDetailsService implements UserDetailsService {
 		System.out.println("UD: " + uD);
 		return uD;
 	}
-
 }

@@ -12,16 +12,19 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.validation.Valid;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Controller
 public class UserRegistration {
 	@Autowired
-	static private StudentRepository studentRepo;
+	private StudentRepository studentRepo;
 	@Autowired
-	static private RecruiterRepository recruiterRepo;
+	private RecruiterRepository recruiterRepo;
 
 	private Student currentStudent;
 	private Recruiter currentRecruiter;
@@ -30,61 +33,90 @@ public class UserRegistration {
 	@Autowired(required=true)
 	private StudentMailSender studentMailSender;
 
-	static public StudentRepository getStudentRepo(){
-		return studentRepo;
-	}
+//	static public StudentRepository getStudentRepo(){
+//		return studentRepo;
+//	}
+//
+//	static public RecruiterRepository getRecruiterRepo(){
+//		return recruiterRepo;
+//	}
 
-	static public RecruiterRepository getRecruiterRepo(){
-		return recruiterRepo;
-	}
+//	static public String findStudentPassword(String email) {
+//		for (Student student : studentRepo.findAll()) {
+//			if (student.getEmailAddress().equals(email)) {
+//				return student.getPassword();
+//			}
+//		}
+//		return "";
+//	}
+//	static public String findRecruiterPassword(String name) {
+//		for (Recruiter recruiter : recruiterRepo.findAll()) {
+//			System.out.println(recruiter.getRecruiterName());
+//			System.out.println(name);
+//			if (recruiter.getRecruiterName().equals(name)) {
+//				return recruiter.getRecruiterPass();
+//			}
+//		}
+//		return "";
+//	}
+//
+//
+//	static public String findFirstName(String email) {
+//		for (Student student : studentRepo.findAll()) {
+//			if (student.getEmailAddress().equals(email)) {
+//				return student.getFirstName();
+//			}
+//		}
+//		return "";
+//	}
+//
+//	static public Student findStudent(String email) {
+//		for (Student student : studentRepo.findAll()) {
+//			if (student.getEmailAddress().equals(email)) {
+//				return student;
+//			}
+//		}
+//		return null;
+//	}
+//	static public Recruiter findRecruiter(String name) {
+//		for (Recruiter recruiter : recruiterRepo.findAll()) {
+//			if (recruiter.getRecruiterName().equals(name)) {
+//				return recruiter;
+//			}
+//		}
+//		return null;
+//	}
 
-	static public String findStudentPassword(String email) {
-		for (Student student : studentRepo.findAll()) {
-			if (student.getEmailAddress().equals(email)) {
-				return student.getPassword();
+	@RequestMapping("/searchStudent")
+	public @ResponseBody String searchStudent(String zoekterm){
+		System.out.println("Zoekterm: " + zoekterm);
+
+		try {
+			String findByFirstName = studentRepo.findByFirstName(zoekterm).toString();
+			if (findByFirstName != null) {
+				return findByFirstName;
+			}
+		} catch (NullPointerException nPE) {
+			System.out.println("Eerste NULLPOINTER!");
+			try {
+				String findByLastName = studentRepo.findByLastName(zoekterm).toString();
+				if(findByLastName != null){
+					return findByLastName;
+				}
+			} catch (NullPointerException nPE2) {
+				String findByFullName = findByFullName(zoekterm);
+				if(findByFullName != null){
+					return findByFullName;
+				}
 			}
 		}
 		return "";
 	}
-	static public String findRecruiterPassword(String name) {
-		for (Recruiter recruiter : recruiterRepo.findAll()) {
-			System.out.println(recruiter.getRecruiterName());
-			System.out.println(name);
-			if (recruiter.getRecruiterName().equals(name)) {
-				return recruiter.getRecruiterPass();
-			}
-		}
-		return "";
+
+	public String findByFullName(String fullName){
+		Iterable<Student> all = studentRepo.findAll();
+		return StreamSupport.stream(all.spliterator(), false).filter(s -> s.getFullName().contains(fullName)).collect(Collectors.toList()).toString();
 	}
-
-
-	static public String findFirstName(String email) {
-		for (Student student : studentRepo.findAll()) {
-			if (student.getEmailAddress().equals(email)) {
-				return student.getFirstName();
-			}
-		}
-		return "";
-	}
-
-	static public Student findStudent(String email) {
-		for (Student student : studentRepo.findAll()) {
-			if (student.getEmailAddress().equals(email)) {
-				return student;
-			}
-		}
-		return null;
-	}
-	static public Recruiter findRecruiter(String name) {
-		for (Recruiter recruiter : recruiterRepo.findAll()) {
-			if (recruiter.getRecruiterName().equals(name)) {
-				return recruiter;
-			}
-		}
-		return null;
-	}
-
-
 
 
 	@RequestMapping("/inactief")
@@ -115,31 +147,16 @@ public class UserRegistration {
 		return "LoggedIn";
 	}
 
-//	@RequestMapping(value = "/SignIn", method = RequestMethod.GET)
-//	public String signIn() {
-//		// studentRepo.deleteAll();
-//		System.out.println("DEze methode gebruikt ie");
-//		return "SignIn";
-//	}
+	@RequestMapping(value = "/SignIn", method = RequestMethod.GET)
+	public String signIn() {
+		// studentRepo.deleteAll();
+		return "SignIn";
+	}
 
-//	@RequestMapping(value = "/SignIn", method = RequestMethod.POST)
-//	public String checkLogin(String email, String password, Model model) {
-//		//Student Login
-//		if (findStudentPassword(email).equals(password) && !findStudent(email).isInActief()) {
-//			model.addAttribute("firstName", findFirstName(email));
-//			model.addAttribute("message", "Welkom terug!");
-//			currentStudent = findStudent(email);
-//			return "LoggedIn";
-//		}
-//		//Recruiter Login
-//		if(findRecruiterPassword(email).equals(password)){
-//			model.addAttribute("firstName", email);
-//			currentRecruiter = findRecruiter(email);
-//			return "recruitersIngelogd";
-//		}
-//
-//		return "SignIn";
-////	}
+	@RequestMapping(value = "/SignIn", method = RequestMethod.POST)
+	public String checkLogin(String email, String password, Model model) {
+		return "LoggedIn";
+	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
 	public String signUp(Model model, WebRequest webReq) {
@@ -157,14 +174,15 @@ public class UserRegistration {
 	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public String postSignUp(@Valid @ModelAttribute("studentForm") Student studentForm, Model model) {
-		if(!studentForm.getPassword().equals(studentForm.getPasswordConfirmation())){
-			return "SignUp";
-		}
+	public String postSignUp(@Valid @ModelAttribute("studentForm") Student studentForm, BindingResult bindingResult, Model model) {
+//		if(!studentForm.getPassword().equals(studentForm.getPasswordConfirmation())){
+//			return "SignUp";
+//		}
 //		studentMailSender.sendWelcomeEmail(studentForm.getFirstName(), studentForm.getEmailAddress());
 		System.out.println("Ik kom in de signUpPost");
-		studentRepo.save(studentForm);
 		currentStudent = studentForm;
+		studentRepo.save(studentForm);
+
 		model.addAttribute("message", "Fijn dat je je hebt ingeschreven!");
 		model.addAttribute("firstName", currentStudent.getFirstName());
 		return "SignIn";

@@ -1,17 +1,12 @@
 package nl.getthere.users;
 
-import java.util.Collection;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class Student implements UserDetails{
@@ -32,7 +27,7 @@ public class Student implements UserDetails{
 	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	//private Date readyDate; // Date at which student is ready to work
-	
+
 	public Boolean isInActief(){
 		return inActief;
 	}
@@ -59,7 +54,8 @@ public class Student implements UserDetails{
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
+
+
 	@NotEmpty(message="Achternaam is verplicht")
 	public String getLastName() {
 		return lastName;
@@ -68,6 +64,11 @@ public class Student implements UserDetails{
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
+	@Transient
+	public String getFullName(){
+		return firstName + " " + lastName;
+	}
 	
 	@NotEmpty(message="Wachtwoord is verplicht")
 	public String getPassword() {
@@ -75,10 +76,10 @@ public class Student implements UserDetails{
 	}
 
 	public void setPassword(String password) {
-		
-		this.password = passwordEncoder.encode(password);
+		this.password = password;
+//		this.password = passwordEncoder.encode(password);
 	}
-	
+
 	@NotEmpty(message="Bevestig je wachtwoord")
 	public String getPasswordConfirmation() {
 		return passwordConfirmation;

@@ -12,12 +12,12 @@
 		<p>Emailadres</p>
 		<input type="text" name="username"/>
 		<p>Wachtwoord</p>
-		<input type="password" name="password"/><br><input
-			type="submit" value="SignIn"/>
+		<input type="password" name="password"/><br>
+		<input type="submit" value="SignIn"/>
 	</form:form>
-	<p>Heb je nog geen account? Even wat veranderen!
+	<p>Heb je nog geen account?
 	</p>
-	<form:form action="/signUp">
+	<form:form action="signUp" method="get">
 		<input type="submit" name="newAccount" value="Studentaccount aanmaken" />
 		<input type="submit" name="newAccount" value="Recruiteraccount aanmaken" />
 	</form:form>
