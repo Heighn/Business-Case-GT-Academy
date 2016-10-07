@@ -22,7 +22,7 @@
 
     function search(){
         var zoekterm = $('#zoekterm').val();
-        var url = root_url + "searchStudent";
+        var url = root_url + "recruiter/searchStudent";
 
         $.get(url, {zoekterm: zoekterm}, function(data){
             console.log(data);

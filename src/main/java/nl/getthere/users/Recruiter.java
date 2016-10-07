@@ -1,6 +1,7 @@
 package nl.getthere.users;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 
@@ -15,7 +16,7 @@ public class Recruiter{
 
 	@Transient
 	private UserProfile userProfile = new UserProfile();
-
+	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
 	public Recruiter() {}
@@ -52,7 +53,7 @@ public class Recruiter{
 	
 	public Recruiter(String recruiterName, String recruiterPass, String confirm){
 		this.recruiterName = recruiterName;
-		this.recruiterPass = recruiterPass;
+		this.recruiterPass = passwordEncoder.encode(recruiterPass);
 	}
 
 	public String getRecruiterName() {
@@ -69,7 +70,7 @@ public class Recruiter{
 	}
 
 	public void setRecruiterPass(String recruiterPass) {
-		this.recruiterPass = recruiterPass;
+		this.recruiterPass = passwordEncoder.encode(recruiterPass);
 		this.userProfile.setPassword(recruiterPass);
 	}
 	

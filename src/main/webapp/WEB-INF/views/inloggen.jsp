@@ -6,8 +6,21 @@
   <meta name="charset" content="utf-8">
   <title>Get There Studentenportaal</title>
   <link rel="stylesheet" href="../styles.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$( function() {
+		  function runEffect() {
+				if (${shaker}) {
+		    	$( "#effect" ).effect("shake", 500);
+				}
+		  };
+		  runEffect();
+		} );
+	</script>
 </head>
 <body class="bg">
+
 	<div id="main">
 		<div class="login-container">
 			<div class="login-form">
@@ -23,6 +36,7 @@
 				<p>Nog geen account?<br>
 					<a href="registreren">Registreer je hier.</a>
 				</p>
+				</div>
 			</div>
 		</div>
 	</div>

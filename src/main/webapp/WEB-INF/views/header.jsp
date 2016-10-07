@@ -18,6 +18,9 @@
 </head>
 <body>
   <header id="header">
+      <div class="branding">
+        <a href="inloggen"><img src="../images/logo.png" alt="logo"></a>
+      </div>
       <nav id="menu">
         <ul>
           <li><a href="#" class="current">Profiel</a></li>

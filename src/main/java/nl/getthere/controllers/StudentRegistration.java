@@ -20,6 +20,10 @@ public class StudentRegistration {
 	private StudentRepository studentRepo;
 
 	private Student currentStudent;
+	
+//	@Autowired
+//	private JavaMailSender javaMailSender;
+
 
 	private String findStudentPassword(String email) {
 		for (Student student : studentRepo.findAll()) {
@@ -29,8 +33,6 @@ public class StudentRegistration {
 		}
 		return "";
 	}
-
-
 	
 	private String findFirstName(String email) {
 		for (Student student : studentRepo.findAll()) {
@@ -76,8 +78,9 @@ public class StudentRegistration {
 	}
 
 	@RequestMapping(value = "/inloggen", method = RequestMethod.GET)
-	public String profiel() {
+	public String profiel(Model model) {
 		// studentRepo.deleteAll();
+		model.addAttribute("shaker", false);
 		return "inloggen";
 	}
 
@@ -110,15 +113,30 @@ public class StudentRegistration {
 	@RequestMapping(value = "/inloggen", method = RequestMethod.POST)
 	public String checkinloggen(String email, String password, Model model) {
 		//Student inloggen
-		if (findStudentPassword(email).equals(password) && !findStudent(email).isInActief()) {
-			model.addAttribute("firstName", findFirstName(email));
-			currentStudent = findStudent(email);
-			model.addAttribute("currentStudent", currentStudent);
-			return "redirect:/profiel";
+		if((email == null || email.isEmpty()) || 
+				(password == null || password.isEmpty())) {
+			model.addAttribute("shaker", true);
+			return "inloggen";
+			} else {
+				if (findStudentPassword(email).equals(password) && !findStudent(email).isInActief()) {
+					model.addAttribute("firstName", findFirstName(email));
+					currentStudent = findStudent(email);
+					model.addAttribute("currentStudent", currentStudent);
+					return "redirect:/profiel";
+			}
 		}
-
+		model.addAttribute("shaker", true);
 		return "inloggen";
 	}
+
+	//		//Recruiter inloggen
+//		if(findRecruiterPassword(email).equals(password)){
+//			model.addAttribute("firstName", email);
+//			currentRecruiter = findRecruiter(email);
+//			return "admin";
+//		}
+//		return "inloggen";
+//	}
 
 	@RequestMapping(value = "/registreren", method = RequestMethod.GET)
 	public String registreren(Model model) {
@@ -139,4 +157,6 @@ public class StudentRegistration {
 		return "redirect:/profiel";
 //		}
 	}
+
+
 }
