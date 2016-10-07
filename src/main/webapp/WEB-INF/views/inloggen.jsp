@@ -20,7 +20,7 @@
 	</script>
 </head>
 <body class="bg">
-	<div id="main">
+	<div id="mainLogin">
 		<div class="toggler">
 			<div class="login-container">
 				<div id="effect" class="login-form">
