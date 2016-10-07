@@ -162,7 +162,13 @@ public class UserRegistration {
 		}
 		return "registreren";
 	}
-		
+	
+	@RequestMapping(value = "/personal", method = RequestMethod.POST)
+	public String updateNaw(Model model) {
+		System.out.println("personal records updated");
+		return "profile";
+	}
+
 //*****************RECRUITERS****************
 	
 	@RequestMapping("/sendEmail")
