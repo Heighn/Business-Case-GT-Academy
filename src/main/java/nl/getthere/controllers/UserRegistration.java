@@ -153,15 +153,14 @@ public class UserRegistration {
 	
 	@RequestMapping(value = "/registreren", method = RequestMethod.POST)
 	public String postregistreren(@Valid @ModelAttribute("currentStudent") Student currentStudent, Model model) {
-		if(!currentStudent.getPassword().equals(currentStudent.getPasswordConfirmation())){
-			return "registreren";
-		} else {
-//		studentMailSender.sendWelcomeEmail(currentStudent.getFirstName(), currentStudent.getEmailAddress());
-		studentRepo.save(currentStudent);
-		model.addAttribute("firstName", currentStudent.getFirstName());
-		model.addAttribute("message", "Gefeliciteerd, je hebt nu een profiel bij Get There! Je bent automatisch ingelogd op je persoonlijke account. Wij verzoeken je vriendelijk de gegevens over je opleiding in te vullen en aan te geven waar je interesses liggen. Daarnaast kun je ook je CV uploaden, maar voel je niet verplicht!");
-		return "redirect:/profiel";
+		if(currentStudent.getPassword().equals(currentStudent.getPasswordConfirmation())){
+//			studentMailSender.sendWelcomeEmail(currentStudent.getFirstName(), currentStudent.getEmailAddress());
+			studentRepo.save(currentStudent);
+			model.addAttribute("firstName", currentStudent.getFirstName());
+			model.addAttribute("message", "Gefeliciteerd, je hebt nu een profiel bij Get There! Je bent automatisch ingelogd op je persoonlijke account. Wij verzoeken je vriendelijk de gegevens over je opleiding in te vullen en aan te geven waar je interesses liggen. Daarnaast kun je ook je CV uploaden, maar voel je niet verplicht!");
+			return "redirect:/profiel";
 		}
+		return "registreren";
 	}
 		
 //*****************RECRUITERS****************

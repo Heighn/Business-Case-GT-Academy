@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p>Achternaam</p>
 					<form:input path="lastName" value="${lastName}"/>
 					<p>Geboortedatum</p>
-					<form:input path="gebDatum" value="${gebDatum}"/>
+					<div class="dtpcr"><form:input path="gebDatum" value="${gebDatum}" id="datepicker" class="ll-skin-vigo"/></div>
 					<p>Woonplaats</p>
 					<form:input path="woonplaats" value="${woonplaats}"/>
 					<input type="submit" value="Opslaan">
