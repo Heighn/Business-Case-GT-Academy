@@ -1,5 +1,6 @@
 package nl.getthere.controllers;
 
+import nl.getthere.services.StudentMailSender;
 import nl.getthere.users.Student;
 import nl.getthere.users.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,6 @@ public class StudentRegistration {
 	
 //	@Autowired
 //	private JavaMailSender javaMailSender;
-
 
 	private String findStudentPassword(String email) {
 		for (Student student : studentRepo.findAll()) {
@@ -151,12 +151,21 @@ public class StudentRegistration {
 //			return "registreren";
 //		} else {
 //		studentMailSender.sendWelcomeEmail(currentStudent.getFirstName(), currentStudent.getEmailAddress());
-		studentRepo.save(currentStudent);
-		model.addAttribute("firstName", currentStudent.getFirstName());
-		model.addAttribute("message", "Gefeliciteerd, je hebt nu een profiel bij Get There! Je bent automatisch ingelogd op je persoonlijke account. Wij verzoeken je vriendelijk de gegevens over je opleiding in te vullen en aan te geven waar je interesses liggen. Daarnaast kun je ook je CV uploaden, maar voel je niet verplicht!");
-		return "redirect:/profiel";
-//		}
-	}
 
+		if(currentStudent.getPassword().equals(currentStudent.getPasswordConfirmation())){
+//			studentMailSender.sendWelcomeEmail(currentStudent.getFirstName(), currentStudent.getEmailAddress());
+			studentRepo.save(currentStudent);
+			model.addAttribute("firstName", currentStudent.getFirstName());
+			model.addAttribute("message", "Gefeliciteerd, je hebt nu een profiel bij Get There! Je bent automatisch ingelogd op je persoonlijke account. Wij verzoeken je vriendelijk de gegevens over je opleiding in te vullen en aan te geven waar je interesses liggen. Daarnaast kun je ook je CV uploaden, maar voel je niet verplicht!");
+			return "redirect:/profiel";
+		}
+		return "registreren";
+	}
+	
+	@RequestMapping(value = "/personal", method = RequestMethod.POST)
+	public String updateNaw(Model model) {
+		System.out.println("personal records updated");
+		return "profile";
+	}
 
 }
