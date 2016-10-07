@@ -20,7 +20,8 @@
   <header id="header">
       <nav id="menu">
         <ul>
-          <li><a href="/inloggen">Inloggen</a></li>
+          <li><a href="#" class="current">Profiel</a></li>
+          <li><a href="/inloggen">Uitloggen</a></li>
           <!--<li><a href="/sendEmail">Email Verzenden</a></li>
   		    <li><a href="/recruitersList">Recruitersoverzicht</a></li>
           <li><a href="/StudentList">Studentenoverzicht</a></li>

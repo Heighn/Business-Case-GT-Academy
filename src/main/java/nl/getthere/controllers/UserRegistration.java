@@ -22,10 +22,10 @@ public class UserRegistration {
 	private StudentRepository studentRepo;
 	@Autowired
 	private RecruiterRepository recruiterRepo;
-	
-	private Student currentStudent;
 	@SuppressWarnings("unused")
 	private Recruiter currentRecruiter;
+	
+	private Student currentStudent;
 	
 //	@Autowired
 //	private JavaMailSender javaMailSender;
@@ -33,6 +33,11 @@ public class UserRegistration {
 	@Autowired(required=true)
 	private StudentMailSender studentMailSender;
 
+	
+	
+	
+	
+	
 	private String findStudentPassword(String email) {
 		for (Student student : studentRepo.findAll()) {
 			if (student.getEmailAddress().equals(email)) {
@@ -53,6 +58,7 @@ public class UserRegistration {
 		return "";
 	}
 
+	
 	private String findFirstName(String email) {
 		for (Student student : studentRepo.findAll()) {
 			if (student.getEmailAddress().equals(email)) {
@@ -83,7 +89,7 @@ public class UserRegistration {
 	@RequestMapping("/inactief")
 	public String deleteAccount() {
 		currentStudent.setInActief(true);
-		return "SignIn";
+		return "inloggen";
 	}
 
 	@RequestMapping(value = "/profiel", method = RequestMethod.GET)
@@ -120,18 +126,17 @@ public class UserRegistration {
 		//Student inloggen
 		if (findStudentPassword(email).equals(password) && !findStudent(email).isInActief()) {
 			model.addAttribute("firstName", findFirstName(email));
-			model.addAttribute("message", "profiel terug!");
 			currentStudent = findStudent(email);
 			model.addAttribute("currentStudent", currentStudent);
 			return "redirect:/profiel";
 		}
+		
 		//Recruiter inloggen
 		if(findRecruiterPassword(email).equals(password)){
 			model.addAttribute("firstName", email);
 			currentRecruiter = findRecruiter(email);
 			return "admin";
 		}
-		
 		return "inloggen";
 	}
 
@@ -146,12 +151,13 @@ public class UserRegistration {
 	public String postregistreren(@Valid @ModelAttribute("currentStudent") Student currentStudent, Model model) {
 		if(!currentStudent.getPassword().equals(currentStudent.getPasswordConfirmation())){
 			return "registreren";
-		}
+		} else {
 //		studentMailSender.sendWelcomeEmail(currentStudent.getFirstName(), currentStudent.getEmailAddress());
 		studentRepo.save(currentStudent);
 		model.addAttribute("firstName", currentStudent.getFirstName());
 		model.addAttribute("message", "Gefeliciteerd, je hebt nu een profiel bij Get There! Je bent automatisch ingelogd op je persoonlijke account. Wij verzoeken je vriendelijk de gegevens over je opleiding in te vullen en aan te geven waar je interesses liggen. Daarnaast kun je ook je CV uploaden, maar voel je niet verplicht!");
-		return "profiel";
+		return "redirect:/profiel";
+		}
 	}
 		
 //*****************RECRUITERS****************
