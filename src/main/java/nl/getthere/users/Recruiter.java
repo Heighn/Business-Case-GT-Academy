@@ -1,11 +1,8 @@
 package nl.getthere.users;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
 
 @Entity
 public class Recruiter{
@@ -16,7 +13,11 @@ public class Recruiter{
 	private String recruiterPass;
 	private String confirm;
 
-	
+	@Transient
+	private UserProfile userProfile = new UserProfile();
+
+
+
 	public Recruiter() {}
 	
 	public String getConfirm() {
@@ -28,7 +29,17 @@ public class Recruiter{
 	}
 
 	private Long id;
-	
+
+	@Transient
+	public UserProfile getUserProfile() {
+		return userProfile;
+	}
+
+	@Transient
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
@@ -50,6 +61,7 @@ public class Recruiter{
 
 	public void setRecruiterName(String recruiterName) {
 		this.recruiterName = recruiterName;
+		userProfile.changeRole("recruiter");
 	}
 
 	public String getRecruiterPass() {
@@ -58,49 +70,8 @@ public class Recruiter{
 
 	public void setRecruiterPass(String recruiterPass) {
 		this.recruiterPass = recruiterPass;
+		this.userProfile.setPassword(recruiterPass);
 	}
 	
-//	IMPLEMENTED METHODS
 
-//	@Override
-//	public Collection<? extends GrantedAuthority> getAuthorities() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public String getPassword() {
-//		// TODO Auto-generated method stub
-//		return recruiterPass;
-//	}
-//
-//	@Override
-//	public String getUsername() {
-//		// TODO Auto-generated method stub
-//		return recruiterName;
-//	}
-//
-//	@Override
-//	public boolean isAccountNonExpired() {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-//
-//	@Override
-//	public boolean isAccountNonLocked() {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-//
-//	@Override
-//	public boolean isCredentialsNonExpired() {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-//
-//	@Override
-//	public boolean isEnabled() {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
 }

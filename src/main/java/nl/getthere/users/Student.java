@@ -1,21 +1,22 @@
 package nl.getthere.users;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
-import java.util.Collection;
+
 
 @Entity
-public class Student implements UserDetails{
+public class Student{
 	private Boolean inActief = false;
 	private Long id;
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
 	private String emailAddress;
+	private String linkedIn;
+	private String woonplaats;
+	private String gebDatum;
 	private Boolean agreedPrivacy; // Agreed privacy letter
 	private String password;
 	private String passwordConfirmation;
@@ -23,10 +24,27 @@ public class Student implements UserDetails{
 	private Boolean wantsInternship;
 	private Boolean wantsTechEvents;
 	private Boolean wantsGraduationProject;
-	
+
+	@Transient
+	private UserProfile userProfile = new UserProfile();
+
+	@Transient
+	public UserProfile getUserProfile() {
+		return userProfile;
+	}
+
+	@Transient
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
+	}
+
 	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-	
 	//private Date readyDate; // Date at which student is ready to work
+
+	@Transient
+	public String getFullName(){
+		return firstName + " " + lastName;
+	}
 
 	public Boolean isInActief(){
 		return inActief;
@@ -54,8 +72,7 @@ public class Student implements UserDetails{
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
-
+	
 	@NotEmpty(message="Achternaam is verplicht")
 	public String getLastName() {
 		return lastName;
@@ -64,11 +81,6 @@ public class Student implements UserDetails{
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-	@Transient
-	public String getFullName(){
-		return firstName + " " + lastName;
-	}
 	
 	@NotEmpty(message="Wachtwoord is verplicht")
 	public String getPassword() {
@@ -76,10 +88,11 @@ public class Student implements UserDetails{
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
-//		this.password = passwordEncoder.encode(password);
+		this.password = passwordEncoder.encode(password);
+//		this.password = password;
+		userProfile.setPassword(password);
 	}
-
+	
 	@NotEmpty(message="Bevestig je wachtwoord")
 	public String getPasswordConfirmation() {
 		return passwordConfirmation;
@@ -143,54 +156,37 @@ public class Student implements UserDetails{
 
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
+		userProfile.setUserName(emailAddress);
 	}
+	
+	public String getLinkedIn() {
+		return linkedIn;
+	}
+	
+	public void setLinkedIn(String linkedIn) {
+		this.linkedIn = linkedIn;
+	}
+	
+	public String getWoonplaats() {
+		return woonplaats;
+	}
+	
+	public void setWoonplaats(String woonplaats) {
+		this.woonplaats = woonplaats;
+	}
+	
+	public String getGebDatum() {
+		return gebDatum;
+	}
+	
+	public void setGebDatum (String gebDatum) {
+		this.gebDatum = gebDatum;
+	}
+	
 	public String toString(){
 		return firstName + " " + lastName + " " + phoneNumber + " " + emailAddress;
 	}
-	
-//	IMPLEMENTED METHODS
 
-	@Transient
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Transient
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return emailAddress;
-	}
-
-	@Transient
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Transient
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Transient
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Transient
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
-	}
 //	public Date getReadyDate() {
 //		return readyDate;
 //	}
@@ -199,3 +195,4 @@ public class Student implements UserDetails{
 //		this.readyDate = readyDate;
 //	}
 }
+
