@@ -31,7 +31,7 @@ public class RecruiterRegistration {
 	private Recruiter currentRecruiter;
 
 
-	@Autowired(required=true)
+	@Autowired
 	private StudentMailSender studentMailSender;
 
 	@RequestMapping("/searchStudent")
@@ -108,7 +108,7 @@ public class RecruiterRegistration {
 
 	@RequestMapping("/SendEmail")
 	public String sendEmailByRecruiter(){
-		return "SendEmail";
+		return "sendEmail";
 	}
 
 	@RequestMapping(value="/SendEmail", method=RequestMethod.POST)
