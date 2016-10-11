@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 
 @Configuration
@@ -20,9 +20,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/", "/styles.css", "/signUp", "/images/logo.png", "/images/bg.jpg", "/student/registreren", "/index", "/recruiter/signUp").permitAll()
+                .antMatchers("/", "recruiter/recruitersReg", "/styles.css", "/signUp", "/images/logo.png", "/images/bg.jpg", "/student/registreren", "/index", "/recruiter/signUp").permitAll()
                 .antMatchers("/student/*").hasAuthority("student")
-                .antMatchers("/recruiter/*").hasAuthority("student")
+                .antMatchers("/recruiter/*").hasAuthority("recruiter")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -30,7 +30,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
             .logout()
-                .permitAll();
+                .permitAll()
+            .and()
+                .csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
     
     @Autowired

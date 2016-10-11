@@ -9,7 +9,10 @@ import javax.persistence.*;
 public class Recruiter{
 	
 	@NotEmpty(message="Vul uw gebruikersnaam in.")
+//	@UniqueConstraint(columnNames = {"recruiterName"})
+	@Column(unique=true)
 	private String recruiterName;
+
 	@NotEmpty(message="Geef een nieuw wachtwoord op.")
 	private String recruiterPass;
 	private String confirm;
@@ -59,6 +62,7 @@ public class Recruiter{
 	public String getRecruiterName() {
 		return recruiterName;
 	}
+
 
 	public void setRecruiterName(String recruiterName) {
 		this.recruiterName = recruiterName;

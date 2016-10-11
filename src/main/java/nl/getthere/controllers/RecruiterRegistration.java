@@ -95,16 +95,16 @@ public class RecruiterRegistration {
 		return "recruitersReg";
 	}
 
-	@RequestMapping(value = "/inloggen", method = RequestMethod.POST)
-	public String checkinloggen(String email, String password, Model model) {
-		//Recruiter inloggen
-		if(findRecruiterPassword(email).equals(password)){
-			model.addAttribute("firstName", email);
-			currentRecruiter = findRecruiter(email);
-			return "admin";
-		}
-		return "inloggen";
-	}
+//	@RequestMapping(value = "/inloggen", method = RequestMethod.POST)
+//	public String checkinloggen(String email, String password, Model model) {
+//		//Recruiter inloggen
+//		if(findRecruiterPassword(email).equals(password)){
+//			model.addAttribute("firstName", email);
+//			currentRecruiter = findRecruiter(email);
+//			return "admin";
+//		}
+//		return "inloggen";
+//	}
 
 	@RequestMapping("/SendEmail")
 	public String sendEmailByRecruiter(){
@@ -124,10 +124,12 @@ public class RecruiterRegistration {
 		return "recruitersIngelogd";
 	}
 
-	@RequestMapping("/recruitersReg")
+	@RequestMapping("../recruitersReg")
 	public String recruiters(Model model){
 		model.addAttribute("recruiters", recruiterRepo.findAll());
-		return "/recruitersReg";
+		Recruiter recruiterForm = new Recruiter();
+		model.addAttribute("recruiterForm", recruiterForm);
+		return "recruitersReg";
 	}
 
 	@RequestMapping("/recruitersList")

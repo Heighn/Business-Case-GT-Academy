@@ -1,6 +1,5 @@
 package nl.getthere.controllers;
 
-import nl.getthere.services.StudentMailSender;
 import nl.getthere.users.Student;
 import nl.getthere.users.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,11 +60,11 @@ public class StudentRegistration {
 
 	@RequestMapping(value = "/profiel", method = RequestMethod.GET)
 	public String updateAccount(Model model) {
-		model.addAttribute("firstName", currentStudent.getFirstName());
-		model.addAttribute("lastName", currentStudent.getLastName());
-		model.addAttribute("emailAddress", currentStudent.getEmailAddress());
-		model.addAttribute("phoneNumber", currentStudent.getPhoneNumber());
-		model.addAttribute("password", currentStudent.getPassword());
+//		model.addAttribute("firstName", currentStudent.getFirstName());
+//		model.addAttribute("lastName", currentStudent.getLastName());
+//		model.addAttribute("emailAddress", currentStudent.getEmailAddress());
+//		model.addAttribute("phoneNumber", currentStudent.getPhoneNumber());
+//		model.addAttribute("password", currentStudent.getPassword());
 		Student currentStudent = new Student();
 		model.addAttribute("currentStudent", currentStudent);
 		return "profiel";
@@ -110,24 +109,24 @@ public class StudentRegistration {
 		return "SignIn";
 	}
 
-	@RequestMapping(value = "/inloggen", method = RequestMethod.POST)
-	public String checkinloggen(String email, String password, Model model) {
-		//Student inloggen
-		if((email == null || email.isEmpty()) || 
-				(password == null || password.isEmpty())) {
-			model.addAttribute("shaker", true);
-			return "inloggen";
-			} else {
-				if (findStudentPassword(email).equals(password) && !findStudent(email).isInActief()) {
-					model.addAttribute("firstName", findFirstName(email));
-					currentStudent = findStudent(email);
-					model.addAttribute("currentStudent", currentStudent);
-					return "redirect:/profiel";
-			}
-		}
-		model.addAttribute("shaker", true);
-		return "inloggen";
-	}
+//	@RequestMapping(value = "/inloggen", method = RequestMethod.POST)
+//	public String checkinloggen(String email, String password, Model model) {
+//		//Student inloggen
+//		if((email == null || email.isEmpty()) ||
+//				(password == null || password.isEmpty())) {
+//			model.addAttribute("shaker", true);
+//			return "inloggen";
+//			} else {
+//				if (findStudentPassword(email).equals(password) && !findStudent(email).isInActief()) {
+//					model.addAttribute("firstName", findFirstName(email));
+//					currentStudent = findStudent(email);
+//					model.addAttribute("currentStudent", currentStudent);
+//					return "profiel";
+//			}
+//		}
+//		model.addAttribute("shaker", true);
+//		return "inloggen";
+//	}
 
 	//		//Recruiter inloggen
 //		if(findRecruiterPassword(email).equals(password)){
