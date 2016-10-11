@@ -6,9 +6,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="main">
 	<div class="content">
 		<h1>Profiel</h1>
+		<p>Welkom, gebruiker</p><br>
 		<p>${message}</p>
 		<div id="accordion">
-		  <h3>Persoonsgegevens</h3>
+		  <h3>Algemeen</h3>
 		  <div>
 				<form:form method="post" action="personal" commandName="currentStudent">
 			 		<p>Voornaam</p>
@@ -67,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</form:form>
 		  </div>
 		</div>
-		<a href="/wijzig">Accountgegevens Wijzigen</a> <a href="/inactief">Account Verwijderen</a>
+		<p><a href="/inactief">Account Verwijderen</a></p>
  	</div>
 </div>
 <%@ include file="footer.jsp" %>

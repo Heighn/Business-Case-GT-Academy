@@ -156,14 +156,6 @@ h3 + p {
   width: auto;
 }
 
-form.fade {
-    -webkit-animation: fadein 1.5s; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 1.5s; /* Firefox < 16 */
-    -ms-animation: fadein 1.5s; /* Internet Explorer */
-    -o-animation: fadein 1.5s; /* Opera < 12.1 */
-    animation: fadein 1.5s;
-}
-
 input, textarea {
   display: block;
   padding: 7px;
@@ -216,6 +208,22 @@ label {
 
  {
 	font-size: 90%;
+}
+
+.ui-accordion-header {
+  background-color: rgba(0,0,0,0.07);
+  margin-bottom: 1px;
+}
+
+.ui-accordion-content {
+  background-color: #fff;
+  padding: 15px;
+}
+
+h3.ui-accordion-header {
+  font-weight: normal;
+  font-size: 1.8em;
+  padding: 10px;
 }
 
  .ui-widget {
