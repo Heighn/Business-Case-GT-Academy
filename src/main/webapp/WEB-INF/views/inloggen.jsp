@@ -34,9 +34,8 @@
 					<input type="submit" />
 				</form:form>
 				<p>Nog geen account?<br>
-					<a href="registreren">Registreer je hier.</a>
+					<a href="/student/registreren">Registreer je hier.</a>
 				</p>
-				</div>
 			</div>
 		</div>
 	</div>

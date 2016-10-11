@@ -38,7 +38,7 @@ public class Student{
 		this.userProfile = userProfile;
 	}
 
-	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	private static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	//private Date readyDate; // Date at which student is ready to work
 
 	@Transient
@@ -92,7 +92,8 @@ public class Student{
 //		this.password = password;
 		userProfile.setPassword(password);
 	}
-	
+
+	@Transient
 	@NotEmpty(message="Bevestig je wachtwoord")
 	public String getPasswordConfirmation() {
 		return passwordConfirmation;

@@ -1,18 +1,16 @@
 package nl.getthere.controllers;
 
-import nl.getthere.services.StudentMailSender;
-import nl.getthere.users.Student;
-import nl.getthere.users.StudentRepository;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.request.WebRequest;
 
-import javax.validation.Valid;
+import nl.getthere.users.Student;
+import nl.getthere.users.StudentRepository;
 
 @Controller
 @RequestMapping("/student")
@@ -77,57 +75,57 @@ public class StudentRegistration {
 		return "profiel";
 	}
 
-	@RequestMapping(value = "/inloggen", method = RequestMethod.GET)
-	public String profiel(Model model) {
-		// studentRepo.deleteAll();
-		model.addAttribute("shaker", false);
-		return "inloggen";
-	}
+//	@RequestMapping(value = "/inloggen", method = RequestMethod.GET)
+//	public String profiel(Model model) {
+//		// studentRepo.deleteAll();
+//		model.addAttribute("shaker", false);
+//		return "inloggen";
+//	}
 
-	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
-	public String signUp(Model model, WebRequest webReq) {
-		if(webReq.getParameter("newAccount").toString().equals("Studentaccount aanmaken")) {
-			System.out.println("Ik ga een nieuwe student aanmaken!");
-			Student studentForm = new Student();
-			model.addAttribute("studentForm", studentForm);
-			return "inloggen";
-		}
-		return "signUp";
-	}
-
-	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public String postSignUp(@Valid @ModelAttribute("studentForm") Student studentForm, BindingResult bindingResult, Model model) {
-//		if(!studentForm.getPassword().equals(studentForm.getPasswordConfirmation())){
-//			return "SignUp";
+//	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+//	public String signUp(Model model, WebRequest webReq) {
+//		if(webReq.getParameter("newAccount").toString().equals("Studentaccount aanmaken")) {
+//			System.out.println("Ik ga een nieuwe student aanmaken!");
+//			Student studentForm = new Student();
+//			model.addAttribute("studentForm", studentForm);
+//			return "inloggen";
 //		}
-//		studentMailSender.sendWelcomeEmail(studentForm.getFirstName(), studentForm.getEmailAddress());
-		System.out.println("Ik kom in de signUpPost");
-		currentStudent = studentForm;
-		studentRepo.save(studentForm);
+//		return "signUp";
+//	}
+//
+//	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
+//	public String postSignUp(@Valid @ModelAttribute("studentForm") Student studentForm, BindingResult bindingResult, Model model) {
+////		if(!studentForm.getPassword().equals(studentForm.getPasswordConfirmation())){
+////			return "SignUp";
+////		}
+////		studentMailSender.sendWelcomeEmail(studentForm.getFirstName(), studentForm.getEmailAddress());
+//		System.out.println("Ik kom in de signUpPost");
+//		currentStudent = studentForm;
+//		studentRepo.save(studentForm);
+//
+//		model.addAttribute("message", "Fijn dat je je hebt ingeschreven!");
+//		model.addAttribute("firstName", currentStudent.getFirstName());
+//		return "SignIn";
+//	}
 
-		model.addAttribute("message", "Fijn dat je je hebt ingeschreven!");
-		model.addAttribute("firstName", currentStudent.getFirstName());
-		return "SignIn";
-	}
-
-	@RequestMapping(value = "/inloggen", method = RequestMethod.POST)
-	public String checkinloggen(String email, String password, Model model) {
-		//Student inloggen
-		if((email == null || email.isEmpty()) || 
-				(password == null || password.isEmpty())) {
-			model.addAttribute("shaker", true);
-			return "inloggen";
-			} else {
-				if (findStudentPassword(email).equals(password) && !findStudent(email).isInActief()) {
-					model.addAttribute("firstName", findFirstName(email));
-					currentStudent = findStudent(email);
-					model.addAttribute("currentStudent", currentStudent);
-					return "redirect:/profiel";
-			}
-		}
-		model.addAttribute("shaker", true);
-		return "inloggen";
-	}
+//	@RequestMapping(value = "/inloggen", method = RequestMethod.POST)
+//	public String checkinloggen(String email, String password, Model model) {
+//		//Student inloggen
+//		if((email == null || email.isEmpty()) || 
+//				(password == null || password.isEmpty())) {
+//			model.addAttribute("shaker", true);
+//			return "inloggen";
+//			} else {
+//				if (findStudentPassword(email).equals(password) && !findStudent(email).isInActief()) {
+//					model.addAttribute("firstName", findFirstName(email));
+//					currentStudent = findStudent(email);
+//					model.addAttribute("currentStudent", currentStudent);
+//					return "redirect:/profiel";
+//			}
+//		}
+//		model.addAttribute("shaker", true);
+//		return "inloggen";
+//	}
 
 	//		//Recruiter inloggen
 //		if(findRecruiterPassword(email).equals(password)){
