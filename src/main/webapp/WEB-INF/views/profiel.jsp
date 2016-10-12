@@ -41,13 +41,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<form:checkbox path="agreedPrivacy" id="tech" />
 					<label for="tech">Tech events (gratis te bezoeken)</label><br>
 					<form:checkbox path="agreedPrivacy" id="stud" />
-					<label for="stud">Afstudeer onderzoeken</label><br>
+					<label for="study">Afstudeer onderzoeken</label><br>
 					<form:checkbox path="agreedPrivacy" id="stage" />
 					<label for="stage">Stages</label><br>
 					<form:checkbox path="agreedPrivacy" id="train" />
-					<label for="train">Traineeships</label><br>
+					<label for="trainee">Traineeships</label><br>
 					<form:checkbox path="agreedPrivacy" id="anders" />
-					<label for="anders">Anders, namelijk:</label>
+					<label for="other">Anders, namelijk:</label>
 					<input type="submit" value="Opslaan">
 				</form:form>
 		  </div>

@@ -136,10 +136,10 @@ public class RecruiterRegistration {
 		return "recruitersList";
 	}
 
-	@RequestMapping("/StudentList")
+	@RequestMapping("/studenten")
 	public String studentList(Model model){
 		model.addAttribute("students", studentRepo.findAll());
-		return "StudentList";
+		return "studenten";
 	}
 	@RequestMapping("/DeleteStudent")
 	public String deleteStudent(Model model){

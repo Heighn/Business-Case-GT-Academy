@@ -88,7 +88,7 @@ public class Student{
 	}
 
 	public void setPassword(String password) {
-		this.password = passwordEncoder.encode(password);
+//		this.password = passwordEncoder.encode(password);
 //		this.password = password;
 		userProfile.setPassword(password);
 	}

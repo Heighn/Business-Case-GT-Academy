@@ -43,6 +43,20 @@ h3 + p {
   padding-top: 7px;
 }
 
+h5 {
+  font-size: 1.3em;
+  font-weight: normal;
+  margin-bottom: 2px;
+}
+
+.clear {
+  clear: both;
+}
+
+.right {
+  float: right !important;
+}
+
 #header {
 }
 
@@ -197,6 +211,62 @@ label {
   padding: 5px;
 }
 
+.menubar {
+  background-color: #f3f3f3;
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+p.small {
+  font-size: 130%;
+}
+
+.item {
+  float: left;
+  margin-right: 10px;
+  color: #666;
+}
+
+.item select, .item input {
+  font-size: 1.5em;
+  padding: 4px;
+  margin: 0;
+}
+
+input#search {
+  min-width: auto;
+}
+
+table {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+}
+
+thead, tbody {
+  vertical-align: middle;
+}
+
+td, th {
+  padding: 8px;
+  border: 1px solid #ddd;
+  font-size: 1.6em;
+  text-align: left;
+}
+
+td {
+  background-color: #fff;
+}
+
+td.check {
+  width: 20px;
+}
+
+table input[type='checkbox'], .item input[type='checkbox'] {
+  margin-bottom: 0 !important;
+  margin-top: 3px !important;
+}
+
 .error {
   color: #e64812;
 }
@@ -204,10 +274,6 @@ label {
 .error::before {
   content: " - ";
   color: #000;
-}
-
- {
-	font-size: 90%;
 }
 
 .ui-accordion-header {
