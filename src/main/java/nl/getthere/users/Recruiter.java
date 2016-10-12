@@ -1,7 +1,6 @@
 package nl.getthere.users;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 
@@ -17,11 +16,6 @@ public class Recruiter{
 	private String recruiterPass;
 	private String confirm;
 
-	@Transient
-	private UserProfile userProfile = new UserProfile();
-	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-
 	public Recruiter() {}
 	
 	public String getConfirm() {
@@ -34,16 +28,6 @@ public class Recruiter{
 
 	private Long id;
 
-	@Transient
-	public UserProfile getUserProfile() {
-		return userProfile;
-	}
-
-	@Transient
-	public void setUserProfile(UserProfile userProfile) {
-		this.userProfile = userProfile;
-	}
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
@@ -53,11 +37,6 @@ public class Recruiter{
 	public void setId(Long id){
 	    this.id = id;
 	}
-	
-	public Recruiter(String recruiterName, String recruiterPass, String confirm){
-		this.recruiterName = recruiterName;
-		this.recruiterPass = passwordEncoder.encode(recruiterPass);
-	}
 
 	public String getRecruiterName() {
 		return recruiterName;
@@ -66,7 +45,6 @@ public class Recruiter{
 
 	public void setRecruiterName(String recruiterName) {
 		this.recruiterName = recruiterName;
-		userProfile.changeRole("recruiter");
 	}
 
 	public String getRecruiterPass() {
@@ -74,8 +52,7 @@ public class Recruiter{
 	}
 
 	public void setRecruiterPass(String recruiterPass) {
-		this.recruiterPass = passwordEncoder.encode(recruiterPass);
-		this.userProfile.setPassword(recruiterPass);
+		this.recruiterPass = recruiterPass;
 	}
 	
 

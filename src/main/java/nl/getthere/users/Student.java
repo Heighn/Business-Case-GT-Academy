@@ -1,7 +1,6 @@
 package nl.getthere.users;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 
@@ -13,11 +12,21 @@ public class Student{
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
+
 	private String emailAddress;
 	private String linkedIn;
+
+	public Boolean getInActief() {
+		return inActief;
+	}
+	public void setInActief(Boolean inActief){
+		this.inActief = inActief;
+	}
+
 	private String woonplaats;
 	private String gebDatum;
 	private Boolean agreedPrivacy; // Agreed privacy letter
+	@Transient
 	private String password;
 	private String passwordConfirmation;
 	private Boolean wantsTraineeship;
@@ -25,20 +34,6 @@ public class Student{
 	private Boolean wantsTechEvents;
 	private Boolean wantsGraduationProject;
 
-	@Transient
-	private UserProfile userProfile = new UserProfile();
-
-	@Transient
-	public UserProfile getUserProfile() {
-		return userProfile;
-	}
-
-	@Transient
-	public void setUserProfile(UserProfile userProfile) {
-		this.userProfile = userProfile;
-	}
-
-	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	//private Date readyDate; // Date at which student is ready to work
 
 	@Transient
@@ -46,13 +41,6 @@ public class Student{
 		return firstName + " " + lastName;
 	}
 
-	public Boolean isInActief(){
-		return inActief;
-	}
-	
-	public void setInActief(Boolean inActief){
-		this.inActief = inActief;
-	}
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -81,16 +69,16 @@ public class Student{
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
+	@Transient
 	@NotEmpty(message="Wachtwoord is verplicht")
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
+	@Transient
 	public void setPassword(String password) {
-		this.password = passwordEncoder.encode(password);
-//		this.password = password;
-		userProfile.setPassword(password);
+		this.password = password;
 	}
 	
 	@NotEmpty(message="Bevestig je wachtwoord")
@@ -156,7 +144,6 @@ public class Student{
 
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
-		userProfile.setUserName(emailAddress);
 	}
 	
 	public String getLinkedIn() {

@@ -1,14 +1,10 @@
 package nl.getthere.controllers;
 
 import nl.getthere.services.StudentMailSender;
-import nl.getthere.users.Recruiter;
-import nl.getthere.users.RecruiterRepository;
-import nl.getthere.users.Student;
-import nl.getthere.users.StudentRepository;
+import nl.getthere.users.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,16 +17,13 @@ import java.util.stream.StreamSupport;
 
 @Controller
 @RequestMapping("/recruiter")
-public class RecruiterRegistration {
+public class RecruiterController {
 	@Autowired
 	private RecruiterRepository recruiterRepo;
 	@Autowired
 	private StudentRepository studentRepo;
-
-	private Student currentStudent;
-	private Recruiter currentRecruiter;
-
-
+	@Autowired
+	private UserProfileRepository userProfileRepo;
 	@Autowired
 	private StudentMailSender studentMailSender;
 
@@ -88,10 +81,25 @@ public class RecruiterRegistration {
 		return null;
 	}
 
-	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
-	public String signUp(Model model, WebRequest webReq) {
+	@RequestMapping(value = "/recruitersReg", method = RequestMethod.GET)
+	public String registreren(Model model, WebRequest webReq) {
 		Recruiter recruiterForm = new Recruiter();
 		model.addAttribute("recruiterForm", recruiterForm);
+		return "recruitersReg";
+	}
+	@RequestMapping(value = "/recruitersReg", method = RequestMethod.POST)
+	public String registrerenPost(@Valid @ModelAttribute("recruiterForm") Recruiter recruiterForm, Model model){
+		if(recruiterRepo.findByRecruiterName(recruiterForm.getRecruiterName()) == null) {
+			UserProfile userProfile = new UserProfile();
+			userProfile.setUserName(recruiterForm.getRecruiterName());
+			userProfile.setPassword(recruiterForm.getRecruiterPass());
+			userProfile.changeRole("recruiter");
+			recruiterRepo.save(recruiterForm);
+			userProfileRepo.save(userProfile);
+			model.addAttribute("recruiterName", userProfile.getUserName());
+			return "admin";
+		}
+		model.addAttribute("errorMessage", "Er bestaat al een account met deze gebruikersnaam!");
 		return "recruitersReg";
 	}
 
@@ -122,14 +130,6 @@ public class RecruiterRegistration {
 		System.out.println("EMAIL: " + emailAddress);
 		studentMailSender.sendEmail(messageText, emailAddress);
 		return "recruitersIngelogd";
-	}
-
-	@RequestMapping("../recruitersReg")
-	public String recruiters(Model model){
-		model.addAttribute("recruiters", recruiterRepo.findAll());
-		Recruiter recruiterForm = new Recruiter();
-		model.addAttribute("recruiterForm", recruiterForm);
-		return "recruitersReg";
 	}
 
 	@RequestMapping("/recruitersList")
@@ -170,16 +170,7 @@ public class RecruiterRegistration {
 	        return new Recruiter();
 	}
 
-	@RequestMapping(value="/recruitersReg", method=RequestMethod.POST)
-	public String nieuw(@Valid Recruiter recruiter, BindingResult result, Model model){
-		if(result.hasErrors()) {
-			return "recruitersReg";
-		}
-		recruiterRepo.save(recruiter);
-		model.addAttribute("recruiterName", recruiter.getRecruiterName());
-		return "admin";
-//		return "recruitersReg";
-	}
+
 
 	@RequestMapping(value="/recruitersLogin", method=RequestMethod.POST)
 	public String login(String recruiterName, String recruiterPass) {

@@ -15,7 +15,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/student")
-public class StudentRegistration {
+public class StudentController {
 	@Autowired
 	private StudentRepository studentRepo;
 
@@ -136,30 +136,6 @@ public class StudentRegistration {
 //		}
 //		return "inloggen";
 //	}
-
-	@RequestMapping(value = "/registreren", method = RequestMethod.GET)
-	public String registreren(Model model) {
-		Student currentStudent = new Student();
-		model.addAttribute("currentStudent", currentStudent);
-		return "registreren";
-	}
-	
-	@RequestMapping(value = "/registreren", method = RequestMethod.POST)
-	public String postregistreren(@Valid @ModelAttribute("currentStudent") Student currentStudent, Model model) {
-//		if(!currentStudent.getPassword().equals(currentStudent.getPasswordConfirmation())){
-//			return "registreren";
-//		} else {
-//		studentMailSender.sendWelcomeEmail(currentStudent.getFirstName(), currentStudent.getEmailAddress());
-
-		if(currentStudent.getPassword().equals(currentStudent.getPasswordConfirmation())){
-//			studentMailSender.sendWelcomeEmail(currentStudent.getFirstName(), currentStudent.getEmailAddress());
-			studentRepo.save(currentStudent);
-			model.addAttribute("firstName", currentStudent.getFirstName());
-			model.addAttribute("message", "Gefeliciteerd, je hebt nu een profiel bij Get There! Je bent automatisch ingelogd op je persoonlijke account. Wij verzoeken je vriendelijk de gegevens over je opleiding in te vullen en aan te geven waar je interesses liggen. Daarnaast kun je ook je CV uploaden, maar voel je niet verplicht!");
-			return "redirect:/profiel";
-		}
-		return "registreren";
-	}
 	
 	@RequestMapping(value = "/personal", method = RequestMethod.POST)
 	public String updateNaw(Model model) {

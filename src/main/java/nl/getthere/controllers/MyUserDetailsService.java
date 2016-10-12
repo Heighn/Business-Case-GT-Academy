@@ -1,9 +1,6 @@
 package nl.getthere.controllers;
 
-import nl.getthere.users.Recruiter;
-import nl.getthere.users.RecruiterRepository;
-import nl.getthere.users.Student;
-import nl.getthere.users.StudentRepository;
+import nl.getthere.users.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -20,24 +17,16 @@ public class MyUserDetailsService implements UserDetailsService {
 	private StudentRepository studentRepo;
 	@Autowired
 	private RecruiterRepository recruiterRepo;
+	@Autowired
+	private UserProfileRepository userProfileRepo;
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		User user;
-		try {
-			Student student = studentRepo.findByEmailAddress(username);
-
-
-			ArrayList<SimpleGrantedAuthority> authorityCollection = new ArrayList<SimpleGrantedAuthority>();
-			authorityCollection.add(student.getUserProfile().getGrantedAuthority());
-			user = new User(student.getEmailAddress(), student.getUserProfile().getPassword(), authorityCollection);
-		}catch(Exception e){
-			Recruiter recruiter = recruiterRepo.findByRecruiterName(username);
-
-			ArrayList<SimpleGrantedAuthority> authorityCollection = new ArrayList<SimpleGrantedAuthority>();
-			authorityCollection.add(recruiter.getUserProfile().getGrantedAuthority());
-			user = new User(recruiter.getRecruiterName(), recruiter.getUserProfile().getPassword(), authorityCollection);
-		}
+		UserProfile userProfile = userProfileRepo.findByUserName(userName);
+		ArrayList<SimpleGrantedAuthority> authorityCollection = new ArrayList<SimpleGrantedAuthority>();
+		authorityCollection.add(userProfile.getGrantedAuthority());
+		user = new User(userProfile.getUserName(), userProfile.getPasswordHash(), authorityCollection);
 
 		return user;
 	}
