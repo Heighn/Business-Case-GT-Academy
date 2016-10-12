@@ -8,18 +8,6 @@
   <link rel="stylesheet" href="../styles.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-$( function() {
-  var availableTags = [
-    <c:forEach items="${students}" var="student">
-        "${student.firstName} ${student.lastName}",
-    </c:forEach>
-  ];
-  $( "#search" ).autocomplete({
-    source: availableTags
-  });
-} );
-</script>
 </head>
 <body ng-app="portal">
   <header id="header">
@@ -38,8 +26,8 @@ $( function() {
         </ul>
       </nav>
   </header>
-<div id="main2">
-    <div class="content">
+<div id="main2" ng-controller="PortalController as vm">
+    <div class="content-fluid">
     	<h1>Overzicht studenten</h1>
       <p>De tabel hieronder toont een lijst met alle studenten die zich hebben ingeschreven via het Get There studentenportaal.</p><br>
       <div class="menubar">
@@ -52,16 +40,16 @@ $( function() {
           <button>SMS</button>
         </div>
         <div class="item right">
-          <p class="small">3 van 10 studenten in overzicht</p>
+          <p class="small">van {{ vm.data.length}} studenten in huidige weergave</p>
         </div>
         <div class="clear"></div>
       </div>
       <div class="menubar">
         <div class="item">
-          <input type="checkbox">
+          <button ng-click="thema=''; event=''; search=''">Alle filters opheffen</button>
         </div>
         <div class="item">
-          <select>
+          <select ng-model="thema" id="thema">
             <option value="" disabled selected>Filter op thema</option>
             <option value="tech">Tech events</option>
             <option value="study">Afstudeer onderzoeken</option>
@@ -71,37 +59,43 @@ $( function() {
           </select>
         </div>
         <div class="item">
-          <select>
+          <select ng-model="event" id="event">
             <option value="" disabled selected>Filter op evenement</option>
-            <option value="">Evenement X</option>
-            <option value="">Evenement Y</option>
-            <option value="">Evenement Z</option>
+            <option value="Evenement X">Evenement X</option>
+            <option value="Evenement Y">Evenement Y</option>
+            <option value="Evenement Z">Evenement Z</option>
           </select>
         </div>
         <div class="item right">
-          <input id="search" placeholder="zoeken">
+          <input type="text" ng-model="search" id="search" placeholder="zoeken">
         </div>
         <div class="clear"></div>
       </div>
       <table>
         <thead>
-          <th><input type="checkbox"></th>
+          <th><input type="checkbox" ng-model="check"></th>
           <th>Naam</th>
           <th>Emailadres</th>
+          <th>Thema's</th>
+          <th>Evenementen</th>
+          <th>Status</th>
         </thead>
         <tbody>
-        <c:forEach items="${students}" var="student">
-          <tr>
-            <td class="check"><input type="checkbox"></td>
-            <td>${student.firstName} ${student.lastName}</td>
-            <td>${student.emailAddress}</td>
-          </tr>
-        </c:forEach>
+        <tr ng-repeat="item in vm.data | filter:search | filter:thema | filter:event">
+          <td class="check"><input type="checkbox"></td>
+          <td>{{ item.firstName }} {{item. lastName}}</td>
+          <td>{{ item.emailAddress }}</td>
+          <td>{{ item.thema }}</td>
+          <td>{{ item.events }}</td>
+          <td>{{ item.status }}</td>
+        </tr>
       </tbody>
     </table>
   </div>
 </div>
 
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="../portal.module.js"></script>
+<script src="../portal.controller.js"></script>
 <%@ include file="footer.jsp" %>

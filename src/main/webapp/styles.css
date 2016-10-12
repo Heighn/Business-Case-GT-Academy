@@ -146,6 +146,11 @@ h5 {
   background-color: rgba(250, 250, 250, 0.8);
 }
 
+.content-fluid {
+  width: 96%;
+  margin: 0px auto;
+}
+
 .bg {
   background-image: url('../images/bg.jpg');
   background-position: center bottom;
@@ -205,6 +210,24 @@ input[type='checkbox']:last-of-type {
   margin-bottom: 20px;
 }
 
+button {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background-color: #fff;
+  padding: 0 8px;
+  height: 29px;
+  font-size: 1.4em;
+  cursor: pointer;
+}
+
+select {
+  cursor: pointer;
+}
+
+button:hover, select:hover {
+  background-color: #f3f3f3;
+}
+
 label {
   display: inline;
   font-size: 1.6em;
@@ -225,6 +248,10 @@ p.small {
   float: left;
   margin-right: 10px;
   color: #666;
+}
+
+.item:last-child {
+  margin-right: 0;
 }
 
 .item select, .item input {
