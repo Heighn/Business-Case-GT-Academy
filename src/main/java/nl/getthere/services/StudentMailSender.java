@@ -13,7 +13,9 @@ public class StudentMailSender {
 	
 
 	public void sendEmail(String messageText, String subject, String... emailAddressList) {
-
+		System.out.println("MESSAGE: " + messageText);
+		System.out.println("SUBJECT: " + subject);
+		System.out.println("EMAI: " + emailAddressList[0]);
 		try {
 			SimpleMailMessage msg = new SimpleMailMessage();
 			msg.setFrom("studentportalph@gmail.com");
