@@ -260,12 +260,15 @@ label {
 .menubar {
   background-color: #f3f3f3;
   border: 1px solid #ddd;
+  border-bottom: 0;
   padding: 8px;
 }
 
 p.foundSet {
   font-size: 10pt;
+  font-weight: bold;
   line-height: 29px;
+  color: #222;
 }
 
 .item {

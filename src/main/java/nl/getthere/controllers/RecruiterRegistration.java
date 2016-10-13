@@ -106,12 +106,12 @@ public class RecruiterRegistration {
 		return "inloggen";
 	}
 
-	@RequestMapping("/SendEmail")
+	@RequestMapping("/nieuw-bericht")
 	public String sendEmailByRecruiter(){
 		return "sendEmail";
 	}
 
-	@RequestMapping(value="/SendEmail", method=RequestMethod.POST)
+	@RequestMapping(value="/nieuw-bericht", method=RequestMethod.POST)
 	public String sendEmailByRecruiterPost(String messageText, String subject, String emailAddresses) {
 		studentMailSender.sendEmail(messageText, subject, emailAddresses.split(", "));
 		return "index";

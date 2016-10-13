@@ -36,11 +36,11 @@
           <button>Studenten verwijderen</button>-->
         </div>
         <div class="item">
-          <button class="success">Verstuur email</button>
+          <button class="success" ng-click="vm.newMailMessage()">Verstuur email</button>
           <!--<button class="success">Verstuur SMS</button>-->
         </div>
         <div class="item right">
-          <p class="foundSet">{{ (vm.data|filter:thema|filter:search|filter:event).length }} van {{ vm.data.length}} studenten in huidige weergave</p>
+          <p class="foundSet">{{ (vm.data|filter:thema|filter:status|filter:search|filter:event).length }} van {{ vm.data.length}} studenten in huidige weergave</p>
         </div>
         <div class="clear"></div>
       </div>

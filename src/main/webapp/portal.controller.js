@@ -15,7 +15,12 @@
     ];
     vm.master=true;
 
-    vm.add = function(new_title) {
+    vm.newMailMessage = function() {
+      alert("Functionaliteit nog niet geïmplementeerd");
+      
+    };
+
+/*    vm.add = function(new_title) {
       var new_item = {
         title: new_title,
         done: false
@@ -34,7 +39,7 @@
       vm.data.splice(theIndex, 1);
     };
 
-    vm.updateItemsDone();
+    vm.updateItemsDone(); */
 
   }
 })();
