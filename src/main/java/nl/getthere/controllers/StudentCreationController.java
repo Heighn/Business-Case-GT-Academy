@@ -44,7 +44,7 @@ public class StudentCreationController {
 
             model.addAttribute("firstName", currentStudent.getFirstName());
             model.addAttribute("message", "Gefeliciteerd, je hebt nu een profiel bij Get There! Je bent automatisch ingelogd op je persoonlijke account. Wij verzoeken je vriendelijk de gegevens over je opleiding in te vullen en aan te geven waar je interesses liggen. Daarnaast kun je ook je CV uploaden, maar voel je niet verplicht!");
-            return "profiel";
+            return "redirect:/student/profiel";
         }
         model.addAttribute("errorMessage", "Er bestaat al een account met dit emailaddres!");
         return "registreren";

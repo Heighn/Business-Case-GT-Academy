@@ -3,6 +3,7 @@ package nl.getthere.users;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -12,19 +13,10 @@ public class Student{
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
-
 	private String emailAddress;
 	private String linkedIn;
-
-	public Boolean getInActief() {
-		return inActief;
-	}
-	public void setInActief(Boolean inActief){
-		this.inActief = inActief;
-	}
-
 	private String woonplaats;
-	private String gebDatum;
+	private Date gebDatum;
 	private Boolean agreedPrivacy; // Agreed privacy letter
 	@Transient
 	private String password;
@@ -41,6 +33,12 @@ public class Student{
 		return firstName + " " + lastName;
 	}
 
+	public Boolean getInActief() {
+		return inActief;
+	}
+	public void setInActief(Boolean inActief){
+		this.inActief = inActief;
+	}
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -71,7 +69,7 @@ public class Student{
 	}
 
 	@Transient
-	@NotEmpty(message="Wachtwoord is verplicht")
+//	@NotEmpty(message="Wachtwoord is verplicht")
 	public String getPassword() {
 		return this.password;
 	}
@@ -81,7 +79,7 @@ public class Student{
 		this.password = password;
 	}
 	
-	@NotEmpty(message="Bevestig je wachtwoord")
+//	@NotEmpty(message="Bevestig je wachtwoord")
 	public String getPasswordConfirmation() {
 		return passwordConfirmation;
 	}
@@ -162,11 +160,11 @@ public class Student{
 		this.woonplaats = woonplaats;
 	}
 	
-	public String getGebDatum() {
+	public Date getGebDatum() {
 		return gebDatum;
 	}
 	
-	public void setGebDatum (String gebDatum) {
+	public void setGebDatum (Date gebDatum) {
 		this.gebDatum = gebDatum;
 	}
 	

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -180,5 +181,11 @@ public class RecruiterController {
 	@RequestMapping(value="/recruitersinloggen", method=RequestMethod.POST)
 	public String inloggen(String recruiterName, String recruiterPass){
 		return "redirect:/admin";
+	}
+
+	@RequestMapping("/*")
+	public String notFound(HttpServletResponse resp){
+		resp.setStatus(404);
+		return "404";
 	}
 }
