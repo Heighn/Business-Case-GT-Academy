@@ -34,6 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </header>
   <div id="main">
     <div class="content">
+      <h3 class="error">${errorMessage}</h3>
       <form:form method="post" commandName="currentStudent">
         <h3>Persoonsgegevens</h3>
         <p>Voornaam</p>

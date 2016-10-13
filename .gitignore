@@ -31,3 +31,5 @@ src/main/java/nl/getthere/controllers/UserRegistration_REMOTE_6536.java
 todo.controller.js
 todo.html
 todo.module.js
+TodoController.java
+TodoItemRepository.java

@@ -36,6 +36,9 @@
 				<p>Nog geen account?<br>
 					<a href="/student/registreren">Registreer je hier.</a>
 				</p>
+				<p>Wachtwoord vergeten?<br>
+					<a href="wachtwoordVergeten">Ja, ik faal.</a>
+				</p>
 			</div>
 		</div>
 	</div>

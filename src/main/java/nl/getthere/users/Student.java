@@ -1,9 +1,15 @@
 package nl.getthere.users;
 
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import javax.persistence.*;
 
 
 @Entity
@@ -16,8 +22,9 @@ public class Student{
 	private String emailAddress;
 	private String linkedIn;
 	private String woonplaats;
-	private String gebDatum;
+	private Date gebDatum;
 	private Boolean agreedPrivacy; // Agreed privacy letter
+	@Transient
 	private String password;
 	private String passwordConfirmation;
 	private Boolean wantsTraineeship;
@@ -25,20 +32,6 @@ public class Student{
 	private Boolean wantsTechEvents;
 	private Boolean wantsGraduationProject;
 
-	@Transient
-	private UserProfile userProfile = new UserProfile();
-
-	@Transient
-	public UserProfile getUserProfile() {
-		return userProfile;
-	}
-
-	@Transient
-	public void setUserProfile(UserProfile userProfile) {
-		this.userProfile = userProfile;
-	}
-
-	private static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	//private Date readyDate; // Date at which student is ready to work
 
 	@Transient
@@ -46,10 +39,9 @@ public class Student{
 		return firstName + " " + lastName;
 	}
 
-	public Boolean isInActief(){
+	public Boolean getInActief() {
 		return inActief;
 	}
-	
 	public void setInActief(Boolean inActief){
 		this.inActief = inActief;
 	}
@@ -81,20 +73,19 @@ public class Student{
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
-	@NotEmpty(message="Wachtwoord is verplicht")
-	public String getPassword() {
-		return password;
-	}
 
-	public void setPassword(String password) {
-//		this.password = passwordEncoder.encode(password);
-//		this.password = password;
-		userProfile.setPassword(password);
+	@Transient
+//	@NotEmpty(message="Wachtwoord is verplicht")
+	public String getPassword() {
+		return this.password;
 	}
 
 	@Transient
-	@NotEmpty(message="Bevestig je wachtwoord")
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+//	@NotEmpty(message="Bevestig je wachtwoord")
 	public String getPasswordConfirmation() {
 		return passwordConfirmation;
 	}
@@ -157,7 +148,6 @@ public class Student{
 
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
-		userProfile.setUserName(emailAddress);
 	}
 	
 	public String getLinkedIn() {
@@ -176,11 +166,11 @@ public class Student{
 		this.woonplaats = woonplaats;
 	}
 	
-	public String getGebDatum() {
+	public Date getGebDatum() {
 		return gebDatum;
 	}
 	
-	public void setGebDatum (String gebDatum) {
+	public void setGebDatum (Date gebDatum) {
 		this.gebDatum = gebDatum;
 	}
 	
@@ -196,4 +186,3 @@ public class Student{
 //		this.readyDate = readyDate;
 //	}
 }
-

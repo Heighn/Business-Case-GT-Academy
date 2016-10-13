@@ -9,9 +9,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import nl.getthere.controllers.MyUserDetailsService;
-
 
 
 @Configuration
@@ -24,14 +24,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*/*", "/*.js", "/styles.css", "/inloggen", "/images/*", "/student/registreren", "/recruiter/signUp").permitAll()
 //                .antMatchers("/student/*").hasAuthority("student")
 //                .antMatchers("/recruiter/*").hasAuthority("student")
+                .antMatchers("/", "/styles.css", "/signUp", "/images/logo.png", "/images/bg.jpg", "/registreren", "/wachtwoordVergeten", "/index").permitAll()
+                .antMatchers("/student/*").hasAuthority("student")
+                .antMatchers("/recruiter/*").hasAuthority("recruiter")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
                 .loginPage("/inloggen")
+                .loginPage("/login")
                 .permitAll()
                 .and()
             .logout()
-                .permitAll();
+                .permitAll()
+            .and()
+                .csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
     
     @Autowired
