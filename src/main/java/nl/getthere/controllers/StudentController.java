@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class StudentController {
 	@Autowired
 	private StudentRepository studentRepo;
-	
+
 	@RequestMapping("/inactief")
 	public String deleteAccount() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -1,8 +1,12 @@
 package nl.getthere.controllers;
 
+import nl.getthere.model.Event;
+import nl.getthere.model.EventRepository;
 import nl.getthere.services.StudentMailSender;
 import nl.getthere.users.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,6 +29,8 @@ public class RecruiterController {
 	private StudentRepository studentRepo;
 	@Autowired
 	private UserProfileRepository userProfileRepo;
+	@Autowired
+	private EventRepository eventRepo;
 	@Autowired
 	private StudentMailSender studentMailSender;
 
@@ -82,17 +88,6 @@ public class RecruiterController {
 		return "recruitersReg";
 	}
 
-//	@RequestMapping(value = "/inloggen", method = RequestMethod.POST)
-//	public String checkinloggen(String email, String password, Model model) {
-//		//Recruiter inloggen
-//		if(findRecruiterPassword(email).equals(password)){
-//			model.addAttribute("firstName", email);
-//			currentRecruiter = findRecruiter(email);
-//			return "admin";
-//		}
-//		return "inloggen";
-//	}
-
 	@RequestMapping("/SendEmail")
 	public String sendEmailByRecruiter(HttpServletResponse resp){
 		return "sendEmail";
@@ -125,30 +120,31 @@ public class RecruiterController {
 
 		return "DeleteStudent";
 	}
-	
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index() {
-		return "index";
-	}
 
 	@RequestMapping("/ingelogd")
 	public String recruitersIngelogd(Model model){
 		model.addAttribute("recruiters", recruiterRepo.findAll());
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("recruiterName", auth.getName());
 		return "admin";
+	}
+
+	@RequestMapping("/createEvent")
+	public String createEvent(Model model){
+		Event eventForm = new Event();
+		model.addAttribute("eventForm", eventForm);
+		return "eventForm";
+	}
+
+	@RequestMapping(value="/createEvent", method=RequestMethod.POST)
+	public String createEventPost(@ModelAttribute("eventForm") Event eventForm){
+		eventRepo.save(eventForm);
+		return "redirect:/recruiter/ingelogd";
 	}
 
 	@ModelAttribute("recruiter")
 	public Recruiter newRecruiter() {
 	        return new Recruiter();
-	}
-
-	@RequestMapping(value="/recruitersLogin", method=RequestMethod.POST)
-	public String login(String recruiterName, String recruiterPass) {
-		return "redirect:/ingelogd";
-	}
-
-	@RequestMapping(value="/recruitersinloggen", method=RequestMethod.POST)
-	public String inloggen(String recruiterName, String recruiterPass){
-		return "redirect:/admin";
 	}
 }
