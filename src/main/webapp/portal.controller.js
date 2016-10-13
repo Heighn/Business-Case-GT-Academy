@@ -16,8 +16,7 @@
     vm.master=true;
 
     vm.newMailMessage = function() {
-      alert("Functionaliteit nog niet geïmplementeerd");
-      
+      location.href="/recruiter/nieuw-bericht"
     };
 
 /*    vm.add = function(new_title) {

@@ -322,7 +322,7 @@ td.check {
 }
 
 tr.inactive {
-  color: #ccc;
+  color: #c3c3c3;
 }
 
 table input[type='checkbox'], .item input[type='checkbox'] {
