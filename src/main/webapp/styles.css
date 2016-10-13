@@ -318,6 +318,10 @@ td.check {
   width: 20px;
 }
 
+tr.inactive {
+  color: #ccc;
+}
+
 table input[type='checkbox'], .item input[type='checkbox'] {
   margin-bottom: 0 !important;
   margin-top: 3px !important;

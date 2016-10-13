@@ -8,6 +8,7 @@
     var vm = this;
     vm.data = [
       { firstName: "Pieter", lastName: "Leijenaar", emailAddress: "pieter.leijenaar@getthere.nl", thema: "Traineeship", events: "Evenement X", status: "Actief"},
+      { firstName: "Pieter", lastName: "Leijenaar", emailAddress: "pieter.leijenaar@getthere.nl", thema: "Traineeship", events: "Evenement X", status: "Verwijderd"},
       { firstName: "Hein", lastName: "de Haan", emailAddress: "hein.dehaan@getthere.nl", thema: "Traineeship", events: "Evenement X", status: "Actief"},
       { firstName: "Jasper", lastName: "de Jong", emailAddress: "jasper.dejong@getthere.nl", thema: "Traineeship", events: "Evenement Y", status: "Actief"},
       { firstName: "Ruud", lastName: "Zonneberg", emailAddress: "ruud.zonneberg@getthere.nl", thema: "Traineeship", events: "Evenement Y", status: "Actief"}

@@ -46,10 +46,17 @@
       </div>
       <div class="menubar">
         <div class="item">
-          <button ng-click="thema=''; event=''; search=''">Toon alle studenten</button>
+          <button ng-click="thema=''; event=''; search=''; status=''">Toon alle studenten</button>
         </div>
         <div class="item right">
           <input type="text" ng-model="search" id="search" placeholder="zoeken">
+        </div>
+        <div class="item right">
+          <select ng-model="status">
+            <option value="" disabled selected>Filter op status</option>
+            <option value="actief">Actief</option>
+            <option value="verwijderd">Verwijderd</option>
+          </select>
         </div>
         <div class="item right">
           <select ng-model="event" id="event">
@@ -73,7 +80,7 @@
       </div>
       <table>
         <thead>
-          <th><input type="checkbox" ng-model="master" ng-init="master=true"></th>
+          <th><input type="checkbox" ng-model="master" ng-init="master=vm.master"></th>
           <th>Naam</th>
           <th>Emailadres</th>
           <th>Thema's</th>
@@ -81,7 +88,7 @@
           <th>Status</th>
         </thead>
         <tbody>
-        <tr ng-repeat="item in vm.data | filter:search | filter:thema | filter:event | orderBy:'firstName'">
+        <tr ng-repeat="item in vm.data | filter:search | filter:thema | filter:event | filter:status | orderBy:'firstName'" ng-class="{'inactive': item.status === 'Verwijderd'}">
           <td class="check"><input type="checkbox" ng-checked="master"></td>
           <td>{{ item.firstName }} {{item.lastName}}</td>
           <td>{{ item.emailAddress }}</td>
