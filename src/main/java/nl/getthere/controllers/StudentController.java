@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletResponse;
-
 @Controller
 @RequestMapping("/student")
 public class StudentController {
@@ -125,11 +123,11 @@ public class StudentController {
 		return "inloggen";
 	}
 
-	@RequestMapping("/*")
-	public String notFound(HttpServletResponse resp){
-		resp.setStatus(404);
-		return "404";
-	}
+//	@RequestMapping("/*")
+//	public String notFound(HttpServletResponse resp){
+//		resp.setStatus(404);
+//		return "404";
+//	}
 	
 //	@RequestMapping(value = "/personal", method = RequestMethod.POST)
 //	public String updateNaw(Model model) {

@@ -116,21 +116,14 @@ public class RecruiterController {
 //	}
 
 	@RequestMapping("/SendEmail")
-	public String sendEmailByRecruiter(){
+	public String sendEmailByRecruiter(HttpServletResponse resp){
 		return "sendEmail";
 	}
 
 	@RequestMapping(value="/SendEmail", method=RequestMethod.POST)
 	public String sendEmailByRecruiterPost(String messageText, String subject, String emailAddresses) {
 		studentMailSender.sendEmail(messageText, subject, emailAddresses.split(", "));
-		return "index";
-	}
-	
-	@RequestMapping(value="/sendEmail", method=RequestMethod.POST)
-	public String sendEmailByRecruiterPost(String messageText, String emailAddress){
-		System.out.println("EMAIL: " + emailAddress);
-		studentMailSender.sendEmail(messageText, emailAddress);
-		return "recruitersIngelogd";
+		return "admin";
 	}
 
 	@RequestMapping("/recruitersList")
@@ -183,9 +176,9 @@ public class RecruiterController {
 		return "redirect:/admin";
 	}
 
-	@RequestMapping("/*")
-	public String notFound(HttpServletResponse resp){
-		resp.setStatus(404);
-		return "404";
-	}
+//	@RequestMapping("/*")
+//	public String notFound(HttpServletResponse resp){
+//		resp.setStatus(404);
+//		return "404";
+//	}
 }

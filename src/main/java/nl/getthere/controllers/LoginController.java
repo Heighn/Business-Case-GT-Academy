@@ -1,7 +1,10 @@
 package nl.getthere.controllers;
 
 import nl.getthere.services.StudentMailSender;
-import nl.getthere.users.*;
+import nl.getthere.users.RecruiterRepository;
+import nl.getthere.users.StudentRepository;
+import nl.getthere.users.UserProfile;
+import nl.getthere.users.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
