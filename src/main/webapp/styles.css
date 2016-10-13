@@ -111,6 +111,12 @@ h5 {
   max-width: 1100px;
 }
 
+#menu ul.fluid {
+  margin: 0px auto;
+  width: 96%;
+  max-width: 96%;
+}
+
 #menu li {
   display: inline;
   margin-right: 25px;
@@ -193,7 +199,8 @@ input[type='submit'], .button {
   border: 0;
   color: #fff;
   padding: 9px 12px;
-  border-radius: 2px;
+  border-radius: 3px;
+  outline: none;
 }
 
 input[type='checkbox'] {
@@ -212,20 +219,36 @@ input[type='checkbox']:last-of-type {
 
 button {
   border: 1px solid #ccc;
-  border-radius: 2px;
+  border-radius: 3px;
   background-color: #fff;
   padding: 0 8px;
   height: 29px;
   font-size: 1.4em;
   cursor: pointer;
-}
-
-select {
-  cursor: pointer;
+  outline: none;
 }
 
 button:hover, select:hover {
   background-color: #f3f3f3;
+}
+
+button:active {
+  background-color: #e8e8e8;
+}
+
+button.success {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  color: #fff;
+}
+
+button.success:hover {
+  background-color: #449d44;
+  border-color: #398439;
+}
+
+select {
+  cursor: pointer;
 }
 
 label {
@@ -240,8 +263,9 @@ label {
   padding: 8px;
 }
 
-p.small {
-  font-size: 130%;
+p.foundSet {
+  font-size: 10pt;
+  line-height: 29px;
 }
 
 .item {
@@ -283,6 +307,11 @@ td, th {
 
 td {
   background-color: #fff;
+  -webkit-animation: fadein 1.5s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 1.5s; /* Firefox < 16 */
+  -ms-animation: fadein 1.5s; /* Internet Explorer */
+  -o-animation: fadein 1.5s; /* Opera < 12.1 */
+  animation: fadein 1.5s;
 }
 
 td.check {
