@@ -18,35 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class StudentController {
 	@Autowired
 	private StudentRepository studentRepo;
-
-	private String findStudentPassword(String email) {
-		for (Student student : studentRepo.findAll()) {
-			if (student.getEmailAddress().equals(email)) {
-				return student.getPassword();
-			}
-		}
-		return "";
-	}
 	
-	private String findFirstName(String email) {
-		for (Student student : studentRepo.findAll()) {
-			if (student.getEmailAddress().equals(email)) {
-				return student.getFirstName();
-			}
-		}
-		return "";
-	}
-
-	private Student findStudent(String email) {
-		for (Student student : studentRepo.findAll()) {
-			if (student.getEmailAddress().equals(email)) {
-				return student;
-			}
-		}
-		return null;
-	}
-
-
 	@RequestMapping("/inactief")
 	public String deleteAccount() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -58,8 +30,6 @@ public class StudentController {
 
 	@RequestMapping(value = "/profiel", method = RequestMethod.GET)
 	public String profielGet(Model model) {
-
-
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Student loggedInStudent = studentRepo.findByEmailAddress(auth.getName());
 
@@ -116,23 +86,9 @@ public class StudentController {
 		return "redirect:/student/profiel";
 	}
 
-
 	@RequestMapping(value = "/inloggen", method = RequestMethod.GET)
 	public String inloggen(Model model) {
 		model.addAttribute("shaker", false);
 		return "inloggen";
 	}
-
-//	@RequestMapping("/*")
-//	public String notFound(HttpServletResponse resp){
-//		resp.setStatus(404);
-//		return "404";
-//	}
-	
-//	@RequestMapping(value = "/personal", method = RequestMethod.POST)
-//	public String updateNaw(Model model) {
-//		System.out.println("personal records updated");
-//		return "profiel";
-//	}
-
 }

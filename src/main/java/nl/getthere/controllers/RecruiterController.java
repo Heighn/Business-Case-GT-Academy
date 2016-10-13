@@ -60,28 +60,6 @@ public class RecruiterController {
 		return StreamSupport.stream(all.spliterator(), false).filter(s -> s.getFullName().contains(fullName)).collect(Collectors.toList()).toString();
 	}
 
-
-	private String findRecruiterPassword(String name) {
-		for (Recruiter recruiter : recruiterRepo.findAll()) {
-			System.out.println(recruiter.getRecruiterName());
-			System.out.println(name);
-			if (recruiter.getRecruiterName().equals(name)) {
-				return recruiter.getRecruiterPass();
-			}
-		}
-		return "";
-	}
-
-
-	private Recruiter findRecruiter(String name) {
-		for (Recruiter recruiter : recruiterRepo.findAll()) {
-			if (recruiter.getRecruiterName().equals(name)) {
-				return recruiter;
-			}
-		}
-		return null;
-	}
-
 	@RequestMapping(value = "/recruitersReg", method = RequestMethod.GET)
 	public String registreren(Model model, WebRequest webReq) {
 		Recruiter recruiterForm = new Recruiter();
@@ -164,8 +142,6 @@ public class RecruiterController {
 	        return new Recruiter();
 	}
 
-
-
 	@RequestMapping(value="/recruitersLogin", method=RequestMethod.POST)
 	public String login(String recruiterName, String recruiterPass) {
 		return "redirect:/ingelogd";
@@ -175,10 +151,4 @@ public class RecruiterController {
 	public String inloggen(String recruiterName, String recruiterPass){
 		return "redirect:/admin";
 	}
-
-//	@RequestMapping("/*")
-//	public String notFound(HttpServletResponse resp){
-//		resp.setStatus(404);
-//		return "404";
-//	}
 }
