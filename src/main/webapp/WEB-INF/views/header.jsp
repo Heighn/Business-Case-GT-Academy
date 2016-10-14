@@ -30,7 +30,7 @@
         <ul>
           <li><a href="#" class="current">Profiel</a></li>
           <li><a href="#">Evenementen</a></li>
-          <li><a href="/inloggen">Uitloggen</a></li>
+          <li><a href="../logout">Uitloggen</a></li>
           <!--<li><a href="/sendEmail">Email Verzenden</a></li>
   		    <li><a href="/recruitersList">Recruitersoverzicht</a></li>
           <li><a href="/StudentList">Studentenoverzicht</a></li>

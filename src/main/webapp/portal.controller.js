@@ -19,6 +19,10 @@
       location.href="/recruiter/nieuw-bericht"
     };
 
+    vm.updateSessionStorage = function() {
+      location.href="/recruiter/nieuw-bericht"
+    };
+
 /*    vm.add = function(new_title) {
       var new_item = {
         title: new_title,

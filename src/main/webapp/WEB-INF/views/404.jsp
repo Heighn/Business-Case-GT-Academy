@@ -15,7 +15,8 @@
     <div class="login-container">
         <div class="login-form">
             <img src="../images/logo.png" alt="logo" class="logo">
-            <h3>Ai! Je probeert een pagina te bezoeken die niet bestaat! Daarom zit je nu op deze pagina.</h3>
+            <h3>Pagina niet gevonden</h3>
+            <p>De pagina die u probeert te openen bestaat niet (meer).</p>
         </div>
     </div>
 </div>

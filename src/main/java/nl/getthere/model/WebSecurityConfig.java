@@ -21,13 +21,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/", "/styles.css", "/signUp", "/images/logo.png", "/images/bg.jpg", "/registreren", "/wachtwoordVergeten").permitAll()
+                .antMatchers("/styles.css", "/images/*", "/recruiter/lijst", "/registreren", "/wachtwoordVergeten", "/recruiter/studenten").permitAll()
                 .antMatchers("/student/*").hasAuthority("student")
                 .antMatchers("/recruiter/*").hasAuthority("recruiter")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
-                .loginPage("/login")
+                .loginPage("/inloggen")
                 .permitAll()
                 .and()
             .logout()

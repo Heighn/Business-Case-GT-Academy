@@ -26,7 +26,7 @@
         </ul>
       </nav>
   </header>
-<div id="main2" ng-controller="PortalController as vm">
+<div id="main" ng-controller="PortalController as vm">
     <div class="content-fluid">
     	<h1>Overzicht studenten</h1>
       <p>De tabel hieronder toont een lijst met alle studenten die zich hebben ingeschreven via het Get There studentenportaal.</p><br>
@@ -80,7 +80,7 @@
       </div>
       <table>
         <thead>
-          <th><input type="checkbox" ng-model="master" ng-init="master=vm.master"></th>
+          <th><input type="checkbox" ng-model="master" ng-init="vm.master"></th>
           <th>Naam</th>
           <th>Emailadres</th>
           <th>Thema's</th>
@@ -89,7 +89,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="item in vm.data | filter:search | filter:thema | filter:event | filter:status | orderBy:'firstName'" ng-class="{'inactive': item.status === 'Verwijderd'}">
-          <td class="check"><input type="checkbox" ng-checked="master"></td>
+          <td class="check"><input type="checkbox" ng-checked="master" ng-change="vm.updateSessionStorage()"></td>
           <td>{{ item.firstName }} {{item.lastName}}</td>
           <td>{{ item.emailAddress }}</td>
           <td>{{ item.thema }}</td>

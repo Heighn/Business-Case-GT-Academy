@@ -5,8 +5,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@ include file="header.jsp" %>
 <div id="main">
 	<div class="content">
-		<h1>Profiel</h1>
-		<p>Welkom, gebruiker</p><br>
+		<h1>Welkom, ${firstName} ${lastName}</h1>
+		<p>Dit is je persoonlijke profiel. Hieronder kun je alle gegevens die bij ons bekend zijn wijzigen. Daarnaast kun je je cv uploaden en je aanmelden voor evenementen.</p><br>
 		<p>${message}</p>
 		<div id="accordion">
 		  <h3>Algemeen</h3>
@@ -36,72 +36,72 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</form:form>
 		  </div>
 
-			<%--<h3>Interesses</h3>--%>
-			<%--<div>--%>
-				<%--<form:form method="post" commandName="currentStudent">--%>
-					<%--<form:checkbox path="agreedPrivacy" id="tech" />--%>
-					<%--<label for="tech">Tech events (gratis te bezoeken)</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="stud" />--%>
-					<%--<label for="study">Afstudeer onderzoeken</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="stage" />--%>
-					<%--<label for="stage">Stages</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="train" />--%>
-					<%--<label for="trainee">Traineeships</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="anders" />--%>
-					<%--<label for="other">Anders, namelijk:</label>--%>
-					<%--<input type="submit" value="Opslaan">--%>
-				<%--</form:form>--%>
-			<%--</div>--%>
-			<%--<h3>Thema's</h3>--%>
-			<%--<div>--%>
-				<%--<form:form method="post" commandName="currentStudent">--%>
-					<%--<form:checkbox path="agreedPrivacy" id="tech" />--%>
-					<%--<label for="tech">Tech events (gratis te bezoeken)</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="stud" />--%>
-					<%--<label for="stud">Afstudeer onderzoeken</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="stage" />--%>
-					<%--<label for="stage">Stages</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="train" />--%>
-					<%--<label for="train">Traineeships</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="anders" />--%>
-					<%--<label for="anders">Anders, namelijk:</label>--%>
-					<%--<input type="submit" value="Opslaan">--%>
-				<%--</form:form>--%>
-			<%--</div>--%>
-		  <%--<h3>Interesses</h3>--%>
-		  <%--<div>--%>
-				<%--<form:form method="post" commandName="persoonsGegevensBean">--%>
-					<%--<form:checkbox path="agreedPrivacy" id="tech" />--%>
-					<%--<label for="tech">Tech events (gratis te bezoeken)</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="stud" />--%>
-					<%--<label for="stud">Afstudeer onderzoeken</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="stage" />--%>
-					<%--<label for="stage">Stages</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="train" />--%>
-					<%--<label for="train">Traineeships</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="anders" />--%>
-					<%--<label for="anders">Anders, namelijk:</label>--%>
-					<%--<input type="submit" value="Opslaan">--%>
-				<%--</form:form>--%>
-		  <%--</div>--%>
-		  <%--<h3>Thema's</h3>--%>
-		  <%--<div>--%>
-				<%--<form:form method="post" commandName="persoonsGegevensBean">--%>
-					<%--<form:checkbox path="agreedPrivacy" id="tech" />--%>
-					<%--<label for="tech">Tech events (gratis te bezoeken)</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="stud" />--%>
-					<%--<label for="stud">Afstudeer onderzoeken</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="stage" />--%>
-					<%--<label for="stage">Stages</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="train" />--%>
-					<%--<label for="train">Traineeships</label><br>--%>
-					<%--<form:checkbox path="agreedPrivacy" id="anders" />--%>
-					<%--<label for="anders">Anders, namelijk:</label>--%>
-					<%--<input type="submit" value="Opslaan">--%>
-				<%--</form:form>--%>
-		  <%--</div>--%>
-		</div>
-		<p><a href="/inactief">Account Verwijderen</a></p>
- 	</div>
+			<h3>Interesses</h3>
+			<div>
+				<%-- <form:form method="post" commandName="currentStudent">
+					<form:checkbox path="agreedPrivacy" id="tech" />
+					<label for="tech">Tech events (gratis te bezoeken)</label><br>
+					<form:checkbox path="agreedPrivacy" id="stud" />
+					<label for="study">Afstudeer onderzoeken</label><br>
+					<form:checkbox path="agreedPrivacy" id="stage" />
+					<label for="stage">Stages</label><br>
+					<form:checkbox path="agreedPrivacy" id="train" />
+					<label for="trainee">Traineeships</label><br>
+					<form:checkbox path="agreedPrivacy" id="anders" />
+					<label for="other">Anders, namelijk:</label>
+					<input type="submit" value="Opslaan">
+				</form:form> --%>
+			</div>
+			<h3>Thema's</h3>
+			<div>
+				<%-- <form:form method="post" commandName="currentStudent">
+					<form:checkbox path="agreedPrivacy" id="tech" />
+					<label for="tech">Tech events (gratis te bezoeken)</label><br>
+					<form:checkbox path="agreedPrivacy" id="stud" />
+					<label for="stud">Afstudeer onderzoeken</label><br>
+					<form:checkbox path="agreedPrivacy" id="stage" />
+					<label for="stage">Stages</label><br>
+					<form:checkbox path="agreedPrivacy" id="train" />
+					<label for="train">Traineeships</label><br>
+					<form:checkbox path="agreedPrivacy" id="anders" />
+					<label for="anders">Anders, namelijk:</label>
+					<input type="submit" value="Opslaan">
+				</form:form> --%>
+			</div>
+		  <h3>Interesses</h3>
+		  <div>
+				<%-- <form:form method="post" commandName="persoonsGegevensBean">
+					<form:checkbox path="agreedPrivacy" id="tech" />
+					<label for="tech">Tech events (gratis te bezoeken)</label><br>
+					<form:checkbox path="agreedPrivacy" id="stud" />
+					<label for="stud">Afstudeer onderzoeken</label><br>
+					<form:checkbox path="agreedPrivacy" id="stage" />
+					<label for="stage">Stages</label><br>
+					<form:checkbox path="agreedPrivacy" id="train" />
+					<label for="train">Traineeships</label><br>
+					<form:checkbox path="agreedPrivacy" id="anders" />
+					<label for="anders">Anders, namelijk:</label>
+					<input type="submit" value="Opslaan">
+				</form:form> --%>
+		  </div>
+		  <h3>Thema's</h3>
+		  <div>
+				<%-- <form:form method="post" commandName="persoonsGegevensBean">
+					<form:checkbox path="agreedPrivacy" id="tech" />
+					<label for="tech">Tech events (gratis te bezoeken)</label><br>
+					<form:checkbox path="agreedPrivacy" id="stud" />
+					<label for="stud">Afstudeer onderzoeken</label><br>
+					<form:checkbox path="agreedPrivacy" id="stage" />
+					<label for="stage">Stages</label><br>
+					<label for="train">Traineeships</label><br>
+					<form:checkbox path="agreedPrivacy" id="train" />
+					<form:checkbox path="agreedPrivacy" id="anders" />
+					<label for="anders">Anders, namelijk:</label>
+					<input type="submit" value="Opslaan">
+				</form:form> --%>
+			</div>
+			<p><a href="/inactief">Account Verwijderen</a></p>
+ 		</div>
+	</div>
 </div>
 <%@ include file="footer.jsp" %>

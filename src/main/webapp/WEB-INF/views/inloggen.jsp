@@ -33,12 +33,7 @@
 					<input type="password" name="password" />
 					<input type="submit" />
 				</form:form>
-				<p>Nog geen account?<br>
-					<a href="/student/registreren">Registreer je hier.</a>
-				</p>
-				<p>Wachtwoord vergeten?<br>
-					<a href="wachtwoordVergeten">Ja, ik faal.</a>
-				</p>
+				<p><a href="registreren">Registreren</a> | <a href="wachtwoordVergeten">Wachtwoord vergeten</a></p>
 			</div>
 		</div>
 	</div>
