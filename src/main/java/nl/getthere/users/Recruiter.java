@@ -1,22 +1,21 @@
 package nl.getthere.users;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
 
 @Entity
 public class Recruiter{
 	
 	@NotEmpty(message="Vul uw gebruikersnaam in.")
+//	@UniqueConstraint(columnNames = {"recruiterName"})
+	@Column(unique=true)
 	private String recruiterName;
+
 	@NotEmpty(message="Geef een nieuw wachtwoord op.")
 	private String recruiterPass;
 	private String confirm;
 
-	
 	public Recruiter() {}
 	
 	public String getConfirm() {
@@ -28,7 +27,7 @@ public class Recruiter{
 	}
 
 	private Long id;
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
@@ -38,15 +37,11 @@ public class Recruiter{
 	public void setId(Long id){
 	    this.id = id;
 	}
-	
-	public Recruiter(String recruiterName, String recruiterPass, String confirm){
-		this.recruiterName = recruiterName;
-		this.recruiterPass = recruiterPass;
-	}
 
 	public String getRecruiterName() {
 		return recruiterName;
 	}
+
 
 	public void setRecruiterName(String recruiterName) {
 		this.recruiterName = recruiterName;
@@ -59,4 +54,6 @@ public class Recruiter{
 	public void setRecruiterPass(String recruiterPass) {
 		this.recruiterPass = recruiterPass;
 	}
+	
+
 }

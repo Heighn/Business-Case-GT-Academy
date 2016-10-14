@@ -34,6 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </header>
   <div id="main">
     <div class="content">
+      <h3 class="error">${errorMessage}</h3>
       <form:form method="post" commandName="currentStudent">
         <h3>Persoonsgegevens</h3>
         <p>Voornaam</p>
@@ -53,7 +54,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <form:checkbox path="agreedPrivacy" id="priv" />
         <label for="priv">Ik ga akkoord met de algemene voorwaarden.</label>
         <input type="submit">
-      </form:form>
+
+       </form:form>
     </div>
   </div>
   <footer id="footer">

@@ -26,3 +26,10 @@ src/main/java/nl/getthere/controllers/UserRegistration_BACKUP_6536.java
 src/main/java/nl/getthere/controllers/UserRegistration_BASE_6536.java
 src/main/java/nl/getthere/controllers/UserRegistration_LOCAL_6536.java
 src/main/java/nl/getthere/controllers/UserRegistration_REMOTE_6536.java
+/bin/
+
+todo.controller.js
+todo.html
+todo.module.js
+TodoController.java
+TodoItemRepository.java
