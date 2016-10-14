@@ -85,10 +85,4 @@ public class StudentController {
 		studentRepo.save(loggedInStudent);
 		return "redirect:/student/profiel";
 	}
-
-	@RequestMapping(value = "/inloggen", method = RequestMethod.GET)
-	public String inloggen(Model model) {
-		model.addAttribute("shaker", false);
-		return "inloggen";
-	}
 }

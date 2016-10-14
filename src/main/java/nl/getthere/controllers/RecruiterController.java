@@ -88,12 +88,12 @@ public class RecruiterController {
 		return "recruitersReg";
 	}
 
-	@RequestMapping("/SendEmail")
+	@RequestMapping("/nieuw-bericht")
 	public String sendEmailByRecruiter(HttpServletResponse resp){
 		return "sendEmail";
 	}
 
-	@RequestMapping(value="/SendEmail", method=RequestMethod.POST)
+	@RequestMapping(value="/nieuw-bericht", method=RequestMethod.POST)
 	public String sendEmailByRecruiterPost(String messageText, String subject, String emailAddresses) {
 		studentMailSender.sendEmail(messageText, subject, emailAddresses.split(", "));
 		return "admin";
@@ -141,6 +141,12 @@ public class RecruiterController {
 	public String createEventPost(@ModelAttribute("eventForm") Event eventForm){
 		eventRepo.save(eventForm);
 		return "redirect:/recruiter/ingelogd";
+	}
+
+	@RequestMapping("/studenten")
+	public String mailStudenten(Model model){
+		model.addAttribute("Hoi", "Hoi Hein!");
+		return "studenten";
 	}
 
 	@ModelAttribute("recruiter")

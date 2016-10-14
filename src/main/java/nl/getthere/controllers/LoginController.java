@@ -38,13 +38,15 @@ public class LoginController {
     }
 
     @RequestMapping("/inloggen")
-    public String inloggenRedirecter(Model model){
+    public String inloggenRedirecter(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(auth.getAuthorities().toString().equals("[student]")) {
+        if (auth.getAuthorities().toString().equals("[student]")) {
             return "redirect:/student/profiel";
+        } else if (auth.getAuthorities().toString().equals("[recruiter]")){
+            model.addAttribute("recruiterName", auth.getName());
+            return "redirect:/recruiter/ingelogd";
         }
-        model.addAttribute("recruiterName", auth.getName());
-        return "redirect:/recruiter/ingelogd";
+        return "inloggen";
     }
 
 
