@@ -5,7 +5,7 @@
 <head>
   <meta name="charset" content="utf-8">
   <title>Get There Studentenportaal</title>
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../css/styles.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
