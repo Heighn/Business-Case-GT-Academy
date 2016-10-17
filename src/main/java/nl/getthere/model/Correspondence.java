@@ -1,30 +1,37 @@
 package nl.getthere.model;
 
-import nl.getthere.users.Student;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.ArrayList;
 
 /**
  * Created by hein.dehaan on 13-10-2016.
  */
 
 @Entity
-public class EmailEntity {
+public class Correspondence {
     private Long id;
-    private ArrayList<Student> receivers = new ArrayList<Student>();
+    private String receivers;
     private String subject;
     private String message;
+    private String type; //Email, phone conversation or personal visit
 
-    public EmailEntity(){}
+    public String getType() {
+        return type;
+    }
 
-    public EmailEntity(ArrayList<Student> receivers, String subject, String message){
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Correspondence(){}
+
+    public Correspondence(String receivers, String subject, String message, String type){
         this.receivers = receivers;
         this.subject = subject;
         this.message = message;
+        this.type = type;
     }
 
     @Id
@@ -37,11 +44,11 @@ public class EmailEntity {
         this.id = id;
     }
 
-    public ArrayList<Student> getReceivers() {
+    public String getReceivers() {
         return receivers;
     }
 
-    public void setReceivers(ArrayList<Student> receivers) {
+    public void setReceivers(String receivers) {
         this.receivers = receivers;
     }
 

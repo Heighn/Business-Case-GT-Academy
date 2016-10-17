@@ -95,7 +95,7 @@ public class RecruiterController {
 
 	@RequestMapping(value="/nieuw-bericht", method=RequestMethod.POST)
 	public String sendEmailByRecruiterPost(String messageText, String subject, String emailAddresses) {
-		studentMailSender.sendEmail(messageText, subject, emailAddresses.split(", "));
+		studentMailSender.sendEmail(messageText, subject, emailAddresses.split(","));
 		return "admin";
 	}
 
@@ -149,6 +149,10 @@ public class RecruiterController {
 		return "studenten";
 	}
 
+	@RequestMapping("/correspondentie")
+	public String correspondentie(){
+		return "correspondence";
+	}
 	@ModelAttribute("recruiter")
 	public Recruiter newRecruiter() {
 	        return new Recruiter();

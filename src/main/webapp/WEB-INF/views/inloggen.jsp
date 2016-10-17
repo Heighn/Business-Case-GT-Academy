@@ -34,10 +34,10 @@
 					<input type="submit" />
 				</form:form>
 				<p>Nog geen account?<br>
-					<a href="/student/registreren">Registreer je hier.</a>
+					<a href="/student/registreren">Registreer je hier</a>
 				</p>
 				<p>Wachtwoord vergeten?<br>
-					<a href="wachtwoordVergeten">Ja, ik faal.</a>
+					<a href="wachtwoordVergeten">Ja</a>
 				</p>
 			</div>
 		</div>

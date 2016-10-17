@@ -14,4 +14,10 @@
       </form:form>
     </div>
   </div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#test').val(sessionStorage.selectedEmails);
+    });
+</script>
   <%@ include file="footer.jsp" %>

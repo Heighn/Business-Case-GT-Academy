@@ -1,7 +1,7 @@
 package nl.getthere.services;
 
-import nl.getthere.model.EmailEntity;
-import nl.getthere.model.EmailRepository;
+import nl.getthere.model.Correspondence;
+import nl.getthere.model.CorrespondenceRepository;
 import nl.getthere.users.Student;
 import nl.getthere.users.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +19,12 @@ public class StudentMailSender {
 	@Autowired
 	private StudentRepository studentRepo;
 	@Autowired
-	private EmailRepository emailRepo;
+	private CorrespondenceRepository correspondenceRepo;
 	
 
 	public void sendEmail(String messageText, String subject, String... emailAddressList) {
 		try {
+			String emailAddressString = "";
 			SimpleMailMessage msg = new SimpleMailMessage();
 			msg.setFrom("studentportalph@gmail.com");
 			msg.setSubject(subject);
@@ -33,14 +34,15 @@ public class StudentMailSender {
 			for (String emailAddress : emailAddressList) {
 				msg.setTo(emailAddress);
 				mailSender.send(msg);
-
-				receivers.add(studentRepo.findByEmailAddress(emailAddress));
+				emailAddressString += emailAddress + ",";
 			}
 
 			//Save email in repository for access later
-			EmailEntity email = new EmailEntity(receivers, subject, messageText);
-			emailRepo.save(email);
-
+			Correspondence email = new Correspondence(emailAddressString, subject, messageText, "Email");
+			correspondenceRepo.save(email);
+			for(Correspondence correspondence : correspondenceRepo.findAll()){
+				System.out.println("Correspondence: " + correspondence.getReceivers());
+			}
 		} catch (Exception me) {
 			System.out.println("Mail kan niet worden verzonden: " + me);
 			me.printStackTrace();

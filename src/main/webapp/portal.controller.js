@@ -30,11 +30,11 @@
       location.href="/recruiter/nieuw-bericht"
     };
 
-    vm.updateSelection = function(i){
-      console.log("I is op het moment: ", i.selected);
+    vm.updateSelection = function(){
+      console.log("updating selection!");
       sessionStorage.selectedEmails = vm.data.filter(function(i){
         return i.selected;
-      });
+      }).map(function(i){return i.emailAddress});
     };
   }
 })();
