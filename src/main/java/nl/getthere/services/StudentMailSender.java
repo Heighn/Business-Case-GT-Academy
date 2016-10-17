@@ -10,6 +10,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 @Service
@@ -38,7 +39,9 @@ public class StudentMailSender {
 			}
 
 			//Save email in repository for access later
+			correspondenceRepo.deleteAll();
 			Correspondence email = new Correspondence(emailAddressString, subject, messageText, "Email");
+			email.setDate(new Date());
 			correspondenceRepo.save(email);
 			for(Correspondence correspondence : correspondenceRepo.findAll()){
 				System.out.println("Correspondence: " + correspondence.getReceivers());

@@ -10,27 +10,49 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body ng-app="correspondence">
-< id="header">
-
-<table>
-    <thead>
-    <th><input type="checkbox"></th>
-    <th>Type</th>
-    <th>Ontvangers</th>
-    <th>Onderwerp</th>
-    <th>Bericht</th>
-    </thead>
-    <tbody>
-    <tr ng-repeat="item in vm.data">
-        <td>{{ item.type }}</td>
-        <td>{{ item.ontvangers }}</td>
-        <td>{{ item.onderwerp }}</td>
-        <td>{{ item.bericht }}</td>
-    </tr>
-    </tbody>
-</table>
+<header id="header">
+    <div class="branding">
+        <a href="inloggen"><img src="../images/logo.png" alt="logo"></a>
+    </div>
+    <nav id="menu">
+        <ul class="fluid">
+            <li><a href="#" class="current">Overzicht studenten</a></li>
+            <li><a href="#">Evenementen</a></li>
+            <li><a href="/inloggen">Uitloggen</a></li>
+            <!--<li><a href="/sendEmail">Email Verzenden</a></li>
+                <li><a href="/recruitersList">Recruitersoverzicht</a></li>
+            <li><a href="/StudentList">Studentenoverzicht</a></li>
+            <li><a href="/DeleteStudent">Verwijder een Student</a></li>-->
+        </ul>
+    </nav>
+</header>
 
 
+<div class="content-fluid">
+    <h1>Gepleegde Correspondentie met Studenten</h1>
+    <p>Hieronder zie je een lijst met eerdere correspondentie met studenten.</p><br>
+
+    <div id="main2" ng-controller="CorrespondenceController as vm">
+        <table>
+            <thead>
+            <th>Datum</th>
+            <th>Type</th>
+            <th>Ontvangers</th>
+            <th>Onderwerp</th>
+            <th>Bericht</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in vm.data">
+                <td>{{ item.date }}</td>
+                <td>{{ item.type }}</td>
+                <td>{{ item.receivers }}</td>
+                <td>{{ item.subject }}</td>
+                <td>{{ item.message }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 <script src="../correspondence.module.js"></script>

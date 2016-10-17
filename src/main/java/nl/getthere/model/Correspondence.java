@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by hein.dehaan on 13-10-2016.
@@ -16,6 +19,16 @@ public class Correspondence {
     private String subject;
     private String message;
     private String type; //Email, phone conversation or personal visit
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) { //NOTE: this method gets a date and returns a String
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        this.date = dateFormat.format(date);
+    }
 
     public String getType() {
         return type;

@@ -5,10 +5,10 @@
 (function(){
     "use strict";
 
-    angular.module("portal")
-        .controller('PortalController', portalController);
+    angular.module("correspondence")
+        .controller('CorrespondenceController', correspondenceController);
 
-    portalController.$inject = ['$http'];
+    correspondenceController.$inject = ['$http'];
 
     function correspondenceController($http){
         var vm = this;
@@ -19,9 +19,9 @@
             console.log("ALL DATA: ", vm.rawData._embedded);
 
             vm.data = [];
-            var correspondences = vm.rawData._embedded;
+            var correspondences = vm.rawData._embedded.correspondences;
             for (var i in correspondences){
-                var new_item = {receivers: correspondences[i].receivers, subject: correspondences[i].subject, message: correspondences[i].message, type: correspondences[i].type};
+                var new_item = {date: correspondences[i].date, receivers: correspondences[i].receivers, subject: correspondences[i].subject, message: correspondences[i].message, type: correspondences[i].type};
                 console.log("ITEM: ", new_item);
                 vm.data.push(new_item);
             }
