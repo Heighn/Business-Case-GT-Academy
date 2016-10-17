@@ -5,7 +5,7 @@
 <head>
   <meta name="charset" content="utf-8">
   <title>Get There Studentenportaal</title>
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="..css//styles.css">
 </head>
 <body class="index">
 
