@@ -26,7 +26,7 @@
         </ul>
       </nav>
   </header>
-<div id="main2" ng-controller="PortalController as vm">
+<div id="main" ng-controller="PortalController as vm">
     <div class="content-fluid">
     	<h1>Overzicht studenten</h1>
       <p>De tabel hieronder toont een lijst met alle studenten die zich hebben ingeschreven via het Get There studentenportaal.</p><br>
@@ -89,6 +89,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="item in vm.data | filter:search | filter:thema | filter:event | filter:status | orderBy:'firstName'" ng-class="{'inactive': item.status === 'Verwijderd'}">
+
           <td class="check"><input type="checkbox" ng-model="item.selected" ng-change="vm.updateSelection()"></td>
           <td>{{ item.firstName }} {{item.lastName}}</td>
           <td>{{ item.emailAddress }}</td>

@@ -87,6 +87,11 @@ public class RecruiterController {
 		model.addAttribute("errorMessage", "Er bestaat al een account met deze gebruikersnaam!");
 		return "recruitersReg";
 	}
+	
+	@RequestMapping("/lijst")
+	public String lijst(HttpServletResponse resp){
+		return "studenten";
+	}
 
 	@RequestMapping("/nieuw-bericht")
 	public String sendEmailByRecruiter(HttpServletResponse resp){

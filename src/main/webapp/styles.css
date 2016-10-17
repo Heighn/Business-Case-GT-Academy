@@ -25,6 +25,7 @@ a {
 
 p, li {
   font-size: 1.6em;
+  line-height: 1.3;
 }
 
 h1 {
@@ -134,12 +135,6 @@ h5 {
 }
 
 #main {
-  background-image: url('../images/bg.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  padding: 50px 0;
-  height: 100%;
 }
 
 #footer {}
@@ -149,7 +144,6 @@ h5 {
   width: 94%;
   margin: 0px auto;
   padding: 20px 2%;
-  background-color: rgba(250, 250, 250, 0.8);
 }
 
 .content-fluid {
@@ -175,6 +169,11 @@ h5 {
   top: 50%;
   left: 50%;
   margin: -240px 0 0 -260px;
+  -webkit-animation: fadein 1.5s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 1.5s; /* Firefox < 16 */
+  -ms-animation: fadein 1.5s; /* Internet Explorer */
+  -o-animation: fadein 1.5s; /* Opera < 12.1 */
+  animation: fadein 1.5s;
 }
 
 .logo {
