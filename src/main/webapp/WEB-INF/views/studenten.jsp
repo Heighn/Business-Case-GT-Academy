@@ -89,7 +89,6 @@
         </thead>
         <tbody>
         <tr ng-repeat="item in vm.data | filter:search | filter:thema | filter:event | filter:status | orderBy:'firstName'" ng-class="{'inactive': item.status === 'Verwijderd'}">
-
           <td class="check"><input type="checkbox" ng-model="item.selected" ng-change="vm.updateSelection()"></td>
           <td>{{ item.firstName }} {{item.lastName}}</td>
           <td>{{ item.emailAddress }}</td>
