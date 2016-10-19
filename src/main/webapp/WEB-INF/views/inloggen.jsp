@@ -3,25 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="charset" content="utf-8">
+  <meta http-equiv="content-type" content="text/javascript; charset=utf-8">
   <title>Get There Studentenportaal</title>
-  <link rel="stylesheet" href="../styles.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script>
-		$( function() {
-		  function runEffect() {
-				if (${shaker}) {
-		    	$( "#effect" ).effect("shake", 500);
-				}
-		  };
-		  runEffect();
-		} );
-	</script>
+  <base href="/">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
-<body class="bg">
-
-	<div id="main">
+<body>
+  <header id="header">
+  </header>
+	<div id="main" div class="bg">
 		<div class="login-container">
 			<div class="login-form">
 				<img src="../images/logo.png" alt="logo" class="logo">
@@ -31,7 +21,7 @@
 					<input type="text" name="username" />
 					<p>Wachtwoord</p>
 					<input type="password" name="password" />
-					<input type="submit" />
+					<input type="submit" value="Verzenden" />
 				</form:form>
 				<p><a href="registreren">Registreren</a> | <a href="wachtwoordVergeten">Wachtwoord vergeten</a></p>
 			</div>

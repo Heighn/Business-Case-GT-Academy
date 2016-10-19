@@ -8,8 +8,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@ include file="header.jsp" %>
 <div id="main" ng-app="profiel" ng-controller="ProfielController as vm">
 	<div class="content">
+		<h1>Welkom ${firstName}!</h1>
+
 		<p><a href="/inactief">Account Verwijderen</a></p>
-		<h1>Welkom, ${firstName} ${lastName}</h1>
 		<p>Dit is je persoonlijke profiel. Hieronder kun je alle gegevens die bij ons bekend zijn wijzigen. Daarnaast kun je je cv uploaden en je aanmelden voor evenementen.</p><br>
 		<p>${message}</p>
 		<div id="accordion">
@@ -70,11 +71,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</form:form>
 
 			</div>
-
-
-
-
-
  		</div>
 	</div>
 </div>

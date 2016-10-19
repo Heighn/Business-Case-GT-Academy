@@ -5,7 +5,7 @@
 <head>
     <meta name="charset" content="utf-8">
     <title>Get There Studentenportaal</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
@@ -26,8 +26,6 @@
         </ul>
     </nav>
 </header>
-
-
 <div class="content-fluid">
     <h1>Gepleegde Correspondentie met Studenten</h1>
     <p>Hieronder zie je een lijst met eerdere correspondentie met studenten.</p><br>
@@ -89,11 +87,13 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+<script src="../js/correspondence.module.js"></script>
+<script src="../js/correspondence.controller.js"></script>
 <script src="../correspondence.module.js"></script>
 <script src="../correspondence.controller.js"></script>
 
 <script src="../portal.module.js"></script>
 <script src="../portal.controller.js"></script>
-
 
 <%@ include file="footer.jsp" %>
