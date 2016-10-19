@@ -1,9 +1,10 @@
 package nl.getthere.controllers;
 
-import java.util.Random;
-
-import javax.servlet.http.HttpServletResponse;
-
+import nl.getthere.services.StudentMailSender;
+import nl.getthere.users.RecruiterRepository;
+import nl.getthere.users.StudentRepository;
+import nl.getthere.users.UserProfile;
+import nl.getthere.users.UserProfileRepository;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -14,11 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import nl.getthere.services.StudentMailSender;
-import nl.getthere.users.RecruiterRepository;
-import nl.getthere.users.StudentRepository;
-import nl.getthere.users.UserProfile;
-import nl.getthere.users.UserProfileRepository;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Random;
 
 /**
  * Created by hein.dehaan on 12-10-2016.
@@ -34,10 +32,10 @@ public class LoginController {
     @Autowired
     private StudentRepository studentRepo;
 
-//    @RequestMapping("/login") //Automatic fallback when user has to login
-//    public String inloggen(){
-//        return "inloggen";
-//    }
+    @RequestMapping("/login") //Automatic fallback when user has to login
+    public String inloggen(){
+        return "inloggen";
+    }
 
     @RequestMapping("/inloggen")
     public String inloggenRedirecter(Model model) {
@@ -45,6 +43,7 @@ public class LoginController {
         if (auth.getAuthorities().toString().equals("[student]")) {
             return "redirect:/student/profiel";
         } else if (auth.getAuthorities().toString().equals("[recruiter]")){
+            System.out.println("Ik ben een recruiter");
             model.addAttribute("recruiterName", auth.getName());
             return "redirect:/recruiter/ingelogd";
         }
@@ -77,7 +76,7 @@ public class LoginController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/student/profiel";
+        return "redirect:/inloggen";
     }
 
     public String generateRandomPassword(){

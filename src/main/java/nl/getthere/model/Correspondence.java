@@ -1,9 +1,6 @@
 package nl.getthere.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,15 +16,45 @@ public class Correspondence {
     private String subject;
     private String message;
     private String type; //Email, phone conversation or personal visit
-    private String date;
+    private Date date;
+    private String dateString;
 
-    public String getDate() {
+    public Correspondence(){}
+
+    public Correspondence(String receivers, String dateString, String subject, String message, String type){
+        this.receivers = receivers;
+        this.dateString = dateString;
+        this.subject = subject;
+        this.message = message;
+        this.type = type;
+    }
+
+    @Transient
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) { //NOTE: this method gets a date and returns a String
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        this.date = dateFormat.format(date);
+    @Transient
+    public void setDate(Date date) {
+        this.date = date;
+        DateFormat dateFormat = new SimpleDateFormat();
+        this.dateString = dateFormat.format(date);
+    }
+
+    public String getDateString() {
+        return dateString;
+    }
+
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
+    }
+
+    public void yearMonthDay(){ //Makes dateString yyyy-mm-dd
+        String[] dateSplit = dateString.split("/");
+
+        if(dateSplit[2].length() == 4) {
+            dateString = dateSplit[2] + "/" + dateSplit[0] + "/" + dateSplit[1];
+        }
     }
 
     public String getType() {
@@ -35,15 +62,6 @@ public class Correspondence {
     }
 
     public void setType(String type) {
-        this.type = type;
-    }
-
-    public Correspondence(){}
-
-    public Correspondence(String receivers, String subject, String message, String type){
-        this.receivers = receivers;
-        this.subject = subject;
-        this.message = message;
         this.type = type;
     }
 

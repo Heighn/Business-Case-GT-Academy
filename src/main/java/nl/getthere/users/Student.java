@@ -1,15 +1,10 @@
 package nl.getthere.users;
 
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 
 @Entity
@@ -27,10 +22,19 @@ public class Student{
 	@Transient
 	private String password;
 	private String passwordConfirmation;
-	private Boolean wantsTraineeship;
-	private Boolean wantsInternship;
-	private Boolean wantsTechEvents;
-	private Boolean wantsGraduationProject;
+
+//	@ManyToMany(cascade=CascadeType.ALL)
+//	@JoinTable(name="student_theme", joinColumns=@JoinColumn(name="id"), inverseJoinColumns=@JoinColumn(name="]id"))
+//	private ArrayList<Theme> themes;
+	private ArrayList<Long> themeIDs;
+
+	public ArrayList<Long> getThemes() {
+		return themeIDs;
+	}
+
+	public void setThemes(ArrayList<Long> themes) {
+		this.themeIDs = themeIDs;
+	}
 
 	//private Date readyDate; // Date at which student is ready to work
 
@@ -92,38 +96,6 @@ public class Student{
 
 	public void setPasswordConfirmation(String passwordConfirmation) {
 		this.passwordConfirmation = passwordConfirmation;
-	}
-	
-	public Boolean getWantsTraineeship() {
-		return wantsTraineeship;
-	}
-
-	public void setWantsTraineeship(Boolean wantsTraineeship) {
-		this.wantsTraineeship = wantsTraineeship;
-	}
-
-	public Boolean getWantsInternship() {
-		return wantsInternship;
-	}
-
-	public void setWantsInternship(Boolean wantsInternship) {
-		this.wantsInternship = wantsInternship;
-	}
-
-	public Boolean getWantsTechEvents() {
-		return wantsTechEvents;
-	}
-
-	public void setWantsTechEvents(Boolean wantsTechEvents) {
-		this.wantsTechEvents = wantsTechEvents;
-	}
-
-	public Boolean getWantsGraduationProject() {
-		return wantsGraduationProject;
-	}
-
-	public void setWantsGraduationProject(Boolean wantsGraduationProject) {
-		this.wantsGraduationProject = wantsGraduationProject;
 	}
 
 	public Boolean getAgreedPrivacy() {

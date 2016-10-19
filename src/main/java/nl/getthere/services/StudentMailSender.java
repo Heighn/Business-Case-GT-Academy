@@ -9,6 +9,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -39,9 +41,8 @@ public class StudentMailSender {
 			}
 
 			//Save email in repository for access later
-			correspondenceRepo.deleteAll();
-			Correspondence email = new Correspondence(emailAddressString, subject, messageText, "Email");
-			email.setDate(new Date());
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			Correspondence email = new Correspondence(emailAddressString, dateFormat.format(new Date()), subject, messageText, "Email");
 			correspondenceRepo.save(email);
 			for(Correspondence correspondence : correspondenceRepo.findAll()){
 				System.out.println("Correspondence: " + correspondence.getReceivers());

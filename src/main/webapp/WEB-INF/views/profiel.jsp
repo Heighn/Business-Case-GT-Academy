@@ -1,10 +1,14 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%@ include file="header.jsp" %>
-<div id="main">
+<div id="main" ng-app="profiel" ng-controller="ProfielController as vm">
 	<div class="content">
+		<p><a href="/inactief">Account Verwijderen</a></p>
 		<h1>Welkom, ${firstName} ${lastName}</h1>
 		<p>Dit is je persoonlijke profiel. Hieronder kun je alle gegevens die bij ons bekend zijn wijzigen. Daarnaast kun je je cv uploaden en je aanmelden voor evenementen.</p><br>
 		<p>${message}</p>
@@ -36,72 +40,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</form:form>
 		  </div>
 
-			<h3>Interesses</h3>
-			<div>
-				<%-- <form:form method="post" commandName="currentStudent">
-					<form:checkbox path="agreedPrivacy" id="tech" />
-					<label for="tech">Tech events (gratis te bezoeken)</label><br>
-					<form:checkbox path="agreedPrivacy" id="stud" />
-					<label for="study">Afstudeer onderzoeken</label><br>
-					<form:checkbox path="agreedPrivacy" id="stage" />
-					<label for="stage">Stages</label><br>
-					<form:checkbox path="agreedPrivacy" id="train" />
-					<label for="trainee">Traineeships</label><br>
-					<form:checkbox path="agreedPrivacy" id="anders" />
-					<label for="other">Anders, namelijk:</label>
-					<input type="submit" value="Opslaan">
-				</form:form> --%>
-			</div>
+		  <%--<h3>Interesses</h3>--%>
+		  <%--<div>--%>
+		  	<%--<form:form method="post" commandName="contactGegevensBean">--%>
+				<%--<p>Tech events (gratis te bezoeken)</p><form:checkbox path="techEvents"/>--%>
+				<%--<p>Afstudeeronderzoeken</p><form:checkbox path="afstudeerOnderzoek"/>--%>
+				<%--<p>Stages</p><form:checkbox path="stage"/>--%>
+				<%--<p>Traineeships</p><form:checkbox path="traineeship"/>--%>
+				<%--<p>Anders, namelijk:</p>--%>
+				<%--<form:input type="text" path="anders"/>--%>
+			<%--</form:form>--%>
+		  <%--</div>--%>
+
 			<h3>Thema's</h3>
 			<div>
-				<%-- <form:form method="post" commandName="currentStudent">
-					<form:checkbox path="agreedPrivacy" id="tech" />
-					<label for="tech">Tech events (gratis te bezoeken)</label><br>
-					<form:checkbox path="agreedPrivacy" id="stud" />
-					<label for="stud">Afstudeer onderzoeken</label><br>
-					<form:checkbox path="agreedPrivacy" id="stage" />
-					<label for="stage">Stages</label><br>
-					<form:checkbox path="agreedPrivacy" id="train" />
-					<label for="train">Traineeships</label><br>
-					<form:checkbox path="agreedPrivacy" id="anders" />
-					<label for="anders">Anders, namelijk:</label>
+				<form:form method="post" action="themasUpdate" commandName="themeBean">
+					<p ng-repeat="item in vm.data"> <form:checkbox path="themes" value="{{item.description}}"/> {{ item.description }}</p>
 					<input type="submit" value="Opslaan">
-				</form:form> --%>
+					<%--<p>Domotica/Robotica</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Big Data</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Software Development</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Software Architectuur</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Security</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Internet of Things</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Virtual Reality</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Gamification</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Business Consultancy</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Test Engineering</p><form:checkbox path="domoticaRobotica"/>--%>
+				</form:form>
+
 			</div>
-		  <h3>Interesses</h3>
-		  <div>
-				<%-- <form:form method="post" commandName="persoonsGegevensBean">
-					<form:checkbox path="agreedPrivacy" id="tech" />
-					<label for="tech">Tech events (gratis te bezoeken)</label><br>
-					<form:checkbox path="agreedPrivacy" id="stud" />
-					<label for="stud">Afstudeer onderzoeken</label><br>
-					<form:checkbox path="agreedPrivacy" id="stage" />
-					<label for="stage">Stages</label><br>
-					<form:checkbox path="agreedPrivacy" id="train" />
-					<label for="train">Traineeships</label><br>
-					<form:checkbox path="agreedPrivacy" id="anders" />
-					<label for="anders">Anders, namelijk:</label>
-					<input type="submit" value="Opslaan">
-				</form:form> --%>
-		  </div>
-		  <h3>Thema's</h3>
-		  <div>
-				<%-- <form:form method="post" commandName="persoonsGegevensBean">
-					<form:checkbox path="agreedPrivacy" id="tech" />
-					<label for="tech">Tech events (gratis te bezoeken)</label><br>
-					<form:checkbox path="agreedPrivacy" id="stud" />
-					<label for="stud">Afstudeer onderzoeken</label><br>
-					<form:checkbox path="agreedPrivacy" id="stage" />
-					<label for="stage">Stages</label><br>
-					<label for="train">Traineeships</label><br>
-					<form:checkbox path="agreedPrivacy" id="train" />
-					<form:checkbox path="agreedPrivacy" id="anders" />
-					<label for="anders">Anders, namelijk:</label>
-					<input type="submit" value="Opslaan">
-				</form:form> --%>
-			</div>
-			<p><a href="/inactief">Account Verwijderen</a></p>
+
+
+
+
+
  		</div>
 	</div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="../profiel.module.js"></script>
+<script src="../profiel.controller.js"></script>
 <%@ include file="footer.jsp" %>
