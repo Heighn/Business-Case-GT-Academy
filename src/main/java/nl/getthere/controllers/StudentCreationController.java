@@ -1,9 +1,7 @@
 package nl.getthere.controllers;
 
-import nl.getthere.users.Student;
-import nl.getthere.users.StudentRepository;
-import nl.getthere.users.UserProfile;
-import nl.getthere.users.UserProfileRepository;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.validation.Valid;
+import nl.getthere.users.Student;
+import nl.getthere.users.StudentRepository;
+import nl.getthere.users.UserProfile;
+import nl.getthere.users.UserProfileRepository;
 
 /**
  * Created by hein.dehaan on 11-10-2016.
@@ -37,6 +38,7 @@ public class StudentCreationController {
             UserProfile userProfile = new UserProfile();
             userProfile.setUserName(currentStudent.getEmailAddress());
             userProfile.setPassword(currentStudent.getPassword());
+            currentStudent.setStatus("Actief");
             userProfile.changeRole("student");
             studentRepo.save(currentStudent);
             userProfileRepo.save(userProfile);

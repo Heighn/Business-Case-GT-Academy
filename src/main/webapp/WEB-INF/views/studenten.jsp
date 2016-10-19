@@ -18,7 +18,7 @@
         <ul class="fluid">
           <li><a href="#" class="current">Overzicht studenten</a></li>
           <li><a href="#">Evenementen</a></li>
-          <li><a href="/inloggen">Uitloggen</a></li>
+          <li><a href="../logout">Uitloggen</a></li>
           <!--<li><a href="/sendEmail">Email Verzenden</a></li>
   		    <li><a href="/recruitersList">Recruitersoverzicht</a></li>
           <li><a href="/StudentList">Studentenoverzicht</a></li>
@@ -54,6 +54,7 @@
         <div class="item right">
           <select ng-model="status">
             <option value="" disabled selected>Filter op status</option>
+            <option value="">Toon alles</option>
             <option value="actief">Actief</option>
             <option value="verwijderd">Verwijderd</option>
           </select>
@@ -61,6 +62,7 @@
         <div class="item right">
           <select ng-model="event" id="event">
             <option value="" disabled selected>Filter op evenement</option>
+            <option value="">Toon alles</option>
             <option value="Evenement X">Evenement X</option>
             <option value="Evenement Y">Evenement Y</option>
             <option value="Evenement Z">Evenement Z</option>
@@ -69,6 +71,7 @@
         <div class="item right">
           <select ng-model="thema" id="thema">
             <option value="" disabled selected>Filter op thema</option>
+            <option value="">Toon alles</option>
             <option value="tech">Tech events</option>
             <option value="study">Afstudeer onderzoeken</option>
             <option value="stage">Stages</option>

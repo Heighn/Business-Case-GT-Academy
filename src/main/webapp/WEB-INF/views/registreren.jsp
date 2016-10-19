@@ -53,6 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <label for="priv">Ik ga akkoord met de <a>algemene voorwaarden</a>.</label>
           <input type="submit">
          </form:form>
+        
 				<p><a href="inloggen">Terug naar inloggen</a></p>
 			</div>
 		</div>

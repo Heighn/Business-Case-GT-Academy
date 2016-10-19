@@ -17,7 +17,7 @@
       vm.data = [];
       var students = vm.rawData._embedded.students
       for (var i in students){
-        var new_item = {firstName: students[i].firstName, lastName: students[i].lastName, emailAddress: students[i].emailAddress, thema: "Traineeship", events: "Evenement X", status: students[i].isInactief};
+        var new_item = {firstName: students[i].firstName, lastName: students[i].lastName, emailAddress: students[i].emailAddress, thema: "Traineeship", events: "Evenement X", status: students[i].status};
         console.log("ITEM: ", new_item);
         vm.data.push(new_item);
       }
