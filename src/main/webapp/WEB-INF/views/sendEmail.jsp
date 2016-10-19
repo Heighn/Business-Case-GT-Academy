@@ -14,7 +14,7 @@
       </form:form>
     </div>
   </div>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
     $(document).ready(function(){
         $('#test').val(sessionStorage.selectedEmails);

@@ -45,7 +45,7 @@ public class LoginController {
         } else if (auth.getAuthorities().toString().equals("[recruiter]")){
             System.out.println("Ik ben een recruiter");
             model.addAttribute("recruiterName", auth.getName());
-            return "redirect:/recruiter/ingelogd";
+            return "redirect:/recruiter/dashboard";
         }
         return "inloggen";
     }

@@ -6,17 +6,18 @@
   <meta name="charset" content="utf-8">
   <title>Get There Studentenportaal</title>
   <link rel="stylesheet" href="../styles.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
-<body ng-app="portal">
+<body ng-app="portal" ng-cloak class="cloak">
   <header id="header">
       <div class="branding">
         <a href="inloggen"><img src="../images/logo.png" alt="logo"></a>
       </div>
       <nav id="menu">
         <ul class="fluid">
-          <li><a href="#" class="current">Overzicht studenten</a></li>
+          <li><a href="#" class="current">Dashboard</a></li>
+          <li><a href="#">Overzicht studenten</a></li>
           <li><a href="#">Evenementen</a></li>
           <li><a href="../logout">Uitloggen</a></li>
           <!--<li><a href="/sendEmail">Email Verzenden</a></li>
@@ -28,7 +29,7 @@
   </header>
 <div id="main" ng-controller="PortalController as vm">
     <div class="content-fluid">
-    	<h1>Overzicht studenten</h1>
+    	<h1>Dashboard</h1>
       <p>De tabel hieronder toont een lijst met alle studenten die zich hebben ingeschreven via het Get There studentenportaal.</p><br>
       <div class="menubar">
         <div class="item">
@@ -92,7 +93,6 @@
         </thead>
         <tbody>
         <tr ng-repeat="item in vm.data | filter:search | filter:thema | filter:event | filter:status | orderBy:'firstName'" ng-class="{'inactive': item.status === 'Verwijderd'}">
-
           <td class="check"><input type="checkbox" ng-model="item.selected" ng-change="vm.updateSelection()"></td>
           <td>{{ item.firstName }} {{item.lastName}}</td>
           <td>{{ item.emailAddress }}</td>
@@ -104,7 +104,7 @@
     </table>
   </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 <script src="../portal.module.js"></script>
 <script src="../portal.controller.js"></script>
 <%@ include file="footer.jsp" %>

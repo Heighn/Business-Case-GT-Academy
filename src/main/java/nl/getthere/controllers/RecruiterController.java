@@ -91,11 +91,6 @@ public class RecruiterController {
 		model.addAttribute("errorMessage", "Er bestaat al een account met deze gebruikersnaam!");
 		return "recruitersReg";
 	}
-	
-	@RequestMapping("/lijst")
-	public String lijst(HttpServletResponse resp){
-		return "studenten";
-	}
 
 	@RequestMapping("/nieuw-bericht")
 	public String sendEmailByRecruiter(HttpServletResponse resp){
@@ -130,13 +125,13 @@ public class RecruiterController {
 		return "DeleteStudent";
 	}
 
-	@RequestMapping("/ingelogd")
+	@RequestMapping("/dashboard")
 	public String recruitersIngelogd(Model model){
 		model.addAttribute("recruiters", recruiterRepo.findAll());
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		model.addAttribute("recruiterName", auth.getName());
-		return "admin";
+		return "dashboard";
 	}
 
 	@RequestMapping("/createEvent")
