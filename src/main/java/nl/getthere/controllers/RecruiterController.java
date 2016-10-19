@@ -1,5 +1,7 @@
 package nl.getthere.controllers;
 
+import nl.getthere.model.Correspondence;
+import nl.getthere.model.CorrespondenceRepository;
 import nl.getthere.model.Event;
 import nl.getthere.model.EventRepository;
 import nl.getthere.services.StudentMailSender;
@@ -31,6 +33,8 @@ public class RecruiterController {
 	private UserProfileRepository userProfileRepo;
 	@Autowired
 	private EventRepository eventRepo;
+	@Autowired
+	private CorrespondenceRepository correspondenceRepo;
 	@Autowired
 	private StudentMailSender studentMailSender;
 
@@ -155,9 +159,24 @@ public class RecruiterController {
 	}
 
 	@RequestMapping("/correspondentie")
-	public String correspondentie(){
+	public String correspondence(){
 		return "correspondence";
 	}
+
+	@RequestMapping("/nieuwe-correspondentie")
+	public String newCorrespondence(Model model){
+		Correspondence correspondenceForm = new Correspondence();
+		model.addAttribute("correspondenceForm", correspondenceForm);
+		return "correspondenceForm";
+	}
+
+	@RequestMapping(value="/nieuwe-correspondentie", method=RequestMethod.POST)
+	public String newCorrespondencePost(@ModelAttribute("correspondenceForm") Correspondence correspondenceForm){
+		correspondenceForm.yearMonthDay();
+		correspondenceRepo.save(correspondenceForm);
+		return "correspondence";
+	}
+
 	@ModelAttribute("recruiter")
 	public Recruiter newRecruiter() {
 	        return new Recruiter();

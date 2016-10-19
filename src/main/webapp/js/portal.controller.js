@@ -30,30 +30,11 @@
       location.href="/recruiter/nieuw-bericht"
     };
 
-<<<<<<< HEAD
     vm.updateSelection = function(){
       console.log("updating selection!");
       sessionStorage.selectedEmails = vm.data.filter(function(i){
         return i.selected;
       }).map(function(i){return i.emailAddress});
-=======
-    vm.updateSessionStorage = function() {
-      location.href="/recruiter/nieuw-bericht"
-    };
-
-/*    vm.add = function(new_title) {
-      var new_item = {
-        title: new_title,
-        done: false
-      };
-      vm.data.push(new_item);
-    };
-
-    vm.updateItemsDone = function() {
-      vm.itemsDone = vm.data.filter(function(item){
-        return item.done;
-      }).length;
->>>>>>> 1189734c38f53a6bf775fbe14b698a0b565d5f14
     };
   }
 })();

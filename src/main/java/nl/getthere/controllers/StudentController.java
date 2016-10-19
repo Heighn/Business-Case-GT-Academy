@@ -2,6 +2,9 @@ package nl.getthere.controllers;
 
 import nl.getthere.formbeans.ContactGegevensBean;
 import nl.getthere.formbeans.PersoonsGegevensBean;
+import nl.getthere.formbeans.ThemeBean;
+import nl.getthere.model.Theme;
+import nl.getthere.model.ThemeRepository;
 import nl.getthere.users.Student;
 import nl.getthere.users.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class StudentController {
 	@Autowired
 	private StudentRepository studentRepo;
+	@Autowired
+	private ThemeRepository themeRepo;
 
 	@RequestMapping("/inactief")
 	public String deleteAccount() {
@@ -38,6 +43,9 @@ public class StudentController {
 
 		ContactGegevensBean contactGegevensBean = new ContactGegevensBean(loggedInStudent);
 		model.addAttribute("contactGegevensBean", contactGegevensBean);
+
+		ThemeBean themeBean = new ThemeBean();
+		model.addAttribute("themeBean", themeBean);
 
 
 		model.addAttribute("firstName", loggedInStudent.getFirstName());
@@ -83,6 +91,43 @@ public class StudentController {
 		Student loggedInStudent = studentRepo.findByEmailAddress(auth.getName());
 		loggedInStudent = contactGegevensBean.fillStudent(loggedInStudent);
 		studentRepo.save(loggedInStudent);
+		return "redirect:/student/profiel";
+	}
+
+	@RequestMapping(value = "/themasUpdate", method=RequestMethod.POST)
+	public String contactGegevensPost(@ModelAttribute("themeBean") ThemeBean themeBean, Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Student loggedInStudent = studentRepo.findByEmailAddress(auth.getName());
+
+		loggedInStudent = themeBean.fillStudent(loggedInStudent, themeRepo);
+		studentRepo.save(loggedInStudent);
+		return "redirect:/student/profiel";
+	}
+
+	@RequestMapping("/add")
+	public String add(){
+		themeRepo.deleteAll();
+		Theme theme = new Theme("Domotica en Robotica");
+		themeRepo.save(theme);
+		theme = new Theme("Big Data");
+		themeRepo.save(theme);
+		theme = new Theme("Software Development");
+		themeRepo.save(theme);
+		theme = new Theme("Software Architectuur");
+		themeRepo.save(theme);
+		theme = new Theme("Software Security");
+		themeRepo.save(theme);
+		theme = new Theme("Internet of Things");
+		themeRepo.save(theme);
+		theme = new Theme("Virtual Reality");
+		themeRepo.save(theme);
+		theme = new Theme("Gamification");
+		themeRepo.save(theme);
+		theme = new Theme("Business Consultancy");
+		themeRepo.save(theme);
+		theme = new Theme("Test Engineering");
+		themeRepo.save(theme);
+
 		return "redirect:/student/profiel";
 	}
 }

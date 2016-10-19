@@ -32,7 +32,38 @@
     <h1>Gepleegde Correspondentie met Studenten</h1>
     <p>Hieronder zie je een lijst met eerdere correspondentie met studenten.</p><br>
 
+    <div class="menubar">
+        <div class="item">
+            <input type="button" onclick="location.href='/recruiter/nieuwe-correspondentie'" value="Nieuwe Correspondentie" />
+        </div>
+        <div class="clear"></div>
+    </div>
+
     <div id="main2" ng-controller="CorrespondenceController as vm">
+        <div class="item right">
+            <select ng-model="order" id="order">
+                <option value="" disabled selected>Sorteermethode</option>
+                <option value="dateString">Datum</option>
+                <option value="type">Type</option>
+                <option value="receivers">Ontvangers</option>
+            </select>
+        </div>
+        <div class="item right">
+            <select ng-model="type" id="type">
+                <option value="" disabled selected>Filter op Type</option>
+                <option value="Email">Email</option>
+                <option value="Telefoongesprek">Telefoongesprek</option>
+                <option value="Persoonlijk Bezoek">Persoonlijk Gesprek</option>
+            </select>
+        </div>
+        <div class="item right">
+            <select ng-model="receivers" id="receivers">
+                <option value="" disabled selected>Filter op Student</option>
+                <option ng-repeat="item in vm.studentData" value={{item.emailAddress}}>{{ item.firstName }} {{ item.lastName }}</option>
+            </select>
+        </div>
+
+
         <table>
             <thead>
             <th>Datum</th>
@@ -42,8 +73,9 @@
             <th>Bericht</th>
             </thead>
             <tbody>
-            <tr ng-repeat="item in vm.data">
-                <td>{{ item.date }}</td>
+
+            <tr ng-repeat="item in vm.data | filter:type | filter:receivers | orderBy:order">
+                <td>{{ item.dateString }}</td>
                 <td>{{ item.type }}</td>
                 <td>{{ item.receivers }}</td>
                 <td>{{ item.subject }}</td>
@@ -54,7 +86,19 @@
     </div>
 </div>
 
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<<<<<<< HEAD
 <script src="../js/correspondence.module.js"></script>
 <script src="../js/correspondence.controller.js"></script>
+=======
+<script src="../correspondence.module.js"></script>
+<script src="../correspondence.controller.js"></script>
+
+<script src="../portal.module.js"></script>
+<script src="../portal.controller.js"></script>
+
+
+>>>>>>> 9206413accbc494c05e4f81e55f018f997e52c08
 <%@ include file="footer.jsp" %>
