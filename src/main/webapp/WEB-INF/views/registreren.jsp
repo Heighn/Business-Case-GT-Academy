@@ -9,54 +9,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
   <meta name="charset" content="utf-8">
   <title>Get There Studentenportaal</title>
-  <link rel="stylesheet" href="../css/styles.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-    $( function() {
-      $( "#accordion" ).accordion({
-        collapsible: true
-      });
-    } );
-    </script>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header id="header">
-      <div class="branding">
-        <a href="inloggen"><img src="../images/logo.png" alt="logo"></a>
-      </div>
-      <nav id="menu">
-        <ul>
-          <li><a href="inloggen">Inloggen</a></li>
-          <li><a href="#" class="current">Registreren</a></li>
-        </ul>
-      </nav>
   </header>
-  <div id="main">
-    <div class="content">
-      <h3 class="error">${errorMessage}</h3>
-      <form:form method="post" commandName="currentStudent">
-        <h3>Persoonsgegevens</h3>
-        <p>Voornaam</p>
-        <form:input path="firstName" value="${firstName}"/>
-        <p>Achternaam</p>
-        <form:input path="lastName" value="${lastName}"/>
-        <h3>Contactgegevens</h3>
-        <p>Emailadres (dit is ook je gebruikersnaam)</p>
-        <form:input type="email" path="emailAddress" value="${emailAddress}"/>
-        <p>Telefoonnummer</p>
-        <form:input type="tel" path="phoneNumber" value="${phoneNumber}"/>
-        <h3>Accountgegevens</h3>
-        <p>Wachtwoord</p>
-        <form:input type="password" path="password" value="${password}"/>
-        <p>Bevestig wachtwoord</p>
-        <form:input type="password" path="passwordConfirmation" value="${password}"/>
-        <form:checkbox path="agreedPrivacy" id="priv" />
-        <label for="priv">Ik ga akkoord met de algemene voorwaarden.</label>
-        <input type="submit">
-
-       </form:form>
-    </div>
+  <div id="main" class="bg">
+    <div class="login-container">
+			<div class="reg-form">
+				<img src="images/logo.png" alt="logo" class="logo">
+				<h3>Registreer een account</h3>
+        <form:form method="post" commandName="currentStudent">
+        <div class="float-left">
+          <p>Voornaam</p>
+          <form:input path="firstName" value="${firstName}"/>
+        </div>
+        <div class="float-left">
+          <p>Achternaam</p>
+          <form:input path="lastName" value="${lastName}"/>
+        </div>
+        <div class="clear"></div><br>
+        <div class="float-left">
+          <p>Wachtwoord</p>
+          <form:input type="password" path="password" value="${password}"/>
+        </div>
+        <div class="float-left">
+          <p>Bevestig wachtwoord</p>
+          <form:input type="password" path="passwordConfirmation" value="${password}"/>
+        </div>
+        <div class="clear"></div>
+          <h3>Contactgegevens</h3>
+          <div class="clear"></div>
+        <div class="float-left">
+          <p>Emailadres (dit is ook je gebruikersnaam)</p>
+          <form:input type="email" path="emailAddress" value="${emailAddress}"/>
+        </div>
+        <div class="float-left">
+          <p>Telefoonnummer</p>
+          <form:input type="tel" path="phoneNumber" value="${phoneNumber}"/>
+        </div>
+        <div class="clear"></div>
+          <form:checkbox path="agreedPrivacy" id="priv" />
+          <label for="priv">Ik ga akkoord met de <a>algemene voorwaarden</a>.</label>
+          <input type="submit">
+         </form:form>
+				<p><a href="inloggen">Terug naar inloggen</a></p>
+			</div>
+		</div>
   </div>
   <footer id="footer">
   </footer>
