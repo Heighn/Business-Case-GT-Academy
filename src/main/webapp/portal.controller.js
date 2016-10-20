@@ -21,11 +21,12 @@
 
 
       for (var i in students){
-        var verjaardagMaand = parseInt(students[i].gebDatum.substr(5,2));
-        var verjaardagDag = parseInt(students[i].gebDatum.substr(8,2));
-        if(verjaardagMaand < parseInt(month)) verjaardagMaand += 12;
-        if(verjaardagDag < parseInt(day)) verjaardagDag += 31;
-
+        if(students[i].gebDatum != null) {
+          var verjaardagMaand = parseInt(students[i].gebDatum.substr(5,2));
+          var verjaardagDag = parseInt(students[i].gebDatum.substr(8,2));
+          if(verjaardagMaand < parseInt(month)) verjaardagMaand += 12;
+          if(verjaardagDag < parseInt(day)) verjaardagDag += 31;
+        }
         if(students[i].afstudeerDatum != null) {
           var afstudeerMaand = parseInt(students[i].afstudeerDatum.substr(5, 2));
           var afstudeerDag = parseInt(students[i].afstudeerDatum.substr(8, 2));

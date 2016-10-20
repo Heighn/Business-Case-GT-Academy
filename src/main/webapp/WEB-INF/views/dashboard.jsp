@@ -32,6 +32,7 @@
     <div class="content-fluid">
     	<h1>Dashboard</h1>
       <p>Volledige lijst alle studenten.</p><br>
+      <h2>Volledige lijst</h2><br>
       <div class="menubar">
         <div class="item">
           <!--<button>Student toevoegen</button>
@@ -105,19 +106,48 @@
         </tr>
       </tbody>
     </table>
+    <br><br><br><br><br>
+      <h2>Recente wijzigingen</h2><br>
+      <table>
+        <thead>
+          <th>Naam</th>
+          <th>Veld</th>
+          <th>Oude waarde</th>
+          <th>Nieuwe waarde</th>
+          <th></th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in vm.dataChanges">
+          <td>{{ item.firstName }} {{item.lastName}}</td>
+          <td>{{ item.fieldName }}</td>
+          <td>{{ item.oldValue }}</td>
+          <td>{{ item.newValue }}</td>
+          <td class="check"><a href="#"><img src="../images/icon.png" title="Bekijk gegevens van deze student"></a></td>
+        </tr>
+      </tbody>
+    </table>
+    <br><br><br><br><br>
+    <h2>Verjaardagen</h2><br>
+    <table>
+      <thead>
+        <th>Naam</th>
+        <th>Emailadres</th>
+        <th>Verjaardag</th>
+        <th></th>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in vm.data | orderBy:'verjaardagMaand' | orderBy:'verjaardagDag' | limitTo:10">
+        <td>{{ item.firstName }} {{item.lastName}}</td>
+        <td>{{ item.emailAddress }}</td>
+        <td>{{item.verjaardag | date : 'EEEE'}}, {{item.verjaardag | date : 'MMMM'}} {{item.verjaardag | date : 'dd'}}</td>
+        <td class="check"><a href="#"><img src="../images/icon.png" title="Bekijk gegevens van deze student"></a></td>
+      </tr>
+    </tbody>
+  </table>
+  <br><br><br><br><br>
+
   </div>
 
-  <h1>U bent ingelogd, ${recruiterName}</h1>
-
-  <h2>Recente Wijzigingen in onze Studentgegevens</h2>
-  <p ng-repeat="item in vm.dataChanges">
-    {{ item.firstName }} {{ item.lastName }} veranderde zijn/haar {{ item.fieldName }} van {{ item.oldValue }} naar {{ item.newValue }}.
-  </p>
-
-  <h2>Aankomende Verjaardagen</h2>
-  <p ng-repeat="item in vm.data | orderBy:'verjaardagMaand' | orderBy:'verjaardagDag' | limitTo:10">
-    {{item.firstName}} {{item.lastName}}: {{item.verjaardag | date : 'EEEE'}}, {{item.verjaardag | date : 'MMMM'}} {{item.verjaardag | date : 'dd'}}
-  </p>
 
   <h2>Aankomende Afstudeerders (minimaal 3 maand)</h2>
   <p ng-repeat="item in vm.data | orderBy:'afstudeerMaand' | limitTo:10">
