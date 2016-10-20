@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -8,7 +7,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@ include file="header.jsp" %>
 <div id="main" ng-app="profiel" ng-controller="ProfielController as vm">
 	<div class="content">
-		<p><a href="verwijderen">Account Verwijderen</a></p>
 		<h1>Welkom ${firstName}</h1>
 		<p>Dit is je persoonlijke profiel. Hieronder kun je alle gegevens die bij ons bekend zijn wijzigen. Daarnaast kun je je cv uploaden en je aanmelden voor evenementen.</p><br>
 		<p>${message}</p>
@@ -39,7 +37,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input type="submit" value="Opslaan">
 				</form:form>
 		  </div>
-
 		  <%--<h3>Interesses</h3>--%>
 		  <%--<div>--%>
 		  	<%--<form:form method="post" commandName="contactGegevensBean">--%>
@@ -68,13 +65,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<%--<p>Business Consultancy</p><form:checkbox path="domoticaRobotica"/>--%>
 					<%--<p>Test Engineering</p><form:checkbox path="domoticaRobotica"/>--%>
 				</form:form>
-
 			</div>
-
-
-
-
-
+			<h3>Overig</h3>
+			<div>
+				<p><a href="verwijderen">Account verwijderen</a></p>
+			</div>
  		</div>
 	</div>
 </div>
