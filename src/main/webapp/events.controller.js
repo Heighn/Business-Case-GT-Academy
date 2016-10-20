@@ -15,7 +15,7 @@
       vm.data = [];
       var events = vm.rawData._embedded.events
       for (var i in events){
-        var new_item = {name: events[i].name, date: events[i].date};
+        var new_item = {name: events[i].name, date: events[i].date, subscribers: events[i].subscribers};
         console.log("ITEM: ", new_item);
         vm.data.push(new_item);
       }

@@ -3,9 +3,7 @@ package nl.getthere.controllers;
 import nl.getthere.formbeans.ContactGegevensBean;
 import nl.getthere.formbeans.PersoonsGegevensBean;
 import nl.getthere.formbeans.ThemeBean;
-import nl.getthere.model.DataChangeRepository;
-import nl.getthere.model.Theme;
-import nl.getthere.model.ThemeRepository;
+import nl.getthere.model.*;
 import nl.getthere.users.Student;
 import nl.getthere.users.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,6 +25,8 @@ public class StudentController {
 	private ThemeRepository themeRepo;
 	@Autowired
 	private DataChangeRepository dataChangeRepo;
+	@Autowired
+	private EventRepository eventRepo;
 
 	@RequestMapping("/verwijderen")
 	public String deleteAccount() {
@@ -117,6 +118,18 @@ public class StudentController {
 
 	@RequestMapping("/evenementen")
 	public String evenementen(){
+		return "studentEvenementen";
+	}
+
+	@RequestMapping("/{eventName}")
+	public String subscriber(@PathVariable String eventName){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Student loggedInStudent = studentRepo.findByEmailAddress(auth.getName());
+		System.out.println("EventName: " + eventName);
+		Event event = eventRepo.findByName(eventName);
+		event.addSubscriber(loggedInStudent.getFirstName());
+		eventRepo.save(event);
+
 		return "studentEvenementen";
 	}
 

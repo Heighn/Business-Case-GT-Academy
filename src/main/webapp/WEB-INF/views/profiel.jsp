@@ -22,9 +22,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<form:input path="gebDatum" value="${gebDatum}"/>
 					<p>Woonplaats</p>
 					<form:input path="woonplaats" value="${woonplaats}"/>
-					<input type="submit" value="Opslaan">
 					<p>Afstudeerdatum</p>
 					<form:input path="afstudeerDatum" value="${afstudeerDatum}"/>
+					<input type="submit" value="Opslaan">
 				</form:form>
 		  </div>
 		  <h3>Contactgegevens</h3>

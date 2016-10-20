@@ -63,7 +63,7 @@
         <tbody>
         <tr ng-repeat="item in vm.data | orderBy:'afstudeerMaand' | limitTo:10">
           <td>{{ item.firstName }} {{item.lastName}}</td>
-          <td>{{item.afstudeerDatum | date : 'EEEE'}}, {{item.afstudeerDatum | date : 'MMMM'}} {{item.afstudeerDatum | date : 'dd'}} {{item.afstudeerDatum | date : 'yyyy'}}</td>
+          <td>{{item.afstudeerDatum | date : 'MMMM'}} {{item.afstudeerDatum | date : 'dd'}}, {{item.afstudeerDatum | date : 'yyyy'}}</td>
           <td class="check"><a href="#"><img src="../images/icon.png" title="Bekijk gegevens van deze student"></a></td>
         </tr>
       </tbody>
@@ -81,7 +81,7 @@
       <tr ng-repeat="item in vm.data | orderBy:'verjaardagMaand' | orderBy:'verjaardagDag' | limitTo:10">
         <td>{{ item.firstName }} {{item.lastName}}</td>
         <td>{{ item.emailAddress }}</td>
-        <td>{{item.verjaardag | date : 'EEEE'}}, {{item.verjaardag | date : 'MMMM'}} {{item.verjaardag | date : 'dd'}}</td>
+        <td>{{item.verjaardag | date : 'MMMM'}} {{item.verjaardag | date : 'dd'}}</td>
         <td class="check"><a href="#"><img src="../images/icon.png" title="Bekijk gegevens van deze student"></a></td>
       </tr>
     </tbody>

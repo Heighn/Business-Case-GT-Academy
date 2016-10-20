@@ -50,11 +50,11 @@ public class PersoonsGegevensBean {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 
         if(!gebDatum.equals(student.getGebDatum())){
-            DataChange dataChange = new DataChange(student.getEmailAddress(), student.getFirstName(), student.getLastName(), "geboorteDatum", df.format(student.getGebDatum()), df.format(gebDatum));
+            DataChange dataChange = new DataChange(student.getEmailAddress(), student.getFirstName(), student.getLastName(), "geboortedatum", df.format(student.getGebDatum()), df.format(gebDatum));
             dataChangeRepo.save(dataChange);
         }
         if(!afstudeerDatum.equals(student.getAfstudeerDatum())){
-            DataChange dataChange = new DataChange(student.getEmailAddress(), student.getFirstName(), student.getLastName(), "afstudeerDatum", df.format(student.getAfstudeerDatum()), df.format(afstudeerDatum));
+            DataChange dataChange = new DataChange(student.getEmailAddress(), student.getFirstName(), student.getLastName(), "afstudeerdatum", df.format(student.getAfstudeerDatum()), df.format(afstudeerDatum));
             dataChangeRepo.save(dataChange);
         }
 

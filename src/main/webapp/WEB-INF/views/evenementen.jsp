@@ -61,12 +61,14 @@
           <th><input type="checkbox"></th>
           <th>Omschrijving</th>
           <th>Datum</th>
+          <th>Aangemelde Studenten</th>
         </thead>
         <tbody>
         <tr ng-repeat="item in vm.data | filter:search">
           <td class="check"><input type="checkbox" ng-model="item.selected"></td>
           <td>{{ item.name }}</td>
           <td>{{ item.date }}</td>
+          <td>{{ item.subscribers }}</td>
         </tr>
       </tbody>
     </table>

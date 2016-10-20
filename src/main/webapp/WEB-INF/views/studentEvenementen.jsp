@@ -56,6 +56,7 @@
                 <td>{{ item.type }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ item.date }}</td>
+                <td><a href="/student/{{item.name}}">Aanmelden!</a></td>
             </tr>
             </tbody>
         </table>
