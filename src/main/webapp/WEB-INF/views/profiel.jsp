@@ -18,6 +18,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<form:input path="firstName" value="${firstName}"/>
 					<p>Achternaam</p>
 					<form:input path="lastName" value="${lastName}"/>
+					<p>Afstudeerdatum</p>
+					<form:input path="afstudeerDatum" value="${afstudeerDatum}"/>
 					<p>Geboortedatum</p>
 					<form:input path="gebDatum" value="${gebDatum}" id="datepicker"/>
 					<p>Woonplaats</p>
@@ -52,18 +54,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<h3>Thema's</h3>
 			<div>
 				<form:form method="post" action="themasUpdate" commandName="themeBean">
-					<p ng-repeat="item in vm.data"> <form:checkbox path="themes" value="{{item.description}}"/> {{ item.description }}</p>
+					<p ng-repeat="item in vm.data"> <form:checkbox path="themeDescriptions" value="{{item.description}}"/> {{ item.description }}</p>
 					<input type="submit" value="Opslaan">
-					<%--<p>Domotica/Robotica</p><form:checkbox path="domoticaRobotica"/>--%>
-					<%--<p>Big Data</p><form:checkbox path="domoticaRobotica"/>--%>
-					<%--<p>Software Development</p><form:checkbox path="domoticaRobotica"/>--%>
-					<%--<p>Software Architectuur</p><form:checkbox path="domoticaRobotica"/>--%>
-					<%--<p>Security</p><form:checkbox path="domoticaRobotica"/>--%>
-					<%--<p>Internet of Things</p><form:checkbox path="domoticaRobotica"/>--%>
-					<%--<p>Virtual Reality</p><form:checkbox path="domoticaRobotica"/>--%>
-					<%--<p>Gamification</p><form:checkbox path="domoticaRobotica"/>--%>
-					<%--<p>Business Consultancy</p><form:checkbox path="domoticaRobotica"/>--%>
-					<%--<p>Test Engineering</p><form:checkbox path="domoticaRobotica"/>--%>
 				</form:form>
 			</div>
 			<h3>Overig</h3>

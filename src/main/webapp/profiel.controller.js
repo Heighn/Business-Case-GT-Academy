@@ -20,11 +20,7 @@
 
             vm.data = [];
             var themes = vm.rawData._embedded.themes;
-            for (var i in themes){
-                var new_item = {description: themes[i].description, id: themes[i].id};
-                console.log("ITEM: ", new_item);
-                vm.data.push(new_item);
-            }
+            vm.data = themes;
             console.log("DATA: ", vm.data);
         });
     }

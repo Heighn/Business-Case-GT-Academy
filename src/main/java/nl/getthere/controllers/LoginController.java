@@ -43,7 +43,6 @@ public class LoginController {
         if (auth.getAuthorities().toString().equals("[student]")) {
             return "redirect:/student/profiel";
         } else if (auth.getAuthorities().toString().equals("[recruiter]")){
-            System.out.println("Ik ben een recruiter");
             model.addAttribute("recruiterName", auth.getName());
             return "redirect:/recruiter/dashboard";
         }

@@ -106,6 +106,23 @@
       </tbody>
     </table>
   </div>
+
+  <h1>U bent ingelogd, ${recruiterName}</h1>
+
+  <h2>Recente Wijzigingen in onze Studentgegevens</h2>
+  <p ng-repeat="item in vm.dataChanges">
+    {{ item.firstName }} {{ item.lastName }} veranderde zijn/haar {{ item.fieldName }} van {{ item.oldValue }} naar {{ item.newValue }}.
+  </p>
+
+  <h2>Aankomende Verjaardagen</h2>
+  <p ng-repeat="item in vm.data | orderBy:'verjaardagMaand' | orderBy:'verjaardagDag' | limitTo:10">
+    {{item.firstName}} {{item.lastName}}: {{item.verjaardag | date : 'EEEE'}}, {{item.verjaardag | date : 'MMMM'}} {{item.verjaardag | date : 'dd'}}
+  </p>
+
+  <h2>Aankomende Afstudeerders (minimaal 3 maand)</h2>
+  <p ng-repeat="item in vm.data | orderBy:'afstudeerMaand' | limitTo:10">
+    {{item.firstName}} {{item.lastName}}: {{item.afstudeerDatum | date : 'EEEE'}}, {{item.afstudeerDatum | date : 'MMMM'}} {{item.afstudeerDatum | date : 'dd'}} {{item.afstudeerDatum | date : 'yyyy'}}
+  </p>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 <script src="../portal.module.js"></script>
