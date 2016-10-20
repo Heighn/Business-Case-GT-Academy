@@ -42,7 +42,7 @@
           <button class="delete">Evenement verwijderen</button>
         </div>
         <div class="item right">
-          <p class="foundSet">evenementen in huidige weergave</p>
+          <p class="foundSet">{{ (vm.data|filter:search).length }} van {{ vm.data.length}} evenementen in huidige weergave</p>
         </div>
         <div class="clear"></div>
       </div>
@@ -59,11 +59,13 @@
         <thead>
           <th><input type="checkbox"></th>
           <th>Omschrijving</th>
+          <th>Datum</th>
         </thead>
         <tbody>
-        <tr ng-repeat="item in vm.data">
+        <tr ng-repeat="item in vm.data | filter:search">
           <td class="check"><input type="checkbox" ng-model="item.selected"></td>
           <td>{{ item.name }}</td>
+          <td>{{ item.date }}</td>
         </tr>
       </tbody>
     </table>

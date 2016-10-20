@@ -3,7 +3,7 @@
 
   angular.module("portal")
     .controller('PortalController', portalController);
-    
+
   function portalController($http){
     var vm = this;
     vm.rawData = [];
