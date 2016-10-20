@@ -100,7 +100,7 @@ public class RecruiterController {
 	@RequestMapping(value="/nieuw-bericht", method=RequestMethod.POST)
 	public String sendEmailByRecruiterPost(String messageText, String subject, String emailAddresses) {
 		studentMailSender.sendEmail(messageText, subject, emailAddresses.split(","));
-		return "dashboard";
+		return "studenten";
 	}
 
 	@RequestMapping("/DeleteStudent")
