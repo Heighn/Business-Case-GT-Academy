@@ -103,11 +103,6 @@ public class RecruiterController {
 		return "dashboard";
 	}
 
-	@RequestMapping("/StudentList")
-	public String studentList(Model model){
-		model.addAttribute("students", studentRepo.findAll());
-		return "StudentList";
-	}
 	@RequestMapping("/DeleteStudent")
 	public String deleteStudent(Model model){
 		model.addAttribute("students", studentRepo.findAll());
@@ -151,17 +146,17 @@ public class RecruiterController {
 		return "evenementen";
 	}
 
-	@RequestMapping("/createEvent")
+	@RequestMapping("/nieuw-evenement")
 	public String createEvent(Model model){
 		Event eventForm = new Event();
 		model.addAttribute("eventForm", eventForm);
-		return "eventForm";
+		return "nieuw-evenement";
 	}
 
-	@RequestMapping(value="/createEvent", method=RequestMethod.POST)
+	@RequestMapping(value="/nieuw-evenement", method=RequestMethod.POST)
 	public String createEventPost(@ModelAttribute("eventForm") Event eventForm){
 		eventRepo.save(eventForm);
-		return "redirect:/recruiter/ingelogd";
+		return "redirect:evenementen";
 	}
 
 	@RequestMapping("/studenten")

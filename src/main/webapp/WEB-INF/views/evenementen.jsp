@@ -38,7 +38,7 @@
           <button>Studenten verwijderen</button>-->
         </div>
         <div class="item">
-          <button class="success" ng-click="vm.newMailMessage()">Evenement toevoegen</button>
+          <button class="success" onclick="window.location.href='nieuw-evenement'">Evenement toevoegen</button>
           <button class="delete">Evenement verwijderen</button>
         </div>
         <div class="item right">
