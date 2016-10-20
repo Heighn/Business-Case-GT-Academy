@@ -3,7 +3,6 @@ package nl.getthere.users;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -22,18 +21,27 @@ public class Student{
 	@Transient
 	private String password;
 	private String passwordConfirmation;
+	private Date afstudeerDatum;
 
-//	@ManyToMany(cascade=CascadeType.ALL)
-//	@JoinTable(name="student_theme", joinColumns=@JoinColumn(name="id"), inverseJoinColumns=@JoinColumn(name="]id"))
-//	private ArrayList<Theme> themes;
-	private ArrayList<Long> themeIDs;
-
-	public ArrayList<Long> getThemes() {
-		return themeIDs;
+	public Date getAfstudeerDatum() {
+		return afstudeerDatum;
 	}
 
-	public void setThemes(ArrayList<Long> themes) {
-		this.themeIDs = themeIDs;
+	public void setAfstudeerDatum(Date afstudeerDatum) {
+		this.afstudeerDatum = afstudeerDatum;
+	}
+
+	//	@ManyToMany(cascade=CascadeType.ALL)
+//	@JoinTable(name="student_theme", joinColumns=@JoinColumn(name="id"), inverseJoinColumns=@JoinColumn(name="]id"))
+//	private ArrayList<Theme> themes;
+	private String[] themeDescriptions;
+
+	public String[] getThemeDescriptions() {
+		return themeDescriptions;
+	}
+
+	public void setThemeDescriptions(String[] themeDescriptions) {
+		this.themeDescriptions = themeDescriptions;
 	}
 
 	//private Date readyDate; // Date at which student is ready to work

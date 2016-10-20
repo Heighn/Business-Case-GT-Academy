@@ -3,6 +3,7 @@ package nl.getthere.controllers;
 import nl.getthere.formbeans.ContactGegevensBean;
 import nl.getthere.formbeans.PersoonsGegevensBean;
 import nl.getthere.formbeans.ThemeBean;
+import nl.getthere.model.DataChangeRepository;
 import nl.getthere.model.Theme;
 import nl.getthere.model.ThemeRepository;
 import nl.getthere.users.Student;
@@ -23,6 +24,8 @@ public class StudentController {
 	private StudentRepository studentRepo;
 	@Autowired
 	private ThemeRepository themeRepo;
+	@Autowired
+	private DataChangeRepository dataChangeRepo;
 
 	@RequestMapping("/inactief")
 	public String deleteAccount() {
@@ -79,7 +82,7 @@ public class StudentController {
 	public String persoonsGegevensPost(@ModelAttribute("persoonsGegevensBean") PersoonsGegevensBean persoonsGegevensBean, Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Student loggedInStudent = studentRepo.findByEmailAddress(auth.getName());
-		loggedInStudent = persoonsGegevensBean.fillStudent(loggedInStudent);
+		loggedInStudent = persoonsGegevensBean.fillStudent(loggedInStudent, dataChangeRepo);
 		studentRepo.save(loggedInStudent);
 
 		return "redirect:/student/profiel";
@@ -89,7 +92,7 @@ public class StudentController {
 	public String contactGegevensPost(@ModelAttribute("contactGegevensBean") ContactGegevensBean contactGegevensBean, Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Student loggedInStudent = studentRepo.findByEmailAddress(auth.getName());
-		loggedInStudent = contactGegevensBean.fillStudent(loggedInStudent);
+		loggedInStudent = contactGegevensBean.fillStudent(loggedInStudent, dataChangeRepo);
 		studentRepo.save(loggedInStudent);
 		return "redirect:/student/profiel";
 	}
@@ -98,10 +101,14 @@ public class StudentController {
 	public String contactGegevensPost(@ModelAttribute("themeBean") ThemeBean themeBean, Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Student loggedInStudent = studentRepo.findByEmailAddress(auth.getName());
-
-		loggedInStudent = themeBean.fillStudent(loggedInStudent, themeRepo);
+		loggedInStudent = themeBean.fillStudent(loggedInStudent);
 		studentRepo.save(loggedInStudent);
 		return "redirect:/student/profiel";
+	}
+
+	@RequestMapping("/evenementen")
+	public String evenementen(){
+		return "evenementen";
 	}
 
 	@RequestMapping("/add")

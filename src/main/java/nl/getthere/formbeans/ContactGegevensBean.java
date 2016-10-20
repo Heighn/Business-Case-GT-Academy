@@ -1,5 +1,7 @@
 package nl.getthere.formbeans;
 
+import nl.getthere.model.DataChange;
+import nl.getthere.model.DataChangeRepository;
 import nl.getthere.users.Student;
 
 /**
@@ -16,9 +18,26 @@ public class ContactGegevensBean {
         this.emailAddress = student.getEmailAddress();
     }
 
-    public Student fillStudent(Student student){
+    public Student fillStudent(Student student, DataChangeRepository dataChangeRepo){
         student.setPhoneNumber(phoneNumber);
         student.setLinkedIn(linkedIn);
+
+        if(!emailAddress.equals(student.getEmailAddress())){
+            DataChange dataChange = new DataChange(student.getEmailAddress(), student.getFirstName(), student.getLastName(), "emailadres", student.getEmailAddress(), emailAddress);
+            dataChangeRepo.save(dataChange);
+        }
+        if(!phoneNumber.equals(student.getPhoneNumber())){
+            DataChange dataChange = new DataChange(student.getEmailAddress(), student.getFirstName(), student.getLastName(), "telefoonnummer", student.getPhoneNumber(), phoneNumber);
+            dataChangeRepo.save(dataChange);
+        }
+        if(!linkedIn.equals(student.getLinkedIn())){
+            DataChange dataChange = new DataChange(student.getEmailAddress(), student.getFirstName(), student.getLastName(), "LinkedIn-pagina", student.getLinkedIn(), linkedIn);
+            dataChangeRepo.save(dataChange);
+        }
+
+
+
+
         return student;
     }
 

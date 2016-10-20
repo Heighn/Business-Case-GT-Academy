@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.ArrayList;
 
 /**
  * Created by hein.dehaan on 18-10-2016.
@@ -17,7 +16,7 @@ public class Theme {
 
 //    @ManyToMany(mappedBy="themes", cascade=CascadeType.ALL)
 //    private ArrayList<Student> students;
-    private ArrayList<Long> studentIDs = new ArrayList<Long>();
+//    private String[] studentIDs;
 
 
     public Theme(){}
@@ -36,13 +35,13 @@ public class Theme {
 
 
 
-    public ArrayList<Long> getStudentIDs() {
-        return studentIDs;
-    }
-
-    public void setStudentIDs(ArrayList<Long> studentIDs) {
-        this.studentIDs = studentIDs;
-    }
+//    public String[] getStudentIDs() {
+//        return studentIDs;
+//    }
+//
+//    public void setStudentIDs(String[] studentIDs) {
+//        this.studentIDs = studentIDs;
+//    }
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
