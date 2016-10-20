@@ -35,7 +35,7 @@
       <p>De personen in de tabel hieronder kunnen op de applicatie inloggen met recruiter rechten.</p><br>
       <div class="menubar">
         <div class="item">
-          <button class="success" ng-click="vm.newMailMessage()">Recruiter toevoegen</button>
+          <button class="success" onclick="window.location.href='recruiter-toevoegen'">Recruiter toevoegen</button>
           <button class="delete">Recruiter verwijderen</button>
         </div>
         <div class="clear"></div>

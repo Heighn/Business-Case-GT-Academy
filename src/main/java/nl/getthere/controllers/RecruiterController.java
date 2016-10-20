@@ -70,13 +70,13 @@ public class RecruiterController {
 		return StreamSupport.stream(all.spliterator(), false).filter(s -> s.getFullName().contains(fullName)).collect(Collectors.toList()).toString();
 	}
 
-	@RequestMapping(value = "/recruitersReg", method = RequestMethod.GET)
+	@RequestMapping(value = "/recruiter-toevoegen", method = RequestMethod.GET)
 	public String registreren(Model model, WebRequest webReq) {
 		Recruiter recruiterForm = new Recruiter();
 		model.addAttribute("recruiterForm", recruiterForm);
-		return "recruitersReg";
+		return "recruiter-toevoegen";
 	}
-	@RequestMapping(value = "/recruitersReg", method = RequestMethod.POST)
+	@RequestMapping(value = "/recruiter-toevoegen", method = RequestMethod.POST)
 	public String registrerenPost(@Valid @ModelAttribute("recruiterForm") Recruiter recruiterForm, Model model){
 		if(recruiterRepo.findByRecruiterName(recruiterForm.getRecruiterName()) == null) {
 			UserProfile userProfile = new UserProfile();
@@ -89,7 +89,7 @@ public class RecruiterController {
 			return "admin";
 		}
 		model.addAttribute("errorMessage", "Er bestaat al een account met deze gebruikersnaam!");
-		return "recruitersReg";
+		return "recruiter-toevoegen";
 	}
 
 	@RequestMapping("/nieuw-bericht")
@@ -101,12 +101,6 @@ public class RecruiterController {
 	public String sendEmailByRecruiterPost(String messageText, String subject, String emailAddresses) {
 		studentMailSender.sendEmail(messageText, subject, emailAddresses.split(","));
 		return "dashboard";
-	}
-
-	@RequestMapping("/recruitersList")
-	public String recruitersList(Model model){
-		model.addAttribute("recruiters", recruiterRepo.findAll());
-		return "recruitersList";
 	}
 
 	@RequestMapping("/StudentList")
