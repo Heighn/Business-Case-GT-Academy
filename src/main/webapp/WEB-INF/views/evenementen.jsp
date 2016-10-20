@@ -9,7 +9,7 @@
   <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
-<body ng-app="portal">
+<body ng-app="events">
   <header id="header">
       <div class="branding">
         <a href="dashboard"><img src="../images/logo.png" alt="logo"></a>
@@ -28,7 +28,7 @@
         </ul>
       </nav>
   </header>
-<div id="main" ng-controller="PortalController as vm">
+<div id="main" ng-controller="EventController as vm">
     <div class="content-fluid">
     	<h1>Evenementen</h1>
       <p>Hieronder kunt u evenementen beheren en de deelnemers per evenement bekijken.</p><br>
@@ -42,7 +42,7 @@
           <button class="delete">Evenement verwijderen</button>
         </div>
         <div class="item right">
-          <p class="foundSet">{{ (vm.data|filter:thema|filter:status|filter:search|filter:event).length }} van {{ vm.data.length}} evenementen in huidige weergave</p>
+          <p class="foundSet">evenementen in huidige weergave</p>
         </div>
         <div class="clear"></div>
       </div>
@@ -61,15 +61,15 @@
           <th>Omschrijving</th>
         </thead>
         <tbody>
-        <tr ng-repeat="item in vm.data | filter:search | filter:thema | filter:event | filter:status | orderBy:'firstName'" ng-class="{'inactive': item.status === 'Verwijderd'}">
-          <td class="check"><input type="checkbox" ng-model="item.selected" ng-change="vm.updateSelection()"></td>
-          <td>{{ item.firstName }}</td>
+        <tr ng-repeat="item in vm.data">
+          <td class="check"><input type="checkbox" ng-model="item.selected"></td>
+          <td>{{ item.name }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-<script src="../portal.module.js"></script>
-<script src="../portal.controller.js"></script>
+<script src="../events.module.js"></script>
+<script src="../events.controller.js"></script>
 <%@ include file="footer.jsp" %>
