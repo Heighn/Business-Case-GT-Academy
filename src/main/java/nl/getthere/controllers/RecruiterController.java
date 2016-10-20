@@ -86,7 +86,7 @@ public class RecruiterController {
 			recruiterRepo.save(recruiterForm);
 			userProfileRepo.save(userProfile);
 			model.addAttribute("recruiterName", userProfile.getUserName());
-			return "admin";
+			return "redirect:beheer";
 		}
 		model.addAttribute("errorMessage", "Er bestaat al een account met deze gebruikersnaam!");
 		return "recruiter-toevoegen";
