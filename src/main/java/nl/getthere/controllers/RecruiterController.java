@@ -70,13 +70,13 @@ public class RecruiterController {
 		return StreamSupport.stream(all.spliterator(), false).filter(s -> s.getFullName().contains(fullName)).collect(Collectors.toList()).toString();
 	}
 
-	@RequestMapping(value = "/recruitersReg", method = RequestMethod.GET)
+	@RequestMapping(value = "/recruiter-toevoegen", method = RequestMethod.GET)
 	public String registreren(Model model, WebRequest webReq) {
 		Recruiter recruiterForm = new Recruiter();
 		model.addAttribute("recruiterForm", recruiterForm);
-		return "recruitersReg";
+		return "recruiter-toevoegen";
 	}
-	@RequestMapping(value = "/recruitersReg", method = RequestMethod.POST)
+	@RequestMapping(value = "/recruiter-toevoegen", method = RequestMethod.POST)
 	public String registrerenPost(@Valid @ModelAttribute("recruiterForm") Recruiter recruiterForm, Model model){
 		if(recruiterRepo.findByRecruiterName(recruiterForm.getRecruiterName()) == null) {
 			UserProfile userProfile = new UserProfile();
@@ -86,39 +86,23 @@ public class RecruiterController {
 			recruiterRepo.save(recruiterForm);
 			userProfileRepo.save(userProfile);
 			model.addAttribute("recruiterName", userProfile.getUserName());
-			return "admin";
+			return "redirect:beheer";
 		}
 		model.addAttribute("errorMessage", "Er bestaat al een account met deze gebruikersnaam!");
-		return "recruitersReg";
-	}
-	
-	@RequestMapping("/lijst")
-	public String lijst(HttpServletResponse resp){
-		return "studenten";
+		return "recruiter-toevoegen";
 	}
 
 	@RequestMapping("/nieuw-bericht")
 	public String sendEmailByRecruiter(HttpServletResponse resp){
-		return "sendEmail";
+		return "nieuw-bericht";
 	}
 
 	@RequestMapping(value="/nieuw-bericht", method=RequestMethod.POST)
 	public String sendEmailByRecruiterPost(String messageText, String subject, String emailAddresses) {
 		studentMailSender.sendEmail(messageText, subject, emailAddresses.split(","));
-		return "admin";
+		return "dashboard";
 	}
 
-	@RequestMapping("/recruitersList")
-	public String recruitersList(Model model){
-		model.addAttribute("recruiters", recruiterRepo.findAll());
-		return "recruitersList";
-	}
-
-	@RequestMapping("/StudentList")
-	public String studentList(Model model){
-		model.addAttribute("students", studentRepo.findAll());
-		return "StudentList";
-	}
 	@RequestMapping("/DeleteStudent")
 	public String deleteStudent(Model model){
 		model.addAttribute("students", studentRepo.findAll());
@@ -130,26 +114,49 @@ public class RecruiterController {
 		return "DeleteStudent";
 	}
 
-	@RequestMapping("/ingelogd")
+	@RequestMapping("/dashboard")
 	public String recruitersIngelogd(Model model){
 		model.addAttribute("recruiters", recruiterRepo.findAll());
-
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		model.addAttribute("recruiterName", auth.getName());
-		return "admin";
+		return "dashboard";
+	}
+	
+	@RequestMapping("/beheer")
+	public String recruitersBeheer(Model model){
+		model.addAttribute("recruiters", recruiterRepo.findAll());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("recruiterName", auth.getName());
+		return "beheer";
+	}
+	
+	@RequestMapping("/themas")
+	public String recruitersThemas(Model model){
+		model.addAttribute("recruiters", recruiterRepo.findAll());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("recruiterName", auth.getName());
+		return "themas";
+	}
+	
+	@RequestMapping("/evenementen")
+	public String recruitersEvenementen(Model model){
+		model.addAttribute("recruiters", recruiterRepo.findAll());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("recruiterName", auth.getName());
+		return "evenementen";
 	}
 
-	@RequestMapping("/createEvent")
+	@RequestMapping("/nieuw-evenement")
 	public String createEvent(Model model){
 		Event eventForm = new Event();
 		model.addAttribute("eventForm", eventForm);
-		return "eventForm";
+		return "nieuw-evenement";
 	}
 
-	@RequestMapping(value="/createEvent", method=RequestMethod.POST)
+	@RequestMapping(value="/nieuw-evenement", method=RequestMethod.POST)
 	public String createEventPost(@ModelAttribute("eventForm") Event eventForm){
 		eventRepo.save(eventForm);
-		return "redirect:/recruiter/ingelogd";
+		return "redirect:evenementen";
 	}
 
 	@RequestMapping("/studenten")

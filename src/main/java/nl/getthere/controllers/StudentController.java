@@ -27,13 +27,14 @@ public class StudentController {
 	@Autowired
 	private DataChangeRepository dataChangeRepo;
 
-	@RequestMapping("/inactief")
+	@RequestMapping("/verwijderen")
 	public String deleteAccount() {
+		System.out.println("delete Account");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Student loggedInStudent = studentRepo.findByEmailAddress(auth.getName());
-		loggedInStudent.setInActief(true);
-
-		return "inloggen";
+		loggedInStudent.setStatus("Verwijderd");
+		studentRepo.save(loggedInStudent);
+		return "redirect:/logout";
 	}
 
 	@RequestMapping(value = "/profiel", method = RequestMethod.GET)

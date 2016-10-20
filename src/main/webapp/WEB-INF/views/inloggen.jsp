@@ -33,7 +33,7 @@
 					<input type="password" name="password" />
 					<input type="submit" />
 				</form:form>
-				<p><a href="registreren">Registreren</a> | <a href="wachtwoordVergeten">Wachtwoord vergeten</a></p>
+				<p><a href="../registreren">Registreren</a> | <a href="../wachtwoordVergeten">Wachtwoord vergeten</a></p>
 			</div>
 		</div>
 	</div>

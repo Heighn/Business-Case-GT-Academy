@@ -22,33 +22,33 @@
       <nav id="menu">
         <ul class="fluid">
           <li><a href="dashboard">Dashboard</a></li>
-          <li><a href="#" class="current">Evenementen</a></li>
-          <li><a href="themas">Themas</a></li>
+          <li><a href="evenementen">Evenementen</a></li>
+          <li><a href="#" class="current">Themas</a></li>
           <li><a href="beheer">Beheer</a></li>
         </ul>
       </nav>
   </header>
 <div id="main" ng-controller="PortalController as vm">
     <div class="content-fluid">
-    	<h1>Evenementen</h1>
-      <p>Hieronder kunt u evenementen beheren en de deelnemers per evenement bekijken.</p><br>
+    	<h1>Thema's</h1>
+      <p>Hieronder kunt u thema's beheren om te koppelen aan evenementen.</p><br>
       <div class="menubar">
         <div class="item">
           <!--<button>Student toevoegen</button>
           <button>Studenten verwijderen</button>-->
         </div>
         <div class="item">
-          <button class="success" onclick="window.location.href='nieuw-evenement'">Evenement toevoegen</button>
-          <button class="delete">Evenement verwijderen</button>
+          <button class="success" ng-click="vm.newMailMessage()">Thema toevoegen</button>
+          <button class="delete">Thema verwijderen</button>
         </div>
         <div class="item right">
-          <p class="foundSet">{{ (vm.data|filter:thema|filter:status|filter:search|filter:event).length }} van {{ vm.data.length}} evenementen in huidige weergave</p>
+          <p class="foundSet">{{ (vm.data|filter:thema|filter:status|filter:search|filter:event).length }} van {{ vm.data.length}} thema's in huidige weergave</p>
         </div>
         <div class="clear"></div>
       </div>
       <div class="menubar">
         <div class="item">
-          <button ng-click="thema=''; event=''; search=''; status=''">Toon alle evenementen</button>
+          <button ng-click="thema=''; event=''; search=''; status=''">Toon alle thema's</button>
         </div>
         <div class="item right">
           <input type="text" ng-model="search" id="search" placeholder="zoeken">

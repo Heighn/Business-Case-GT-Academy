@@ -21,7 +21,7 @@
                 <input type="text" name="emailAddress" />
                 <input type="submit" />
             </form:form>
-            <p><a href="registreren">Nieuw account</a> | <a href="inloggen">Inloggen</a></p>
+            <p><a href="../registreren">Nieuw account</a> | <a href="../inloggen">Inloggen</a></p>
         </div>
     </div>
 </div>

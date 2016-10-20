@@ -22,36 +22,21 @@
       <nav id="menu">
         <ul class="fluid">
           <li><a href="dashboard">Dashboard</a></li>
-          <li><a href="#" class="current">Evenementen</a></li>
+          <li><a href="evenementen">Evenementen</a></li>
           <li><a href="themas">Themas</a></li>
-          <li><a href="beheer">Beheer</a></li>
+          <li><a href="#" class="current">Beheer</a></li>
         </ul>
       </nav>
   </header>
 <div id="main" ng-controller="PortalController as vm">
     <div class="content-fluid">
-    	<h1>Evenementen</h1>
-      <p>Hieronder kunt u evenementen beheren en de deelnemers per evenement bekijken.</p><br>
+    	<h1>Beheer</h1><br>
+      <h2>Recruiters</h2>
+      <p>De personen in de tabel hieronder kunnen op de applicatie inloggen met recruiter rechten.</p><br>
       <div class="menubar">
         <div class="item">
-          <!--<button>Student toevoegen</button>
-          <button>Studenten verwijderen</button>-->
-        </div>
-        <div class="item">
-          <button class="success" onclick="window.location.href='nieuw-evenement'">Evenement toevoegen</button>
-          <button class="delete">Evenement verwijderen</button>
-        </div>
-        <div class="item right">
-          <p class="foundSet">{{ (vm.data|filter:thema|filter:status|filter:search|filter:event).length }} van {{ vm.data.length}} evenementen in huidige weergave</p>
-        </div>
-        <div class="clear"></div>
-      </div>
-      <div class="menubar">
-        <div class="item">
-          <button ng-click="thema=''; event=''; search=''; status=''">Toon alle evenementen</button>
-        </div>
-        <div class="item right">
-          <input type="text" ng-model="search" id="search" placeholder="zoeken">
+          <button class="success" onclick="window.location.href='recruiter-toevoegen'">Recruiter toevoegen</button>
+          <button class="delete">Recruiter verwijderen</button>
         </div>
         <div class="clear"></div>
       </div>
@@ -61,12 +46,17 @@
           <th>Omschrijving</th>
         </thead>
         <tbody>
-        <tr ng-repeat="item in vm.data | filter:search | filter:thema | filter:event | filter:status | orderBy:'firstName'" ng-class="{'inactive': item.status === 'Verwijderd'}">
-          <td class="check"><input type="checkbox" ng-model="item.selected" ng-change="vm.updateSelection()"></td>
-          <td>{{ item.firstName }}</td>
+        <c:forEach items="${recruiters}" var="recruiter">
+        <tr>
+          <td class="check"><input type="checkbox"></td>
+          <td>${recruiter.recruiterName}</td>
         </tr>
+      </c:forEach>
       </tbody>
-    </table>
+    </table><br><br>
+    <h2>Voorkeuren</h2>
+    <input type="checkbox" id="newStudent" checked><label for="newStudent">Stuur een bericht wanneer een nieuwe student zich inschrijft.</label><br>
+    <input type="checkbox" id="study"><label for="study">Stuur een bericht wanneer een student afstudeerd.</label>
   </div>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>

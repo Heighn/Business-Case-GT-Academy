@@ -16,6 +16,7 @@ public class Student{
 	private String emailAddress;
 	private String linkedIn;
 	private String woonplaats;
+	private String status;
 	private Date gebDatum;
 	private Boolean agreedPrivacy; // Agreed privacy letter
 	@Transient
@@ -130,6 +131,14 @@ public class Student{
 		this.emailAddress = emailAddress;
 	}
 	
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	public String getLinkedIn() {
 		return linkedIn;
 	}
@@ -157,12 +166,4 @@ public class Student{
 	public String toString(){
 		return firstName + " " + lastName + " " + phoneNumber + " " + emailAddress;
 	}
-
-//	public Date getReadyDate() {
-//		return readyDate;
-//	}
-//
-//	public void setReadyDate(Date ready_date) {
-//		this.readyDate = readyDate;
-//	}
 }

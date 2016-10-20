@@ -44,7 +44,7 @@ public class LoginController {
             return "redirect:/student/profiel";
         } else if (auth.getAuthorities().toString().equals("[recruiter]")){
             model.addAttribute("recruiterName", auth.getName());
-            return "redirect:/recruiter/ingelogd";
+            return "redirect:/recruiter/dashboard";
         }
         return "inloggen";
     }

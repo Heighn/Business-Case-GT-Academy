@@ -1,10 +1,31 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-<%@ include file="header.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="charset" content="utf-8">
+  <title>Get There Studentenportaal</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body ng-app="portal">
+  <header id="header">
+      <div class="branding">
+        <a href="dashboard"><img src="../images/logo.png" alt="logo"></a>
+      </div>
+      <div class="avatar">
+        <p>U bent ingelogd als '${recruiterName}'<p>
+        <a href="../logout">Uitloggen</a>
+      </div>
+      <div class="clear"></div>
+      <nav id="menu">
+        <ul class="fluid">
+          <li><a href="dashboard">Dashboard</a></li>
+          <li><a href="#" class="current">Beheer</a></li>
+        </ul>
+      </nav>
+  </header>
 <div id="main" ng-app="profiel" ng-controller="ProfielController as vm">
 	<div class="content">
 		<h1>Welkom ${firstName}</h1>
@@ -18,8 +39,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<form:input path="firstName" value="${firstName}"/>
 					<p>Achternaam</p>
 					<form:input path="lastName" value="${lastName}"/>
-					<p>Afstudeerdatum</p>
-					<form:input path="afstudeerDatum" value="${afstudeerDatum}"/>
 					<p>Geboortedatum</p>
 					<form:input path="gebDatum" value="${gebDatum}" id="datepicker"/>
 					<p>Woonplaats</p>
@@ -54,8 +73,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<h3>Thema's</h3>
 			<div>
 				<form:form method="post" action="themasUpdate" commandName="themeBean">
-					<p ng-repeat="item in vm.data"> <form:checkbox path="themeDescriptions" value="{{item.description}}"/> {{ item.description }}</p>
+					<p ng-repeat="item in vm.data"> <form:checkbox path="themes" value="{{item.description}}"/> {{ item.description }}</p>
 					<input type="submit" value="Opslaan">
+					<%--<p>Domotica/Robotica</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Big Data</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Software Development</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Software Architectuur</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Security</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Internet of Things</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Virtual Reality</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Gamification</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Business Consultancy</p><form:checkbox path="domoticaRobotica"/>--%>
+					<%--<p>Test Engineering</p><form:checkbox path="domoticaRobotica"/>--%>
 				</form:form>
 			</div>
 			<h3>Overig</h3>
