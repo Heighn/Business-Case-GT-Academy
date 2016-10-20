@@ -100,7 +100,7 @@ public class RecruiterController {
 	@RequestMapping(value="/nieuw-bericht", method=RequestMethod.POST)
 	public String sendEmailByRecruiterPost(String messageText, String subject, String emailAddresses) {
 		studentMailSender.sendEmail(messageText, subject, emailAddresses.split(","));
-		return "dashboard";
+		return "studenten";
 	}
 
 	@RequestMapping("/DeleteStudent")
@@ -120,6 +120,14 @@ public class RecruiterController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		model.addAttribute("recruiterName", auth.getName());
 		return "dashboard";
+	}
+	
+	@RequestMapping("/studenten")
+	public String recruitersStudentenblup(Model model){
+		model.addAttribute("recruiters", recruiterRepo.findAll());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("recruiterName", auth.getName());
+		return "studenten";
 	}
 	
 	@RequestMapping("/beheer")

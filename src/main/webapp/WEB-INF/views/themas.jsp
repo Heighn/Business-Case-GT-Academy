@@ -9,7 +9,8 @@
   <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
-<body ng-app="portal">
+<%--<body ng-app="portal">--%>
+<body ng-app="profiel">
   <header id="header">
       <div class="branding">
         <a href="dashboard"><img src="../images/logo.png" alt="logo"></a>
@@ -22,13 +23,14 @@
       <nav id="menu">
         <ul class="fluid">
           <li><a href="dashboard">Dashboard</a></li>
+          <li><a href="studenten">Studenten</a></li>
           <li><a href="evenementen">Evenementen</a></li>
           <li><a href="#" class="current">Themas</a></li>
           <li><a href="beheer">Beheer</a></li>
         </ul>
       </nav>
   </header>
-<div id="main" ng-controller="PortalController as vm">
+<div id="main" ng-controller="ProfielController as vm">
     <div class="content-fluid">
     	<h1>Thema's</h1>
       <p>Hieronder kunt u thema's beheren om te koppelen aan evenementen.</p><br>
@@ -63,13 +65,13 @@
         <tbody>
         <tr ng-repeat="item in vm.data | filter:search | filter:thema | filter:event | filter:status | orderBy:'firstName'" ng-class="{'inactive': item.status === 'Verwijderd'}">
           <td class="check"><input type="checkbox" ng-model="item.selected" ng-change="vm.updateSelection()"></td>
-          <td>{{ item.firstName }}</td>
+          <td>{{ item.description }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-<script src="../portal.module.js"></script>
-<script src="../portal.controller.js"></script>
+<script src="../profiel.module.js"></script>
+<script src="../profiel.controller.js"></script>
 <%@ include file="footer.jsp" %>

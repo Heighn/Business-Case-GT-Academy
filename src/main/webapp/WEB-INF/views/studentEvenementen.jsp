@@ -21,10 +21,8 @@
     <div class="clear"></div>
     <nav id="menu">
         <ul class="fluid">
-            <li><a href="dashboard">Dashboard</a></li>
+            <li><a href="profiel" >Profiel</a></li>
             <li><a href="#" class="current">Evenementen</a></li>
-            <li><a href="themas">Themas</a></li>
-            <li><a href="beheer">Beheer</a></li>
         </ul>
     </nav>
 </header>

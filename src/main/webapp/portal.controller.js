@@ -3,7 +3,7 @@
 
   angular.module("portal")
     .controller('PortalController', portalController);
-    
+
   function portalController($http){
     var vm = this;
     vm.rawData = [];
@@ -21,7 +21,6 @@
 
 
       for (var i in students){
-
         if(students[i].gebDatum != null) {
           var verjaardagMaand = parseInt(students[i].gebDatum.substr(5, 2));
           var verjaardagDag = parseInt(students[i].gebDatum.substr(8, 2));
@@ -31,7 +30,6 @@
           verjaardagMaand = 100;
           verjaardagDag = 100;
         }
-
         if(students[i].afstudeerDatum != null) {
           var afstudeerMaand = parseInt(students[i].afstudeerDatum.substr(5, 2));
           var afstudeerDag = parseInt(students[i].afstudeerDatum.substr(8, 2));
@@ -44,7 +42,7 @@
         console.log(students[i].firstName, afstudeerMaand);
 
 
-        var new_item = {firstName: students[i].firstName, lastName: students[i].lastName, emailAddress: students[i].emailAddress, verjaardag: students[i].gebDatum, verjaardagMaand: verjaardagMaand, verjaardagDag: verjaardagDag, afstudeerDatum: students[i].afstudeerDatum, afstudeerDag: afstudeerDag, afstudeerMaand: afstudeerMaand, thema: "Traineeship", events: "Evenement X", status: students[i].isInactief};
+        var new_item = {firstName: students[i].firstName, lastName: students[i].lastName, emailAddress: students[i].emailAddress, verjaardag: students[i].gebDatum, verjaardagMaand: verjaardagMaand, verjaardagDag: verjaardagDag, afstudeerDatum: students[i].afstudeerDatum, afstudeerDag: afstudeerDag, afstudeerMaand: afstudeerMaand, thema: "Traineeship", events: "Evenement X", status: students[i].status};
         console.log("ITEM: ", new_item);
         vm.data.push(new_item);
       }
