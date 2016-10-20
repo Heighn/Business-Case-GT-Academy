@@ -63,7 +63,6 @@ public class PersoonsGegevensBean {
             dataChangeRepo.save(dataChange);
         }
 
-
         student.setFirstName(firstName);
         student.setLastName(lastName);
         student.setGebDatum(gebDatum);

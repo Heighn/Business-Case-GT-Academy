@@ -159,12 +159,6 @@ public class RecruiterController {
 		return "redirect:evenementen";
 	}
 
-	@RequestMapping("/studenten")
-	public String mailStudenten(Model model){
-		model.addAttribute("Hoi", "Hoi Hein!");
-		return "studenten";
-	}
-
 	@RequestMapping("/correspondentie")
 	public String correspondence(){
 		return "correspondence";

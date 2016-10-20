@@ -61,6 +61,13 @@ public class StudentController {
 			//Nothing to do here
 		}
 		try{
+			model.addAttribute("afstudeerDatum", loggedInStudent.getAfstudeerDatum().toString().replaceAll("-", "/").substring(0, 10));
+		}catch(NullPointerException nE){
+			//Nothing to do here
+		}
+
+
+		try{
 			model.addAttribute("woonplaats", loggedInStudent.getWoonplaats());
 		}catch(NullPointerException nE){
 			//Nothing to do here
@@ -83,6 +90,7 @@ public class StudentController {
 	public String persoonsGegevensPost(@ModelAttribute("persoonsGegevensBean") PersoonsGegevensBean persoonsGegevensBean, Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Student loggedInStudent = studentRepo.findByEmailAddress(auth.getName());
+
 		loggedInStudent = persoonsGegevensBean.fillStudent(loggedInStudent, dataChangeRepo);
 		studentRepo.save(loggedInStudent);
 
@@ -109,7 +117,7 @@ public class StudentController {
 
 	@RequestMapping("/evenementen")
 	public String evenementen(){
-		return "evenementen";
+		return "studentEvenementen";
 	}
 
 	@RequestMapping("/add")

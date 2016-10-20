@@ -31,7 +31,7 @@
 <div id="main" ng-controller="PortalController as vm">
     <div class="content-fluid">
     	<h1>Evenementen</h1>
-      <p>Hieronder kunt u evenementen beheren en de deelnemers per evenement bekijken.</p><br>
+      <p>Hieronder kunt je de aankomende evenementen bekijken!</p><br>
       <div class="menubar">
         <div class="item">
           <!--<button>Student toevoegen</button>
