@@ -140,6 +140,22 @@ public class RecruiterController {
 		model.addAttribute("recruiterName", auth.getName());
 		return "beheer";
 	}
+	
+	@RequestMapping("/themas")
+	public String recruitersThemas(Model model){
+		model.addAttribute("recruiters", recruiterRepo.findAll());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("recruiterName", auth.getName());
+		return "themas";
+	}
+	
+	@RequestMapping("/evenementen")
+	public String recruitersEvenementen(Model model){
+		model.addAttribute("recruiters", recruiterRepo.findAll());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("recruiterName", auth.getName());
+		return "evenementen";
+	}
 
 	@RequestMapping("/createEvent")
 	public String createEvent(Model model){

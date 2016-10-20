@@ -22,30 +22,33 @@
       <nav id="menu">
         <ul class="fluid">
           <li><a href="dashboard">Dashboard</a></li>
-          <li><a href="evenementen">Evenementen</a></li>
+          <li><a href="#" class="current">Evenementen</a></li>
           <li><a href="themas">Themas</a></li>
-          <li><a href="#" class="current">Beheer</a></li>
+          <li><a href="beheer">Beheer</a></li>
         </ul>
       </nav>
   </header>
 <div id="main" ng-controller="PortalController as vm">
     <div class="content-fluid">
-    	<h1>Beheer</h1><br>
-      <h2>Recruiters</h2>
-      <p>De personen in de tabel hieronder kunnen op de applicatie inloggen met recruiter rechten.</p><br>
+    	<h1>Evenementen</h1>
+      <p>Hieronder kunt u evenementen beheren en de deelnemers per evenement bekijken.</p><br>
       <div class="menubar">
         <div class="item">
-          <button class="success" ng-click="vm.newMailMessage()">Recruiter toevoegen</button>
-          <button class="delete">Recruiter verwijderen</button>
+          <!--<button>Student toevoegen</button>
+          <button>Studenten verwijderen</button>-->
+        </div>
+        <div class="item">
+          <button class="success" ng-click="vm.newMailMessage()">Evenement toevoegen</button>
+          <button class="delete">Evenement verwijderen</button>
         </div>
         <div class="item right">
-          <p class="foundSet">{{ (vm.data|filter:thema|filter:status|filter:search|filter:event).length }} van {{ vm.data.length}} recruiters in huidige weergave</p>
+          <p class="foundSet">{{ (vm.data|filter:thema|filter:status|filter:search|filter:event).length }} van {{ vm.data.length}} evenementen in huidige weergave</p>
         </div>
         <div class="clear"></div>
       </div>
       <div class="menubar">
         <div class="item">
-          <button ng-click="thema=''; event=''; search=''; status=''">Toon alle recruiters</button>
+          <button ng-click="thema=''; event=''; search=''; status=''">Toon alle evenementen</button>
         </div>
         <div class="item right">
           <input type="text" ng-model="search" id="search" placeholder="zoeken">
