@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="content-fluid">
       <h3>Recruiter toevoegen</h3>
       <p>Gebruik het formulier hieronder om een nieuwe recruiter toe te voegen.<br><a href="beheer">Ga terug naar beheer.</a></p><br>
-      <div class="error">${errorMessage}</div>
+      <p class="error">${errorMessage}</p><br>
       <form:form method="post" commandName="recruiterForm">
         <p>Gebruikersnaam</p>
         <form:input path="recruiterName"/>
