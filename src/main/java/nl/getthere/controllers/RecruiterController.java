@@ -128,10 +128,17 @@ public class RecruiterController {
 	@RequestMapping("/dashboard")
 	public String recruitersIngelogd(Model model){
 		model.addAttribute("recruiters", recruiterRepo.findAll());
-
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		model.addAttribute("recruiterName", auth.getName());
 		return "dashboard";
+	}
+	
+	@RequestMapping("/beheer")
+	public String recruitersBeheer(Model model){
+		model.addAttribute("recruiters", recruiterRepo.findAll());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("recruiterName", auth.getName());
+		return "beheer";
 	}
 
 	@RequestMapping("/createEvent")

@@ -26,6 +26,7 @@
       <div class="branding">
         <a href="inloggen"><img src="../images/logo.png" alt="logo"></a>
       </div>
+      <div class="clear"></div>
       <nav id="menu">
         <ul>
           <li><a href="#" class="current">Profiel</a></li>

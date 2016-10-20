@@ -34,6 +34,10 @@ h1 {
   font-size: 3em;
 }
 
+h2 {
+  font-size: 2.4em;
+}
+
 h3 {
   padding-top: 30px;
   padding-bottom: 10px;
@@ -63,6 +67,7 @@ h5 {
 
 .branding {
   margin: 20px 0 15px 0;
+  float: left;
   padding: 0 2%;
 }
 
@@ -73,6 +78,13 @@ h5 {
   -ms-animation: fadein 1.5s; /* Internet Explorer */
   -o-animation: fadein 1.5s; /* Opera < 12.1 */
   animation: fadein 1.5s;
+}
+
+.avatar {
+  margin-top: 23px;
+  float: right;
+  padding: 0 2%;
+  text-align: right;
 }
 
 @keyframes fadein {
@@ -257,6 +269,17 @@ button.success:hover {
   border-color: #398439;
 }
 
+button.delete {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  color: #fff;
+}
+
+button.delete:hover {
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+
 select {
   cursor: pointer;
 }
@@ -268,7 +291,7 @@ label {
 }
 
 .menubar {
-  background-color: #f3f3f3;
+  background-color: #eee;
   border: 1px solid #ddd;
   border-bottom: 0;
   padding: 8px;
@@ -325,6 +348,10 @@ td {
   -ms-animation: fadein 1.5s; /* Internet Explorer */
   -o-animation: fadein 1.5s; /* Opera < 12.1 */
   animation: fadein 1.5s;
+}
+
+.check img {
+  width: auto;
 }
 
 td.check {

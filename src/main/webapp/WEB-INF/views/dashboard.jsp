@@ -9,28 +9,27 @@
   <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
-<body ng-app="portal" ng-cloak class="cloak">
+<body ng-app="portal">
   <header id="header">
       <div class="branding">
         <a href="inloggen"><img src="../images/logo.png" alt="logo"></a>
       </div>
+      <div class="avatar">
+        <p>U bent ingelogd als '${recruiterName}'<p>
+        <a href="../logout">Uitloggen</a>
+      </div>
+      <div class="clear"></div>
       <nav id="menu">
         <ul class="fluid">
           <li><a href="#" class="current">Dashboard</a></li>
-          <li><a href="#">Overzicht studenten</a></li>
-          <li><a href="#">Evenementen</a></li>
-          <li><a href="../logout">Uitloggen</a></li>
-          <!--<li><a href="/sendEmail">Email Verzenden</a></li>
-  		    <li><a href="/recruitersList">Recruitersoverzicht</a></li>
-          <li><a href="/StudentList">Studentenoverzicht</a></li>
-          <li><a href="/DeleteStudent">Verwijder een Student</a></li>-->
+          <li><a href="beheer">Beheer</a></li>
         </ul>
       </nav>
   </header>
 <div id="main" ng-controller="PortalController as vm">
     <div class="content-fluid">
     	<h1>Dashboard</h1>
-      <p>De tabel hieronder toont een lijst met alle studenten die zich hebben ingeschreven via het Get There studentenportaal.</p><br>
+      <p>Volledige lijst alle studenten.</p><br>
       <div class="menubar">
         <div class="item">
           <!--<button>Student toevoegen</button>
@@ -90,6 +89,7 @@
           <th>Thema's</th>
           <th>Evenementen</th>
           <th>Status</th>
+          <th></th>
         </thead>
         <tbody>
         <tr ng-repeat="item in vm.data | filter:search | filter:thema | filter:event | filter:status | orderBy:'firstName'" ng-class="{'inactive': item.status === 'Verwijderd'}">
@@ -99,6 +99,7 @@
           <td>{{ item.thema }}</td>
           <td>{{ item.events }}</td>
           <td>{{ item.status }}</td>
+          <td class="check"><a href="#"><img src="../images/icon.png" title="Bekijk gegevens van deze student"></a></td>
         </tr>
       </tbody>
     </table>
