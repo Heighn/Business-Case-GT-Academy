@@ -163,6 +163,16 @@ h5 {
   margin: 0px auto;
 }
 
+.content-left {
+  float: left;
+  width: 50%;
+}
+
+.content-right {
+  float: right;
+  width: 50%;
+}
+
 .bg {
   background-image: url('../images/bg.jpg');
   background-position: center bottom;
@@ -237,6 +247,19 @@ input[type='checkbox']:first-of-type {
 }
 input[type='checkbox']:last-of-type {
   margin-bottom: 20px;
+}
+
+input.nMessage, textarea.nMessage {
+  max-width: 100%;
+  width: 600px;
+}
+
+textarea.nMessage {
+  min-height: 100px;
+}
+
+textarea.nMessageB {
+  min-height: 240px;
 }
 
 button {

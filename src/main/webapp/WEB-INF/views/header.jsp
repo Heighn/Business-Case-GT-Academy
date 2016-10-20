@@ -24,7 +24,7 @@
 <body>
   <header id="header">
       <div class="branding">
-        <a href="inloggen"><img src="../images/logo.png" alt="logo"></a>
+        <a href="dashboard"><img src="../images/logo.png" alt="logo"></a>
       </div>
       <div class="clear"></div>
       <nav id="menu">
@@ -32,10 +32,6 @@
           <li><a href="#" class="current">Profiel</a></li>
           <li><a href="#">Evenementen</a></li>
           <li><a href="../logout">Uitloggen</a></li>
-          <!--<li><a href="/sendEmail">Email Verzenden</a></li>
-  		    <li><a href="/recruitersList">Recruitersoverzicht</a></li>
-          <li><a href="/StudentList">Studentenoverzicht</a></li>
-          <li><a href="/DeleteStudent">Verwijder een Student</a></li>-->
         </ul>
       </nav>
   </header>

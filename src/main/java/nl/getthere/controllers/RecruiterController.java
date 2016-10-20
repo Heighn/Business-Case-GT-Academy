@@ -94,13 +94,13 @@ public class RecruiterController {
 
 	@RequestMapping("/nieuw-bericht")
 	public String sendEmailByRecruiter(HttpServletResponse resp){
-		return "sendEmail";
+		return "nieuw-bericht";
 	}
 
 	@RequestMapping(value="/nieuw-bericht", method=RequestMethod.POST)
 	public String sendEmailByRecruiterPost(String messageText, String subject, String emailAddresses) {
 		studentMailSender.sendEmail(messageText, subject, emailAddresses.split(","));
-		return "admin";
+		return "dashboard";
 	}
 
 	@RequestMapping("/recruitersList")

@@ -12,7 +12,7 @@
 <body ng-app="portal">
   <header id="header">
       <div class="branding">
-        <a href="inloggen"><img src="../images/logo.png" alt="logo"></a>
+        <a href="dashboard"><img src="../images/logo.png" alt="logo"></a>
       </div>
       <div class="avatar">
         <p>U bent ingelogd als '${recruiterName}'<p>
