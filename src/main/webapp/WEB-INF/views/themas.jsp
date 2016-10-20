@@ -22,6 +22,7 @@
       <nav id="menu">
         <ul class="fluid">
           <li><a href="dashboard">Dashboard</a></li>
+          <li><a href="studenten">Studenten</a></li>
           <li><a href="evenementen">Evenementen</a></li>
           <li><a href="#" class="current">Themas</a></li>
           <li><a href="beheer">Beheer</a></li>

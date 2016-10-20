@@ -122,6 +122,14 @@ public class RecruiterController {
 		return "dashboard";
 	}
 	
+	@RequestMapping("/studenten")
+	public String recruitersStudentenblup(Model model){
+		model.addAttribute("recruiters", recruiterRepo.findAll());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("recruiterName", auth.getName());
+		return "studenten";
+	}
+	
 	@RequestMapping("/beheer")
 	public String recruitersBeheer(Model model){
 		model.addAttribute("recruiters", recruiterRepo.findAll());
@@ -157,12 +165,6 @@ public class RecruiterController {
 	public String createEventPost(@ModelAttribute("eventForm") Event eventForm){
 		eventRepo.save(eventForm);
 		return "redirect:evenementen";
-	}
-
-	@RequestMapping("/studenten")
-	public String mailStudenten(Model model){
-		model.addAttribute("Hoi", "Hoi Hein!");
-		return "studenten";
 	}
 
 	@RequestMapping("/correspondentie")
