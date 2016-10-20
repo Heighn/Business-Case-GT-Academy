@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="accordion">
 		  <h3>Algemeen</h3>
 		  <div>
-				<form:form action="persoonsGegevensUpdate" method="post" commandName="persoonsGegevensBean">
+				<form:form method="post" action="persoonsGegevensUpdate" commandName="persoonsGegevensBean">
 			 		<p>Voornaam</p>
 					<form:input path="firstName" value="${firstName}"/>
 					<p>Achternaam</p>

@@ -19,14 +19,13 @@ public class ContactGegevensBean {
     }
 
     public Student fillStudent(Student student, DataChangeRepository dataChangeRepo){
-        student.setPhoneNumber(phoneNumber);
-        student.setLinkedIn(linkedIn);
-
+        System.out.println("Nieuwe Contactgegevens!");
         if(!emailAddress.equals(student.getEmailAddress())){
             DataChange dataChange = new DataChange(student.getEmailAddress(), student.getFirstName(), student.getLastName(), "emailadres", student.getEmailAddress(), emailAddress);
             dataChangeRepo.save(dataChange);
         }
         if(!phoneNumber.equals(student.getPhoneNumber())){
+            System.out.println("Er is een nieuw telefoonnummer!");
             DataChange dataChange = new DataChange(student.getEmailAddress(), student.getFirstName(), student.getLastName(), "telefoonnummer", student.getPhoneNumber(), phoneNumber);
             dataChangeRepo.save(dataChange);
         }
@@ -34,6 +33,9 @@ public class ContactGegevensBean {
             DataChange dataChange = new DataChange(student.getEmailAddress(), student.getFirstName(), student.getLastName(), "LinkedIn-pagina", student.getLinkedIn(), linkedIn);
             dataChangeRepo.save(dataChange);
         }
+
+        student.setPhoneNumber(phoneNumber);
+        student.setLinkedIn(linkedIn);
 
 
 

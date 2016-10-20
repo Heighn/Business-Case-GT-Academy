@@ -32,6 +32,9 @@ public class PersoonsGegevensBean {
     public PersoonsGegevensBean(Student student){
         this.firstName = student.getFirstName();
         this.lastName = student.getLastName();
+        this.gebDatum = student.getGebDatum();
+        this.afstudeerDatum = student.getAfstudeerDatum();
+        this.woonplaats = student.getWoonplaats();
     }
 
     public Student fillStudent(Student student, DataChangeRepository dataChangeRepo){
@@ -52,6 +55,11 @@ public class PersoonsGegevensBean {
         }
         if(!afstudeerDatum.equals(student.getAfstudeerDatum())){
             DataChange dataChange = new DataChange(student.getEmailAddress(), student.getFirstName(), student.getLastName(), "afstudeerDatum", df.format(student.getAfstudeerDatum()), df.format(afstudeerDatum));
+            dataChangeRepo.save(dataChange);
+        }
+
+        if(!woonplaats.equals(student.getWoonplaats())){
+            DataChange dataChange = new DataChange(student.getEmailAddress(), student.getFirstName(), student.getLastName(), "woonplaats", student.getWoonplaats(), woonplaats);
             dataChangeRepo.save(dataChange);
         }
 
