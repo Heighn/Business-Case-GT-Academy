@@ -38,18 +38,6 @@
           <button class="success" ng-click="vm.newMailMessage()">Recruiter toevoegen</button>
           <button class="delete">Recruiter verwijderen</button>
         </div>
-        <div class="item right">
-          <p class="foundSet">{{ (vm.data|filter:thema|filter:status|filter:search|filter:event).length }} van {{ vm.data.length}} recruiters in huidige weergave</p>
-        </div>
-        <div class="clear"></div>
-      </div>
-      <div class="menubar">
-        <div class="item">
-          <button ng-click="thema=''; event=''; search=''; status=''">Toon alle recruiters</button>
-        </div>
-        <div class="item right">
-          <input type="text" ng-model="search" id="search" placeholder="zoeken">
-        </div>
         <div class="clear"></div>
       </div>
       <table>
@@ -58,12 +46,17 @@
           <th>Omschrijving</th>
         </thead>
         <tbody>
-        <tr ng-repeat="item in vm.data | filter:search | filter:thema | filter:event | filter:status | orderBy:'firstName'" ng-class="{'inactive': item.status === 'Verwijderd'}">
-          <td class="check"><input type="checkbox" ng-model="item.selected" ng-change="vm.updateSelection()"></td>
-          <td>{{ item.firstName }}</td>
+        <c:forEach items="${recruiters}" var="recruiter">
+        <tr>
+          <td class="check"><input type="checkbox"></td>
+          <td>${recruiter.recruiterName}</td>
         </tr>
+      </c:forEach>
       </tbody>
-    </table>
+    </table><br><br>
+    <h2>Voorkeuren</h2>
+    <input type="checkbox" id="newStudent" checked><label for="newStudent">Stuur een bericht wanneer een nieuwe student zich inschrijft.</label><br>
+    <input type="checkbox" id="study"><label for="study">Stuur een bericht wanneer een student afstudeerd.</label>
   </div>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
