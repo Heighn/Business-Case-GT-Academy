@@ -32,7 +32,7 @@
 <div id="main" ng-controller="EventController as vm">
     <div class="content-fluid">
     	<h1>Evenementen</h1>
-      <p>Hieronder kunt je de aankomende evenementen bekijken!</p><br>
+      <p>Hieronder kun je de aankomende evenementen bekijken!</p><br>
       <div class="menubar">
         <div class="item">
           <!--<button>Student toevoegen</button>
